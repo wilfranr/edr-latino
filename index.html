@@ -664,11 +664,11 @@
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
                     const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes] = await Promise.all([
-                        fetch('./data/bosses.json'),
-                        fetch('./data/weapons.json'),
-                        fetch('./data/items.json'),
-                        fetch('./data/locations.json'),
-                        fetch('./data/regions_difficulty.json')
+                        fetch('./data/bosses_es.json'),
+                        fetch('./data/weapons_es.json'),
+                        fetch('./data/items_es.json'),
+                        fetch('./data/locations_es.json'),
+                        fetch('./data/regions_difficulty_es.json')
                     ]);
 
                     // Los archivos JSON son arrays directamente, no necesitan .data
