@@ -655,7 +655,7 @@
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
                     const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes] = await Promise.all([
-                        fetch('./data/bosses_es.json'),
+                        fetch('./data/bosses.json'),
                         fetch('./data/weapons_es.json'),
                         fetch('./data/items_es.json'),
                         fetch('./data/locations_es.json'),
