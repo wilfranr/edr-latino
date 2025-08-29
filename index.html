@@ -479,22 +479,22 @@
                 try {
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
-                                        const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes] = await Promise.all([
-                        fetch('/data/bosses.json'),
-                        fetch('/data/weapons.json'),
-                        fetch('/data/items.json'),
-                        fetch('/data/locations.json'),
-                        fetch('/data/regions_difficulty.json')
+                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes] = await Promise.all([
+                        fetch('./data/bosses.json'),
+                        fetch('./data/weapons.json'),
+                        fetch('./data/items.json'),
+                        fetch('./data/locations.json'),
+                        fetch('./data/regions_difficulty.json')
                     ]);
 
                     // Los archivos JSON son arrays directamente, no necesitan .data
                     gameData.bosses = await bossesRes.json();
+                    gameData.weapons = await weaponsRes.json();
                     gameData.items = await itemsRes.json();
                     gameData.locations = await locationsRes.json();
                     gameData.regionsDifficulty = await regionsDifficultyRes.json();
-                    gameData.locations = await locationsRes.json();
 
-                                        processApiData();
+                    processApiData();
                     console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
                     loadProgress();
                     renderZones();
