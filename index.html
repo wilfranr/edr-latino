@@ -244,7 +244,13 @@
 
             function renderTabContent(zone, category) {
                 const container = document.getElementById(`tab-${category}`);
-                const itemIds = zone[category] || [];
+                let itemIds = zone[category] || [];
+                
+                // Ordenar jefes por dificultad si es la categoría de jefes
+                if (category === 'jefes') {
+                    itemIds = sortBossesByDifficulty([...itemIds]);
+                }
+                
                 const items = gameData[category].filter(item => itemIds.includes(item.id));
 
                 container.innerHTML = ''; // Limpiar
@@ -254,16 +260,30 @@
                     return;
                 }
 
-                items.forEach(item => {
+                items.forEach((item, index) => {
                     let cardHtml = '';
                     const isChecked = progressState[item.id] || false;
 
                     if (category === 'jefes') {
+                        const difficulty = calculateBossDifficulty(item);
+                        const difficultyText = difficulty <= 2 ? 'Fácil' : difficulty <= 4 ? 'Medio' : difficulty <= 6 ? 'Difícil' : 'Muy Difícil';
+                        const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : difficulty <= 6 ? 'text-orange-400' : 'text-red-400';
+                        
                         cardHtml = `
                             <label class="flex items-center bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
                                 <input type="checkbox" data-id="${item.id}" class="progress-checkbox h-5 w-5 rounded bg-zinc-900 border-zinc-600 text-amber-500 focus:ring-amber-600" ${isChecked ? 'checked' : ''}>
-                                <span class="ml-3 text-white flex-grow ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
-                                <button data-boss-id="${item.id}" class="view-detail-btn text-xs text-amber-500 hover:underline">Ver</button>
+                                <div class="ml-3 flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
+                                        <span class="text-xs ${difficultyColor} font-medium">${difficultyText}</span>
+                                    </div>
+                                    <div class="flex items-center mt-1 text-xs text-zinc-400">
+                                        <span>${item.healthPoints || '???'} HP</span>
+                                        ${item.drops && item.drops.find(drop => drop.includes('Runes')) ? 
+                                            `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
+                                    </div>
+                                </div>
+                                <button data-boss-id="${item.id}" class="view-detail-btn text-xs text-amber-500 hover:underline ml-2">Ver</button>
                             </label>
                         `;
                     } else {
@@ -309,6 +329,15 @@
                 renderTabContent(zone, 'misiones');
                 renderTabContent(zone, 'armas');
                 renderTabContent(zone, 'objetos');
+                
+                // Agregar indicador de ordenamiento por dificultad en la pestaña de jefes
+                const jefesTab = document.getElementById('tab-jefes');
+                if (jefesTab && zone.jefes && zone.jefes.length > 0) {
+                    const orderIndicator = document.createElement('div');
+                    orderIndicator.className = 'text-xs text-zinc-500 text-center mb-3 p-2 bg-zinc-900 rounded';
+                    orderIndicator.innerHTML = '🗡️ Jefes ordenados por dificultad (más fácil → más difícil)';
+                    jefesTab.insertBefore(orderIndicator, jefesTab.firstChild);
+                }
 
                 // Actualizar porcentajes de las pestañas
                 ['jefes', 'misiones', 'armas', 'objetos'].forEach(category => {
@@ -341,6 +370,57 @@
             }
 
             // --- FUNCIONES DE CÁLCULO ---
+            
+            // Función para calcular la dificultad de un jefe
+            function calculateBossDifficulty(boss) {
+                let difficulty = 0;
+                
+                // Basado en puntos de vida
+                if (boss.healthPoints) {
+                    const health = parseInt(boss.healthPoints.replace(/[^\d]/g, '')) || 0;
+                    if (health > 0) {
+                        if (health < 5000) difficulty += 1;
+                        else if (health < 15000) difficulty += 2;
+                        else if (health < 50000) difficulty += 3;
+                        else difficulty += 4;
+                    }
+                }
+                
+                // Basado en runas (recompensa)
+                if (boss.drops) {
+                    const runes = boss.drops.find(drop => drop.includes('Runes'));
+                    if (runes) {
+                        const runeAmount = parseInt(runes.replace(/[^\d]/g, '')) || 0;
+                        if (runeAmount > 100000) difficulty += 3;
+                        else if (runeAmount > 50000) difficulty += 2;
+                        else if (runeAmount > 10000) difficulty += 1;
+                    }
+                }
+                
+                // Jefes especiales conocidos por su dificultad
+                const hardBosses = ['malenia', 'elden beast', 'radagon', 'maliketh', 'radahn'];
+                if (hardBosses.some(hardBoss => boss.name.toLowerCase().includes(hardBoss))) {
+                    difficulty += 2;
+                }
+                
+                return difficulty;
+            }
+            
+            // Función para ordenar jefes por dificultad
+            function sortBossesByDifficulty(bossIds) {
+                return bossIds.sort((a, b) => {
+                    const bossA = gameData.bosses.find(boss => boss.id === a);
+                    const bossB = gameData.bosses.find(boss => boss.id === b);
+                    
+                    if (!bossA || !bossB) return 0;
+                    
+                    const difficultyA = calculateBossDifficulty(bossA);
+                    const difficultyB = calculateBossDifficulty(bossB);
+                    
+                    return difficultyA - difficultyB; // Orden ascendente (más fácil primero)
+                });
+            }
+            
             function calculateProgress(itemIds) {
                 if (!itemIds || itemIds.length === 0) return 100;
                 const completedItems = itemIds.filter(id => progressState[id]).length;
@@ -453,26 +533,34 @@
                     }
                 });
 
-                // Mapeo manual de jefes a regiones para mejor precisión
-                const bossRegionMapping = {
-                    'grafted-scion': 'limgrave',
-                    'tree-sentinel': 'limgrave',
-                    'agheel-dragon': 'limgrave',
-                    'margit-fell-omen': 'limgrave',
-                    'godrick-grafted': 'limgrave',
-                    'leonine-misbegotten': 'limgrave',
-                    'demi-human-queen': 'weeping-peninsula',
-                    'black-knife-assassin': 'liurnia-of-the-lakes',
-                    'rennala-queen': 'liurnia-of-the-lakes',
-                    'radahn-starscourge': 'caelid',
-                    'mohg-lord': 'mohgwyn-palace',
-                    'malenia-blade': 'mountaintops-of-the-giants',
-                    'elden-beast': 'elden-throne'
-                };
-
-                // Asignar jefes a sus regiones correspondientes
+                // Mapeo automático de jefes a regiones basado en los datos reales
                 gameData.bosses.forEach(boss => {
-                    const regionId = bossRegionMapping[boss.id];
+                    if (!boss.region) return;
+                    
+                    // Convertir el nombre de la región a un ID de zona
+                    let regionId = null;
+                    const regionName = boss.region.toLowerCase();
+                    
+                    if (regionName.includes('limgrave')) {
+                        regionId = 'limgrave';
+                    } else if (regionName.includes('weeping peninsula')) {
+                        regionId = 'weeping-peninsula';
+                    } else if (regionName.includes('liurnia') || regionName.includes('liunia')) {
+                        regionId = 'liurnia-of-the-lakes';
+                    } else if (regionName.includes('caelid') || regionName.includes('dragonbarrow')) {
+                        regionId = 'caelid';
+                    } else if (regionName.includes('altus plateau') || regionName.includes('leyndell')) {
+                        regionId = 'altus-pleateau';
+                    } else if (regionName.includes('mountaintop') || regionName.includes('consecrated snowfield') || regionName.includes('haligtree')) {
+                        regionId = 'mountaintops-of-the-giants';
+                    } else if (regionName.includes('mount gelmir') || regionName.includes('volcano manor')) {
+                        regionId = 'mount-gelmir';
+                    } else if (regionName.includes('deeproot') || regionName.includes('mohgwyn')) {
+                        regionId = 'deeproot-depths';
+                    } else if (regionName.includes('crumbling farum azula')) {
+                        regionId = 'crumbling-farum-azula';
+                    }
+
                     if (regionId && gameData.zones[regionId]) {
                         if (!gameData.zones[regionId].jefes.includes(boss.id)) {
                             gameData.zones[regionId].jefes.push(boss.id);
