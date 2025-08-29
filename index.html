@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring Companion</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <style>
+        /* Aplicamos las fuentes personalizadas */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Un fondo oscuro para la página */
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+</head>
+<body class="bg-zinc-900 text-white">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <!-- Pantalla de Lista de Jefes -->
+        <main id="screen-zones">
+            <header class="text-center mb-6">
+                <h1 class="font-cinzel text-4xl font-bold text-amber-400">Zonas de las Tierras Intermedias</h1>
+                <div class="mt-4 max-w-lg mx-auto">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-amber-400">Progreso General</span>
+                        <span id="overall-progress-text" class="text-sm font-medium text-amber-400">0%</span>
+                    </div>
+                    <div class="w-full bg-zinc-700 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-amber-500 h-2.5 rounded-full" style="width: 0%"></div></div>
+                </div>
+            </header>
+
+            <div id="loading-indicator" class="text-center text-amber-400 text-xl py-10">Cargando zonas...</div>
+            <div id="zone-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Las tarjetas de las zonas se insertarán aquí por JavaScript -->
+            </div>
+        </main>
+        
+        <!-- Pantalla de Jefes de Zona (oculta por defecto) -->
+        <main id="screen-zone-detail" class="hidden">
+            <header class="mb-8">
+                <button id="back-to-zones-button" class="flex items-center text-amber-400 hover:text-amber-300 font-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    Volver a las Zonas
+                </button>
+            </header>
+            <div class="text-center mb-4">
+                <h1 id="zone-detail-title" class="font-cinzel text-4xl font-bold text-amber-400"></h1>
+            </div>
+
+            <!-- Pestañas de navegación -->
+            <nav class="flex justify-center border-b border-zinc-700 mb-6">
+                <button data-tab="jefes" class="tab-button font-semibold text-amber-400 border-b-2 border-amber-400 py-2 px-4">Jefes <span id="jefes-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="misiones" class="tab-button font-semibold text-zinc-400 py-2 px-4">Misiones <span id="misiones-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="armas" class="tab-button font-semibold text-zinc-400 py-2 px-4">Armas <span id="armas-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="objetos" class="tab-button font-semibold text-zinc-400 py-2 px-4">Objetos <span id="objetos-progress-text" class="text-xs ml-1"></span></button>
+            </nav>
+
+            <!-- Contenido de las pestañas -->
+            <div id="tab-content-container">
+                <div id="tab-jefes" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Contenido de Jefes -->
+                </div>
+                <div id="tab-misiones" class="tab-content hidden space-y-3">
+                    <!-- Contenido de Misiones -->
+                </div>
+                <div id="tab-armas" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armas -->
+                </div>
+                <div id="tab-objetos" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Objetos -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Pantalla de Detalle de Jefe (oculta por defecto) -->
+        <main id="screen-detail" class="hidden">
+            <header class="mb-8">
+                <button id="back-button" class="flex items-center text-amber-400 hover:text-amber-300 font-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    Volver
+                </button>
+            </header>
+
+            <!-- Contenedor para los detalles del jefe -->
+            <div id="detail-content" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <img id="detail-image" src="" alt="Imagen del jefe" class="w-full h-auto object-cover rounded-lg shadow-lg border-2 border-zinc-700">
+                </div>
+                <div class="md:col-span-2">
+                    <h2 id="detail-name" class="font-cinzel text-4xl font-bold text-amber-400 mb-4"></h2>
+                    <p id="detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-amber-500 mb-1">Ubicación</h3>
+                            <p id="detail-location" class="text-zinc-200"></p>
+                        </div>
+                         <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-amber-500 mb-1">Puntos de Vida</h3>
+                            <p id="detail-health" class="text-zinc-200"></p>
+                        </div>
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-amber-500 mb-1">Runas Obtenidas</h3>
+                            <p id="detail-runes" class="text-zinc-200"></p>
+                        </div>
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-amber-500 mb-1">Recompensas (Drops)</h3>
+                            <ul id="detail-drops" class="list-disc list-inside text-zinc-200"></ul>
+                        </div>
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-green-400 mb-1">Debilidades</h3>
+                            <ul id="detail-weaknesses" class="list-disc list-inside text-zinc-200"></ul>
+                        </div>
+                        <div class="bg-zinc-800 p-4 rounded-lg">
+                            <h3 class="font-bold text-red-400 mb-1">Fortalezas</h3>
+                            <ul id="detail-strengths" class="list-disc list-inside text-zinc-200"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // La API no tiene endpoint de misiones, las mantenemos localmente.
+            const mockMissions = [
+                { id: "mision01", name: "Misión de Ranni", description: "Ayuda a la bruja Ranni a desafiar a los Dos Dedos y forjar la Edad de las Estrellas.", location: "Liurnia of the Lakes" },
+                { id: "mision02", name: "Misión de Fia", description: "Conviértete en el campeón de Fia, la Compañera de la Muerte, para dar a luz a la Runa de la Muerte.", location: "Deeproot Depths" },
+                { id: "mision03", name: "Misión de Hyetta", description: "Guía a la doncella Hyetta hacia los Tres Dedos para que se convierta en la portadora de la Llama Frenética.", location: "Subterranean Shunning-Grounds" }
+            ];
+
+            // Elementos del DOM
+            const screenZones = document.getElementById('screen-zones');
+            const screenZoneDetail = document.getElementById('screen-zone-detail');
+            const screenDetail = document.getElementById('screen-detail');
+            const zoneListContainer = document.getElementById('zone-list');
+            const zoneDetailTitle = document.getElementById('zone-detail-title');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const backButton = document.getElementById('back-button');
+            const backToZonesButton = document.getElementById('back-to-zones-button');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions };
+            let progressState = {};
+            const STORAGE_KEY = 'eldenRingProgress';
+            let currentZoneId = null;
+
+            // --- MANEJO DE ESTADO Y PROGRESO ---
+            function loadProgress() {
+                const savedProgress = localStorage.getItem(STORAGE_KEY);
+                progressState = savedProgress ? JSON.parse(savedProgress) : {};
+            }
+
+            function saveProgress() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(progressState));
+            }
+
+            // --- FUNCIONES DE RENDERIZADO Y UI ---
+
+            function renderZones() {
+                updateOverallProgressUI();
+
+                try {
+                    const zones = Object.values(gameData.zones);
+
+                    // Obtener las dificultades de las regiones
+                    const regionDifficulties = {};
+                    gameData.regionsDifficulty.forEach(region => {
+                        regionDifficulties[region.name] = region.difficulty;
+                    });
+
+                    // Ordenar las zonas por dificultad de menor a mayor
+                    zones.sort((a, b) => {
+                        const difficultyA = regionDifficulties[a.name] || 999; // Asignar un valor alto si no se encuentra la dificultad
+                        const difficultyB = regionDifficulties[b.name] || 999; // Asignar un valor alto si no se encuentra la dificultad
+                        return difficultyA - difficultyB;
+                    });
+                    if (!zones || zones.length === 0) throw new Error('No se encontraron datos de zonas en el mock.');
+                    
+                    loadingIndicator.style.display = 'none';
+                    zoneListContainer.innerHTML = ''; // Limpiar la lista
+
+                    zones.forEach(zone => {
+                        const zoneProgress = calculateZoneProgress(zone.id);
+                        const card = document.createElement('div');
+                        card.className = 'bg-zinc-800 p-6 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300';
+                        card.dataset.id = zone.id;
+
+                        card.innerHTML = `
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-cinzel text-2xl font-bold text-white">${zone.name}</h3>
+                                <span class="text-amber-400 font-semibold">${zoneProgress.toFixed(0)}%</span>
+                            </div>
+                            <p class="text-zinc-400 text-sm mt-2 mb-4 h-10">${zone.description || 'Una de las regiones de las Tierras Intermedias.'}</p>
+                            <div class="w-full bg-zinc-700 rounded-full h-2.5"><div class="bg-amber-500 h-2.5 rounded-full" style="width: ${zoneProgress}%"></div></div>
+                        `;
+                        card.addEventListener('click', () => showZoneDetail(zone.id));
+                        zoneListContainer.appendChild(card);
+                    });
+
+                } catch (error) {
+                    console.error(error);
+                    // Mostramos un mensaje de error más descriptivo en la UI
+                    loadingIndicator.innerHTML = `
+                        <p class="text-red-400">Error al cargar las zonas.</p>
+                        <p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
+                }
+            }
+
+            function updateOverallProgressUI() {
+                const overallProgress = calculateOverallProgress();
+                const progressBar = document.getElementById('overall-progress-bar');
+                const progressText = document.getElementById('overall-progress-text');
+                if (progressBar) progressBar.style.width = `${overallProgress}%`;
+                if (progressText) progressText.textContent = `${overallProgress.toFixed(0)}%`;
+            }
+
+            function handleCheckboxChange(e) {
+                const itemId = e.target.dataset.id;
+                const isChecked = e.target.checked;
+                progressState[itemId] = isChecked;
+                saveProgress();
+
+                // Re-render la vista actual para actualizar barras de progreso
+                if (currentZoneId) {
+                    showZoneDetail(currentZoneId);
+                }
+            }
+
+            function renderTabContent(zone, category) {
+                const container = document.getElementById(`tab-${category}`);
+                const itemIds = zone[category] || [];
+                const items = gameData[category].filter(item => itemIds.includes(item.id));
+
+                container.innerHTML = ''; // Limpiar
+
+                if (items.length === 0) {
+                    container.innerHTML = `<p class="text-zinc-400 col-span-full text-center">No hay ${category} registrados en esta zona.</p>`;
+                    return;
+                }
+
+                items.forEach(item => {
+                    let cardHtml = '';
+                    const isChecked = progressState[item.id] || false;
+
+                    if (category === 'jefes') {
+                        cardHtml = `
+                            <label class="flex items-center bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
+                                <input type="checkbox" data-id="${item.id}" class="progress-checkbox h-5 w-5 rounded bg-zinc-900 border-zinc-600 text-amber-500 focus:ring-amber-600" ${isChecked ? 'checked' : ''}>
+                                <span class="ml-3 text-white flex-grow ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                <button data-boss-id="${item.id}" class="view-detail-btn text-xs text-amber-500 hover:underline">Ver</button>
+                            </label>
+                        `;
+                    } else {
+                        cardHtml = `
+                            <label class="flex items-start bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
+                                <input type="checkbox" data-id="${item.id}" class="progress-checkbox h-5 w-5 rounded bg-zinc-900 border-zinc-600 text-amber-500 focus:ring-amber-600 mt-1" ${isChecked ? 'checked' : ''}>
+                                <div class="ml-3">
+                                    <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                    <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
+                                </div>
+                            </label>
+                        `;
+                    }
+                    container.innerHTML += cardHtml;
+                });
+
+                container.querySelectorAll('.progress-checkbox').forEach(checkbox => checkbox.addEventListener('change', handleCheckboxChange));
+                container.querySelectorAll('.view-detail-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault(); // Evita que el label active el checkbox
+                        showBossDetail(e.target.dataset.bossId, zone.id);
+                    });
+                });
+            }
+
+            function showZoneDetail(zoneId) {
+                currentZoneId = zoneId;
+
+                screenZones.classList.add('hidden');
+                screenDetail.classList.add('hidden');
+                screenZoneDetail.classList.remove('hidden');
+
+                const zone = gameData.zones[zoneId];
+                if (!zone) {
+                    zoneDetailTitle.textContent = 'Zona no encontrada';
+                    return;
+                }
+
+                zoneDetailTitle.textContent = zone.name;
+
+                // Renderizar contenido para todas las pestañas
+                renderTabContent(zone, 'jefes');
+                renderTabContent(zone, 'misiones');
+                renderTabContent(zone, 'armas');
+                renderTabContent(zone, 'objetos');
+
+                // Actualizar porcentajes de las pestañas
+                ['jefes', 'misiones', 'armas', 'objetos'].forEach(category => {
+                    const progress = calculateProgress(zone[category] || []);
+                    const textElement = document.getElementById(`${category}-progress-text`);
+                    if (textElement) {
+                        textElement.textContent = `(${progress.toFixed(0)}%)`;
+                    }
+                });
+
+                // Activar la primera pestaña por defecto
+                tabButtons.forEach(btn => {
+                    if (btn.dataset.tab === 'jefes') {
+                        btn.classList.add('text-amber-400', 'border-amber-400');
+                        btn.classList.remove('text-zinc-400');
+                    } else {
+                        btn.classList.remove('text-amber-400', 'border-amber-400');
+                        btn.classList.add('text-zinc-400');
+                    }
+                });
+                tabContents.forEach(content => {
+                    if (content.id === 'tab-jefes') {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+
+                window.scrollTo(0, 0);
+            }
+
+            // --- FUNCIONES DE CÁLCULO ---
+            function calculateProgress(itemIds) {
+                if (!itemIds || itemIds.length === 0) return 100;
+                const completedItems = itemIds.filter(id => progressState[id]).length;
+                return (completedItems / itemIds.length) * 100;
+            }
+
+            function calculateZoneProgress(zoneId) {
+                const zone = gameData.zones[zoneId];
+                if (!zone) return 0;
+                const bossProgress = calculateProgress(zone.jefes || []);
+                const missionProgress = calculateProgress(zone.misiones || []);
+                return (bossProgress + missionProgress) / 2;
+            }
+
+            function calculateOverallProgress() {
+                const zoneIds = Object.keys(gameData.zones);
+                if (zoneIds.length === 0) return 0;
+                const totalProgress = zoneIds.reduce((sum, zoneId) => sum + calculateZoneProgress(zoneId), 0);
+                return totalProgress / zoneIds.length;
+            }
+
+            function showBossDetail(bossId, fromZoneId) {
+                screenZones.classList.add('hidden');
+                screenZoneDetail.classList.add('hidden');
+                screenDetail.classList.remove('hidden');
+                document.getElementById('detail-content').classList.add('hidden');
+
+                try {
+                    const boss = gameData.bosses.find(b => b.id === bossId);
+                    if (!boss) throw new Error('No se pudo encontrar el detalle del jefe.');
+
+                    // Guardar el contexto de la zona para el botón de regreso
+                    backButton.dataset.fromZone = fromZoneId;
+
+                    // Rellenar los detalles
+                    document.getElementById('detail-image').src = boss.image || 'https://via.placeholder.com/400x225.png?text=No+Image';
+                    document.getElementById('detail-name').textContent = boss.name;
+                    document.getElementById('detail-description').textContent = boss.description || 'No hay descripción disponible.';
+                    document.getElementById('detail-location').textContent = boss.location || 'Desconocida';
+                    document.getElementById('detail-health').textContent = boss.healthPoints || 'No disponible';
+                    document.getElementById('detail-runes').textContent = boss.runes ? new Intl.NumberFormat().format(boss.runes) : 'No disponible';
+                    
+                    const dropsList = document.getElementById('detail-drops');
+                    dropsList.innerHTML = '';
+
+                    if (boss.drops && boss.drops.length > 0) {
+                        boss.drops.forEach(drop => {
+                            const li = document.createElement('li');
+                            li.textContent = drop;
+                            dropsList.appendChild(li);
+                        });
+                    } else {
+                        dropsList.innerHTML = '<li>No se conocen recompensas.</li>';
+                    }
+
+                    const weaknessesList = document.getElementById('detail-weaknesses');
+                    weaknessesList.innerHTML = '';
+                    if (boss.weaknesses && boss.weaknesses.length > 0) {
+                        boss.weaknesses.forEach(weakness => {
+                            const li = document.createElement('li');
+                            li.textContent = weakness;
+                            weaknessesList.appendChild(li);
+                        });
+                    } else {
+                        weaknessesList.innerHTML = '<li>Ninguna conocida.</li>';
+                    }
+
+                    const strengthsList = document.getElementById('detail-strengths');
+                    strengthsList.innerHTML = '';
+                    if (boss.strengths && boss.strengths.length > 0) {
+                        boss.strengths.forEach(strength => {
+                            const li = document.createElement('li');
+                            li.textContent = strength;
+                            strengthsList.appendChild(li);
+                        });
+                    } else {
+                        strengthsList.innerHTML = '<li>Ninguna conocida.</li>';
+                    }
+
+                    document.getElementById('detail-content').classList.remove('hidden'); // Mostrar contenido
+                    window.scrollTo(0, 0); // Ir al inicio de la página
+
+                } catch (error) {
+                    // Si falla la carga del detalle, mostramos un error claro
+                    document.getElementById('detail-name').textContent = 'Error al cargar';
+                    document.getElementById('detail-description').textContent = `No se pudo obtener el detalle de este jefe. ${error.message}`;
+                    console.error(error);
+                }
+            }
+
+            function processApiData() {
+                // Primero, inicializamos las zonas a partir de las regiones únicas en locations.json
+                gameData.zones = {}; // Limpiar zonas existentes
+                const uniqueRegions = new Set();
+
+                gameData.locations.forEach(location => {
+                    if (location.region && !uniqueRegions.has(location.region)) {
+                        const zoneName = location.region.trim();
+                        const zoneId = zoneName.toLowerCase().replace(/\s+/g, '-');
+                        gameData.zones[zoneId] = {
+                            id: zoneId,
+                            name: zoneName,
+                            description: `Explora la región de ${zoneName}.`,
+                            jefes: [],
+                            misiones: [],
+                            armas: [],
+                            objetos: []
+                        };
+                        uniqueRegions.add(location.region);
+                    }
+                });
+
+                // Luego, asociamos los elementos (jefes, armas, etc.) a sus zonas/regiones
+                const allItems = [
+                    ...gameData.bosses.map(i => ({ ...i, type: 'jefes' })),
+                    ...gameData.weapons.map(i => ({ ...i, type: 'armas' })),
+                    ...gameData.items.map(i => ({ ...i, type: 'objetos' })),
+                    ...gameData.misiones.map(i => ({ ...i, type: 'misiones' }))
+                ];
+
+                allItems.forEach(item => {
+                    if (!item.location) return;
+                    
+                    // Normalizar nombres de zonas para agrupar mejor
+                    const zoneName = item.location.split(',')[0].trim();
+                    const zoneId = zoneName.toLowerCase().replace(/\s+/g, '-');
+
+                    // Asegurarse de que la zona existe antes de añadir el item
+                    if (gameData.zones[zoneId] && !gameData.zones[zoneId][item.type].includes(item.id)) {
+                        gameData.zones[zoneId][item.type].push(item.id);
+                    }
+                });
+            }
+
+            async function initializeApp() {
+                try {
+                    loadingIndicator.textContent = 'Cargando archivos de datos...';
+
+                                        const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes] = await Promise.all([
+                        fetch('/data/bosses.json'),
+                        fetch('/data/weapons.json'),
+                        fetch('/data/items.json'),
+                        fetch('/data/locations.json'),
+                        fetch('/data/regions_difficulty.json')
+                    ]);
+
+                    // Los archivos JSON son arrays directamente, no necesitan .data
+                    gameData.bosses = await bossesRes.json();
+                    gameData.items = await itemsRes.json();
+                    gameData.locations = await locationsRes.json();
+                    gameData.regionsDifficulty = await regionsDifficultyRes.json();
+                    gameData.locations = await locationsRes.json();
+
+                                        processApiData();
+                    console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
+                    loadProgress();
+                    renderZones();
+                } catch (error) {
+                    loadingIndicator.innerHTML = `<p class="text-red-400">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen. <br><br> ${error.message}</p>`;
+                }
+            }
+
+            // --- NAVEGACIÓN ---
+            backButton.addEventListener('click', () => {
+                const fromZone = backButton.dataset.fromZone;
+                if (fromZone) {
+                    showZoneDetail(fromZone);
+                }
+            });
+
+            backToZonesButton.addEventListener('click', () => {
+                screenZoneDetail.classList.add('hidden');
+                currentZoneId = null;
+                renderZones(); // Re-render para mostrar progreso actualizado
+                screenZones.classList.remove('hidden');
+            });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('text-amber-400', 'border-amber-400');
+                        btn.classList.add('text-zinc-400');
+                    });
+                    button.classList.add('text-amber-400', 'border-amber-400');
+                    button.classList.remove('text-zinc-400');
+
+                    tabContents.forEach(content => {
+                        content.classList.toggle('hidden', content.id !== `tab-${tabId}`);
+                    });
+                });
+            });
+
+            // Iniciar la carga de datos
+            initializeApp();
+        });
+    </script>
+</body>
+</html>

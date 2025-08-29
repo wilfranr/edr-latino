@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Limgrave",
+    "difficulty": 3
+  },
+  {
+    "name": "Caelid",
+    "difficulty": 7
+  },
+  {
+    "name": "Weeping Peninsula",
+    "difficulty": 1
+  },
+  {
+    "name": "Liurnia of the Lakes",
+    "difficulty": 6
+  },
+  {
+    "name": "Dragonbarrow",
+    "difficulty": 9
+  },
+  {
+    "name": "Altus Plateau",
+    "difficulty": 7
+  },
+  {
+    "name": "Mountaintops of the Giants",
+    "difficulty": 10
+  }
+]
