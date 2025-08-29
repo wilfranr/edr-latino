@@ -9,17 +9,17 @@
   },
   {
     "id": "weeping-peninsula",
-    "name": "Weeping Peninsula",
+    "name": "Península Llorona",
     "description": "Una península al sur de Limgrave, conocida por el Castillo Morne y sus catacumbas.",
-    "region": "Weeping Peninsula",
+    "region": "Península Llorona",
     "difficulty": "Fácil",
     "recommendedLevel": "15-40"
   },
   {
     "id": "liurnia-of-the-lakes",
-    "name": "Liurnia of the Lakes",
+    "name": "Liurnia de los Lagos",
     "description": "Una vasta región de lagos y pantanos, hogar de la Academia Raya Lucaria.",
-    "region": "Liurnia of the Lakes",
+    "region": "Liurnia de los Lagos",
     "difficulty": "Medio",
     "recommendedLevel": "30-60"
   },
@@ -33,49 +33,49 @@
   },
   {
     "id": "altus-plateau",
-    "name": "Altus Plateau",
+    "name": "Meseta de Altus",
     "description": "Una meseta elevada que alberga la capital Leyndell y el Monte Gelmir.",
-    "region": "Altus Plateau",
+    "region": "Meseta de Altus",
     "difficulty": "Difícil",
     "recommendedLevel": "60-90"
   },
   {
     "id": "mount-gelmir",
-    "name": "Mount Gelmir",
+    "name": "Monte Gelmir",
     "description": "Un volcán activo que alberga la Mansión del Volcán y sus secretos.",
-    "region": "Mount Gelmir",
+    "region": "Monte Gelmir",
     "difficulty": "Muy Difícil",
     "recommendedLevel": "70-100"
   },
   {
     "id": "mountaintops-of-the-giants",
-    "name": "Mountaintops of the Giants",
+    "name": "Cumbres de los Gigantes",
     "description": "Las cumbres heladas donde residen los gigantes de fuego y el Haligtree.",
-    "region": "Mountaintops of the Giants",
+    "region": "Cumbres de los Gigantes",
     "difficulty": "Muy Difícil",
     "recommendedLevel": "80-120"
   },
   {
     "id": "consecrated-snowfield",
-    "name": "Consecrated Snowfield",
+    "name": "Campo de Nieve Consagrado",
     "description": "Un campo de nieve sagrado que oculta el acceso al Haligtree.",
-    "region": "Consecrated Snowfield",
+    "region": "Campo de Nieve Consagrado",
     "difficulty": "Muy Difícil",
     "recommendedLevel": "90-130"
   },
   {
     "id": "deeproot-depths",
-    "name": "Deeproot Depths",
+    "name": "Profundidades de Raíz Profunda",
     "description": "Las profundidades subterráneas donde se encuentran las raíces del Árbol Áureo.",
-    "region": "Deeproot Depths",
+    "region": "Profundidades de Raíz Profunda",
     "difficulty": "Muy Difícil",
     "recommendedLevel": "80-120"
   },
   {
     "id": "crumbling-farum-azula",
-    "name": "Crumbling Farum Azula",
+    "name": "Farum Azula en Ruinas",
     "description": "Una ciudad flotante en ruinas que alberga secretos antiguos y jefes legendarios.",
-    "region": "Crumbling Farum Azula",
+    "region": "Farum Azula en Ruinas",
     "difficulty": "Muy Difícil",
     "recommendedLevel": "100-150"
   }

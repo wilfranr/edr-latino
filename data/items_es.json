@@ -1,72 +1,72 @@
 [
   {
     "id": "golden-seed",
-    "name": "Golden Seed",
+    "name": "Semilla Dorada",
     "description": "Una semilla dorada que puede usarse para mejorar tu Frasco de Lágrimas Sagradas.",
     "location": "Limgrave",
     "type": "objeto"
   },
   {
     "id": "sacred-tear",
-    "name": "Sacred Tear",
+    "name": "Lágrima Sagrada",
     "description": "Una lágrima sagrada que restaura la salud cuando se usa en el Frasco de Lágrimas Sagradas.",
-    "location": "Church of Elleh",
+    "location": "Iglesia de Elleh",
     "type": "objeto"
   },
   {
     "id": "smithing-stone-1",
-    "name": "Smithing Stone [1]",
+    "name": "Piedra de Forja [1]",
     "description": "Piedra de forja básica que permite mejorar armas hasta +3.",
-    "location": "Limgrave Tunnels",
+    "location": "Túneles de Limgrave",
     "type": "objeto"
   },
   {
     "id": "golden-rune-1",
-    "name": "Golden Rune [1]",
+    "name": "Runa Dorada [1]",
     "description": "Runa dorada que otorga runas cuando se consume.",
     "location": "Limgrave",
     "type": "objeto"
   },
   {
     "id": "memory-stone",
-    "name": "Memory Stone",
+    "name": "Piedra de Memoria",
     "description": "Piedra de memoria que aumenta el número de slots de hechizos disponibles.",
-    "location": "Raya Lucaria Academy",
+    "location": "Academia Raya Lucaria",
     "type": "objeto"
   },
   {
     "id": "larval-tear",
-    "name": "Larval Tear",
+    "name": "Lágrima Larval",
     "description": "Lágrima larval que permite reespecificar tu personaje en la Renacida.",
-    "location": "Nokron, Eternal City",
+    "location": "Nokron, Ciudad Eterna",
     "type": "objeto"
   },
   {
     "id": "ancient-dragon-smithing-stone",
-    "name": "Ancient Dragon Smithing Stone",
+    "name": "Piedra de Forja de Dragón Antiguo",
     "description": "Piedra de forja de dragón antiguo que permite mejorar armas hasta +25.",
-    "location": "Crumbling Farum Azula",
+    "location": "Farum Azula en Ruinas",
     "type": "objeto"
   },
   {
     "id": "somber-ancient-dragon-smithing-stone",
-    "name": "Somber Ancient Dragon Smithing Stone",
+    "name": "Piedra de Forja Sombría de Dragón Antiguo",
     "description": "Piedra de forja sombría de dragón antiguo que permite mejorar armas sombrías hasta +10.",
-    "location": "Crumbling Farum Azula",
+    "location": "Farum Azula en Ruinas",
     "type": "objeto"
   },
   {
     "id": "great-grave-glovewort",
-    "name": "Great Grave Glovewort",
+    "name": "Glovewort de Tumba Grande",
     "description": "Glovewort de tumba grande que permite mejorar espíritus hasta +10.",
-    "location": "Mountaintops of the Giants",
+    "location": "Cumbres de los Gigantes",
     "type": "objeto"
   },
   {
     "id": "great-ghost-glovewort",
-    "name": "Great Ghost Glovewort",
+    "name": "Glovewort Fantasma Grande",
     "description": "Glovewort fantasma grande que permite mejorar espíritus sombríos hasta +10.",
-    "location": "Mountaintops of the Giants",
+    "location": "Cumbres de los Gigantes",
     "type": "objeto"
   }
 ]
