@@ -1,0 +1,298 @@
+[
+  {
+    "id": "ranni-quest",
+    "name": "Misión de Ranni la Bruja",
+    "description": "Ayuda a Ranni a completar su destino y liberar las Tierras Intermedias de la influencia de la Voluntad Mayor.",
+    "location": "Torre de Ranni, Liurnia de los Lagos",
+    "type": "mision",
+    "region": "liurnia-of-the-lakes",
+    "steps": [
+      "Habla con Ranni en la Torre de Ranni",
+      "Derrota a Radahn, Azote de las Estrellas",
+      "Explora Nokron, Ciudad Eterna",
+      "Encuentra la Hoja de la Luna Oscura",
+      "Derrota a Astel, Estrellas de la Oscuridad",
+      "Completa la misión en el Altar de la Luz Lunar"
+    ],
+    "rewards": [
+      "Espada de la Luna Oscura",
+      "Armadura de Ranni",
+      "Acceso a finales alternativos"
+    ]
+  },
+  {
+    "id": "fia-quest",
+    "name": "Misión de Fia",
+    "description": "Ayuda a Fia a completar su destino como Guardiana de la Muerte y enfrenta a los Campeones de Fia.",
+    "location": "Mesa Redonda, Profundidades de Raíz Profunda",
+    "type": "mision",
+    "region": "deeproot-depths",
+    "steps": [
+      "Habla con Fia en la Mesa Redonda",
+      "Obtén la Marca de la Muerte",
+      "Encuentra el Cuchillo Negro",
+      "Derrota a los Campeones de Fia",
+      "Enfrenta a Fortissax, Dragón Liche"
+    ],
+    "rewards": [
+      "Marco de la Muerte",
+      "Acceso a Profundidades de Raíz Profunda"
+    ]
+  },
+  {
+    "id": "millicent-quest",
+    "name": "Misión de Millicent",
+    "description": "Ayuda a Millicent a encontrar su destino y enfrentar su herencia como hija de Malenia.",
+    "location": "Iglesia de la Plaga, Caelid",
+    "type": "mision",
+    "region": "caelid",
+    "steps": [
+      "Encuentra a Millicent en la Iglesia de la Plaga",
+      "Ayúdala a recuperar su brazo",
+      "Acompáñala a través de Altus Plateau",
+      "Llévala al Monte Gelmir",
+      "Ayúdala a enfrentar sus hermanas"
+    ],
+    "rewards": [
+      "Talismán de Millicent",
+      "Acceso a contenido adicional"
+    ]
+  },
+  {
+    "id": "alexander-quest",
+    "name": "Misión de Alexander el Guerrero de Jarra",
+    "description": "Ayuda a Alexander a convertirse en un guerrero legendario y enfrentar desafíos cada vez mayores.",
+    "location": "Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Alexander atrapado en Limgrave",
+      "Ayúdalo a liberarse",
+      "Encuéntralo en Gael Tunnel",
+      "Ayúdalo en el Monte Gelmir",
+      "Enfrenta el desafío final en Farum Azula"
+    ],
+    "rewards": [
+      "Fragmento de Alexander",
+      "Talismán de Jarra"
+    ]
+  },
+  {
+    "id": "blaidd-quest",
+    "name": "Misión de Blaidd",
+    "description": "Ayuda a Blaidd, el guardián lobo de Ranni, a cumplir su deber y enfrentar su destino.",
+    "location": "Torre de Ranni, Liurnia de los Lagos",
+    "type": "mision",
+    "region": "liurnia-of-the-lakes",
+    "steps": [
+      "Conoce a Blaidd en la Torre de Ranni",
+      "Ayúdalo a derrotar a Radahn",
+      "Encuéntralo en Siofra River",
+      "Ayúdalo en Nokron",
+      "Enfrenta su destino final"
+    ],
+    "rewards": [
+      "Armadura de Blaidd",
+      "Espada de Blaidd"
+    ]
+  },
+  {
+    "id": "dung-eater-quest",
+    "name": "Misión del Devorador de Excrementos",
+    "description": "Una misión oscura que involucra al Devorador de Excrementos y su búsqueda para corromper el mundo.",
+    "location": "Mesa Redonda, Leyndell",
+    "type": "mision",
+    "region": "altus-plateau",
+    "steps": [
+      "Encuentra al Devorador de Excrementos en la Mesa Redonda",
+      "Obtén las Semillas de Maldición",
+      "Encuentra su cuerpo en las Profundidades Subterráneas",
+      "Completa su ritual oscuro"
+    ],
+    "rewards": [
+      "Armadura del Devorador de Excrementos",
+      "Espada Maldita"
+    ]
+  },
+  {
+    "id": "goldmask-quest",
+    "name": "Misión de Goldmask",
+    "description": "Ayuda a Goldmask a encontrar la verdad sobre el Anillo de Elden y la Voluntad Mayor.",
+    "location": "Altus Plateau",
+    "type": "mision",
+    "region": "altus-plateau",
+    "steps": [
+      "Encuentra a Goldmask en Altus Plateau",
+      "Ayúdalo a investigar Leyndell",
+      "Acompáñalo a Farum Azula",
+      "Descubre la verdad sobre el Anillo"
+    ],
+    "rewards": [
+      "Talismán de Goldmask",
+      "Acceso a finales alternativos"
+    ]
+  },
+  {
+    "id": "nepheli-quest",
+    "name": "Misión de Nepheli Loux",
+    "description": "Ayuda a Nepheli a encontrar su camino como guerrera y enfrentar su herencia.",
+    "location": "Castillo Stormveil, Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Nepheli en el Castillo Stormveil",
+      "Ayúdala a derrotar a Godrick",
+      "Encuéntrala en la Mesa Redonda",
+      "Ayúdala a encontrar su propósito",
+      "Completa su arco de personaje"
+    ],
+    "rewards": [
+      "Armadura de Nepheli",
+      "Hacha de Nepheli"
+    ]
+  },
+  {
+    "id": "seluvis-quest",
+    "name": "Misión de Seluvis",
+    "description": "Una misión que involucra a Seluvis y sus experimentos con espíritus y magia.",
+    "location": "Torre de Ranni, Liurnia de los Lagos",
+    "type": "mision",
+    "region": "liurnia-of-the-lakes",
+    "steps": [
+      "Conoce a Seluvis en la Torre de Ranni",
+      "Ayúdalo con sus experimentos",
+      "Obtén el Amuleto de Seluvis",
+      "Completa sus tareas"
+    ],
+    "rewards": [
+      "Amuleto de Seluvis",
+      "Acceso a magia especial"
+    ]
+  },
+  {
+    "id": "sellen-quest",
+    "name": "Misión de Sellen",
+    "description": "Ayuda a Sellen a completar su investigación sobre la magia y enfrentar las consecuencias.",
+    "location": "Academia Raya Lucaria, Liurnia de los Lagos",
+    "type": "mision",
+    "region": "liurnia-of-the-lakes",
+    "steps": [
+      "Encuentra a Sellen en la Academia Raya Lucaria",
+      "Ayúdala con su investigación",
+      "Encuentra su cuerpo en las Profundidades Subterráneas",
+      "Completa su transformación"
+    ],
+    "rewards": [
+      "Armadura de Sellen",
+      "Acceso a magia avanzada"
+    ]
+  },
+  {
+    "id": "diallos-quest",
+    "name": "Misión de Diallos",
+    "description": "Ayuda a Diallos a encontrar su propósito y redimirse de sus errores pasados.",
+    "location": "Academia Raya Lucaria, Liurnia de los Lagos",
+    "type": "mision",
+    "region": "liurnia-of-the-lakes",
+    "steps": [
+      "Conoce a Diallos en la Academia Raya Lucaria",
+      "Ayúdalo a encontrar su camino",
+      "Acompáñalo en su búsqueda de redención",
+      "Completa su arco de personaje"
+    ],
+    "rewards": [
+      "Armadura de Diallos",
+      "Acceso a contenido adicional"
+    ]
+  },
+  {
+    "id": "yura-quest",
+    "name": "Misión de Yura",
+    "description": "Ayuda a Yura a completar su misión como cazador de sangres y enfrentar su destino.",
+    "location": "Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Yura en Limgrave",
+      "Ayúdalo a derrotar a los invasores",
+      "Acompáñalo en su búsqueda",
+      "Enfrenta su destino final"
+    ],
+    "rewards": [
+      "Armadura de Yura",
+      "Espada de Yura"
+    ]
+  },
+  {
+    "id": "patches-quest",
+    "name": "Misión de Parches",
+    "description": "Una serie de encuentros con Parches, el comerciante travieso que siempre encuentra formas de engañar.",
+    "location": "Múltiples ubicaciones",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Parches en Limgrave",
+      "Sobrevive a sus trampas",
+      "Encuéntralo en el Monte Gelmir",
+      "Completa su arco de personaje"
+    ],
+    "rewards": [
+      "Armadura de Parches",
+      "Acceso a comercio especial"
+    ]
+  },
+  {
+    "id": "boc-quest",
+    "name": "Misión de Boc",
+    "description": "Ayuda a Boc a encontrar su propósito y convertirse en un sastre hábil.",
+    "location": "Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Boc en Limgrave",
+      "Ayúdalo a convertirse en humano",
+      "Ayúdalo a encontrar su propósito",
+      "Completa su transformación"
+    ],
+    "rewards": [
+      "Servicios de sastrería",
+      "Acceso a modificaciones de armadura"
+    ]
+  },
+  {
+    "id": "kenneth-quest",
+    "name": "Misión de Kenneth Haight",
+    "description": "Ayuda a Kenneth a restaurar el orden en Limgrave y reclamar su posición.",
+    "location": "Fort Haight, Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Encuentra a Kenneth en Fort Haight",
+      "Ayúdalo a limpiar el fuerte",
+      "Ayúdalo a reclamar su posición",
+      "Completa su misión"
+    ],
+    "rewards": [
+      "Acceso a Fort Haight",
+      "Recompensas especiales"
+    ]
+  },
+  {
+    "id": "gostoc-quest",
+    "name": "Misión de Gostoc",
+    "description": "Una misión que involucra a Gostoc y sus actividades en el Castillo Stormveil.",
+    "location": "Castillo Stormveil, Limgrave",
+    "type": "mision",
+    "region": "limgrave",
+    "steps": [
+      "Conoce a Gostoc en el Castillo Stormveil",
+      "Descubre sus actividades",
+      "Enfrenta las consecuencias",
+      "Completa su arco de personaje"
+    ],
+    "rewards": [
+      "Acceso a comercio especial",
+      "Información valiosa"
+    ]
+  }
+]
