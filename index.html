@@ -246,6 +246,13 @@
                 const container = document.getElementById(`tab-${category}`);
                 let itemIds = zone[category] || [];
                 
+                // Verificar si la categoría existe en gameData
+                if (!gameData[category]) {
+                    console.warn(`Categoría '${category}' no encontrada en gameData`);
+                    container.innerHTML = `<p class="text-zinc-400 col-span-full text-center">Categoría '${category}' no disponible.</p>`;
+                    return;
+                }
+                
                 // Ordenar jefes por dificultad si es la categoría de jefes
                 if (category === 'jefes') {
                     itemIds = sortBossesByDifficulty([...itemIds]);
@@ -615,23 +622,25 @@
                     }
                 });
 
-                // Asignar misiones a regiones
-                gameData.misiones.forEach(mision => {
-                    let regionId = null;
-                    if (mision.location.includes('Liurnia')) {
-                        regionId = 'liurnia-of-the-lakes';
-                    } else if (mision.location.includes('Deeproot')) {
-                        regionId = 'deeproot-depths';
-                    } else if (mision.location.includes('Subterranean')) {
-                        regionId = 'subterranean-shunning-grounds';
-                    }
-
-                    if (regionId && gameData.zones[regionId]) {
-                        if (!gameData.zones[regionId].misiones.includes(mision.id)) {
-                            gameData.zones[regionId].misiones.push(mision.id);
+                // Asignar misiones a regiones (solo si existen)
+                if (gameData.misiones && gameData.misiones.length > 0) {
+                    gameData.misiones.forEach(mision => {
+                        let regionId = null;
+                        if (mision.location && mision.location.includes('Liurnia')) {
+                            regionId = 'liurnia-of-the-lakes';
+                        } else if (mision.location && mision.location.includes('Deeproot')) {
+                            regionId = 'deeproot-depths';
+                        } else if (mision.location && mision.location.includes('Subterranean')) {
+                            regionId = 'subterranean-shunning-grounds';
                         }
-                    }
-                });
+
+                        if (regionId && gameData.zones[regionId]) {
+                            if (!gameData.zones[regionId].misiones.includes(mision.id)) {
+                                gameData.zones[regionId].misiones.push(mision.id);
+                            }
+                        }
+                    });
+                }
 
                 console.log('Zonas procesadas:', Object.keys(gameData.zones));
                 console.log('Jefes por zona:', Object.values(gameData.zones).map(zone => ({
@@ -661,6 +670,11 @@
                     gameData.items = await itemsRes.json();
                     gameData.locations = await locationsRes.json();
                     gameData.regionsDifficulty = await regionsDifficultyRes.json();
+                    
+                    // Inicializar categorías que pueden no existir
+                    if (!gameData.misiones) gameData.misiones = [];
+                    if (!gameData.armas) gameData.armas = [];
+                    if (!gameData.objetos) gameData.objetos = [];
 
                     processApiData();
                     console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
