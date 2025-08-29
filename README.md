@@ -8,6 +8,8 @@
 
 Una aplicación web progresiva (PWA) completa que te guía a través de las Tierras Intermedias con información detallada sobre jefes, armas, objetos, ubicaciones y misiones, **completamente en español latino**.
 
+<!-- Última actualización: 2025 -->
+
 ## ✨ Características Principales
 
 ### 🎯 **Sistema de Jefes Completo**
