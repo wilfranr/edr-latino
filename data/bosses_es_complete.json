@@ -1,0 +1,264 @@
+[
+  {
+    "id": "17f695abef9l0i1ujzrup5y0z7rw6",
+    "name": "Vírgenes Secuestradoras",
+    "image": null,
+    "region": "Monte Gelmir",
+    "description": "Constructos mecánicos mortales que empuñan espadas masivas.",
+    "location": "Mansión del Volcán",
+    "drops": [
+      "10.000 Runas",
+      "Girándula del Inquisidor"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69b4ba0al0i1uk6s98t1nbtxunt",
+    "name": "Alecto, Líder de los Cuchillos Negros",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69b4ba0al0i1uk6s98t1nbtxunt.png",
+    "region": "Liurnia de los Lagos",
+    "description": "Guerrero notablemente ágil y agresivo. Peligroso incluso para aquellos con cobertura de escudo...",
+    "location": "Prisión Eterna del Líder, Liurnia de los Lagos",
+    "drops": [
+      "8.000 Runas",
+      "Tiche, Cuchillo Negro"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69d0313fl0i1uk8pokynv71bkz8",
+    "name": "Alecto, Líder de los Cuchillos Negros",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69d0313fl0i1uk8pokynv71bkz8.png",
+    "region": "Liurnia de los Lagos",
+    "description": "Guerrero notablemente ágil y agresivo. Peligroso incluso para aquellos con cobertura de escudo...",
+    "location": "Limgrave",
+    "drops": [
+      "80.000 Runas",
+      "Otros Objetos"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69b85929l0i1ukc4l2up7yp9v0i",
+    "name": "Señor de Alabastro",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69b85929l0i1ukc4l2up7yp9v0i.png",
+    "region": "Liurnia de los Lagos",
+    "description": "Un prisionero de prisión eterna que empuña una espada viciosa y el vacío con intención asesina.",
+    "location": "Prisión Eterna de la Tumba Real, Liurnia de los Lagos",
+    "drops": [
+      "3.600 Runas",
+      "Meteorito"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69a3ca37l0i1ukd1lq14ctafbk",
+    "name": "Adan, Ladrón del Fuego",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a3ca37l0i1ukd1lq14ctafbk.png",
+    "region": "Liurnia de los Lagos",
+    "description": "Un prisionero de prisión eterna y ex mago de batalla, Adan empuña un mayal con púas y usa conocimiento robado de magia de fuego con gran efecto.",
+    "location": "Prisión Eterna del Malhechor",
+    "drops": [
+      "3.800 Runas",
+      "Llama del Dios Caído"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69a63610l0i1ukyx7xgx6vf0zoa",
+    "name": "Dragón Antiguo Lansseax",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a63610l0i1ukyx7xgx6vf0zoa.png",
+    "region": "Meseta de Altus",
+    "description": "Lansseax era la hermana de Fortissax. Se dice que tomó la forma de un humano para comunicarse con los caballeros como sacerdotisa del culto del dragón antiguo.",
+    "location": "Meseta de Altus",
+    "drops": [
+      "60.000 Runas",
+      "Glaive de Lansseax"
+    ],
+    "healthPoints": "9087"
+  },
+  {
+    "id": "17f69590896l0i1ul0hnmor8iyf9xd",
+    "name": "Espíritu Ancestral",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69590896l0i1ul0hnmor8iyf9xd.png",
+    "region": "Limgrave",
+    "description": "Un espíritu brillante que toma la forma de un ciervo grande, convirtiéndose en una amenaza amenazante cuando carga contra objetivos.",
+    "location": "Río Siofra",
+    "drops": [
+      "13.000 Runas",
+      "Cenizas del Seguidor Ancestral"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69878c4al0i1ul0i7dsfou8igrk",
+    "name": "Héroe Antiguo de Zamor",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69878c4al0i1ul0i7dsfou8igrk.png",
+    "region": "Península Llorona",
+    "description": "Criatura notablemente ágil, hecha de escarcha, susceptible a ataques mágicos.",
+    "location": "Prisión Eterna Llorona, Tumba del Héroe Conquistador de Gigantes",
+    "drops": [
+      "5,400 Runas",
+      "Sello de Radagon",
+      "83,000 Runas",
+      "Espada Curva de Zamor",
+      "Máscara de Zamor",
+      "Armadura de Zamor",
+      "Brazaletes de Zamor",
+      "Vendas de Zamor"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69bcfd7dl0i1ul502rklvi8tx62",
+    "name": "Astel, Estrellas de la Oscuridad",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69bcfd7dl0i1ul502rklvi8tx62.png",
+    "region": "Campo de Nieve Consagrado",
+    "description": "Una criatura hostil, masiva tipo libélula-dragón. Amenazante y extremadamente poderosa.",
+    "location": "Túnel de Yelough Anix en el Campo de Nieve Consagrado",
+    "drops": [
+      "120000 Runas",
+      "Meteorito de Astel"
+    ],
+    "healthPoints": "25,376"
+  },
+  {
+    "id": "17f69d4387al0i1ulpqqumwqw05j3c",
+    "name": "Bestia de Farum Azula",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69d4387al0i1ulpqqumwqw05j3c.png",
+    "region": "Limgrave",
+    "description": "Criatura que vive bajo tierra encontrada en la Cueva del Bosque",
+    "location": "Cueva del Bosque",
+    "drops": [
+      "1000 Runas",
+      "Talismán del Dragón de Fuego"
+    ],
+    "healthPoints": "1960"
+  },
+  {
+    "id": "17f69bd3c06l0i1ulx2jxbiogta1i",
+    "name": "Asesino de Cuchillo Negro",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69bd3c06l0i1ulx2jxbiogta1i.png",
+    "region": "Limgrave",
+    "description": "Figuras oscuras implacables y ágiles que llevan una hoja mortal.",
+    "location": "Catacumbas del Toque de Muerte, Catacumbas del Cuchillo Negro, Cueva del Sabio",
+    "drops": [
+      "1,600 Runas",
+      "Daga Carmesí del Asesino",
+      "1,600 Runas",
+      "Daga Cerúlea del Asesino",
+      "Velo Ocultador",
+      "11,339 Runas",
+      "Cuchillo Negro"
+    ],
+    "healthPoints": "2750"
+  },
+  {
+    "id": "17f69637e92l0i1um8wqsflgk3i9yr",
+    "name": "Caballero Sabueso Darriwil",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69637e92l0i1um8wqsflgk3i9yr.png",
+    "region": "Limgrave",
+    "description": "Los sabuesos despiadados atacan con gracia y agilidad, nunca retrocediendo o dando un momento de descanso.",
+    "location": "Limgrave, Prisión Eterna del Sabueso Abandonado",
+    "drops": [
+      "1900 Runas",
+      "Colmillo del Sabueso"
+    ],
+    "healthPoints": "14,792"
+  },
+  {
+    "id": "17f69725115l0i1urx3t47u0gfs43",
+    "name": "Dragón Volador Agheel",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69725115l0i1urx3t47u0gfs43.png",
+    "region": "Limgrave",
+    "description": "Un dragón masivo temido por la mayoría ubicado dentro de las Ruinas Quemadas por Dragón en Limgrave",
+    "location": "Limgrave, Ruinas Quemadas por Dragón",
+    "drops": [
+      "5000 Runas",
+      "Corazón de Dragón"
+    ],
+    "healthPoints": "3200"
+  },
+  {
+    "id": "17f69ba1aa7l0i1us08w3dodkoeju",
+    "name": "Gigante de Fuego",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69ba1aa7l0i1us08w3dodkoeju.png",
+    "region": "Cumbres de los Gigantes",
+    "description": "Al darse cuenta de que las llamas de su forja nunca morirían, la Reina Marika lo marcó con una maldición. \"Oh gigante insignificante, que cuides tu llama por la eternidad.\"",
+    "location": "Cumbres de los Gigantes",
+    "drops": [
+      "180,000 Runas",
+      "Recuerdo del Gigante de Fuego"
+    ],
+    "healthPoints": "126,720"
+  },
+  {
+    "id": "17f6953f0d5l0i1uthl5j30bc50wdo",
+    "name": "Godrick el Injertado",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f6953f0d5l0i1uthl5j30bc50wdo.png",
+    "region": "Limgrave",
+    "description": "Godrick el Injertado es el gobernante del Castillo Stormveil, empuñando un hacha dorada grande. Ha injertado muchos brazos en su cuerpo, un símbolo de poder para todos aquellos que podrían intentar deponerlo.",
+    "location": "Castillo Stormveil",
+    "drops": [
+      "Gran Runa de Godrick",
+      "Recuerdo del Injertado"
+    ],
+    "healthPoints": "6080"
+  },
+  {
+    "id": "17f69a48308l0i1ux3rigvv37tx84f",
+    "name": "Malenia, Hoja de Miquella",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a48308l0i1ux3rigvv37tx84f.png",
+    "region": "Campo de Nieve Consagrado",
+    "description": "...Presta atención a mis palabras. Soy Malenia. Hoja de Miquella. Y nunca he conocido la derrota.",
+    "location": "Elphael, Sostén del Haligtree",
+    "drops": [
+      "Malenia's Great Rune",
+      "Remembrance of the Rot Goddess",
+      "480,000 Runas"
+    ],
+    "healthPoints": "26,128"
+  },
+  {
+    "id": "17f69dc74fdl0i1v1wz3qrzn19aps8",
+    "name": "Radahn, Azote de las Estrellas",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69dc74fdl0i1v1wz3qrzn19aps8.png",
+    "region": "Caelid",
+    "description": "El General Radahn está maldito para vagar para siempre. Devorado desde adentro por la podredumbre escarlata de Malenia, su ingenio se ha ido hace mucho tiempo. Ahora reúne los cadáveres de antiguos amigos y enemigos por igual, devorándolos como un perro.",
+    "location": "Caelid",
+    "drops": [
+      "70,000 Runas",
+      "Recuerdo del Azote de las Estrellas, Gran Runa de Radahn"
+    ],
+    "healthPoints": "25,856"
+  },
+  {
+    "id": "17f699dadfbl0i1uqmgi50oii11eaj",
+    "name": "Bestia de Elden",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f699dadfbl0i1uqmgi50oii11eaj.png",
+    "region": "Meseta de Altus",
+    "description": "Se dice que hace mucho tiempo, la Voluntad Mayor envió una estrella dorada que llevaba una bestia a las Tierras Intermedias, que más tarde se convertiría en el Anillo de Elden.",
+    "location": "Trono de Elden",
+    "drops": [
+      "500000 Runas",
+      "Recuerdo de Elden"
+    ],
+    "healthPoints": "26,880"
+  },
+  {
+    "id": "17f6992d42bl0i1v2mmti9t0qkl5yj",
+    "name": "Centinela del Árbol",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f6992d42bl0i1v2mmti9t0qkl5yj.png",
+    "region": "Limgrave",
+    "description": "El centinela fuertemente blindado y altamente decorado protege el árbol. ¿Quién se atrevería a oponerse a él?",
+    "location": "Camino de Limgrave",
+    "drops": [
+      "3200 Runas",
+      "16000 Runas (NG+1)",
+      "Alabarda Dorada",
+      "Escudo Grande del Árbol Áureo",
+      "Runa de Héroe [1]"
+    ],
+    "healthPoints": "1954"
+  }
+]
