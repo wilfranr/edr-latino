@@ -1,0 +1,92 @@
+[
+  {
+    "id": "uchigatana",
+    "name": "Uchigatana",
+    "description": "Una katana tradicional con una hoja curva única. Excelente para ataques rápidos y cortes precisos.",
+    "location": "Limgrave",
+    "type": "arma",
+    "damage": "115",
+    "weight": "5.5"
+  },
+  {
+    "id": "longsword",
+    "name": "Longsword",
+    "description": "Una espada larga versátil y equilibrada. Perfecta para principiantes y veteranos por igual.",
+    "location": "Limgrave",
+    "type": "arma",
+    "damage": "110",
+    "weight": "4.0"
+  },
+  {
+    "id": "claymore",
+    "name": "Claymore",
+    "description": "Una espada grande de dos manos con un diseño escocés distintivo. Potente pero requiere fuerza.",
+    "location": "Castle Morne",
+    "type": "arma",
+    "damage": "138",
+    "weight": "9.0"
+  },
+  {
+    "id": "moonveil",
+    "name": "Moonveil",
+    "description": "Una katana legendaria que canaliza la magia lunar. Sus ataques especiales son devastadores.",
+    "location": "Gael Tunnel",
+    "type": "arma",
+    "damage": "73",
+    "weight": "6.5"
+  },
+  {
+    "id": "rivers-of-blood",
+    "name": "Rivers of Blood",
+    "description": "Una katana maldita que sangra profusamente. Su habilidad especial causa hemorragia masiva.",
+    "location": "Mountaintops of the Giants",
+    "type": "arma",
+    "damage": "76",
+    "weight": "6.5"
+  },
+  {
+    "id": "blasphemous-blade",
+    "name": "Blasphemous Blade",
+    "description": "Una espada grande maldita que absorbe la salud de los enemigos. Su habilidad especial es devastadora.",
+    "location": "Mt. Gelmir",
+    "type": "arma",
+    "damage": "121",
+    "weight": "8.5"
+  },
+  {
+    "id": "dark-moon-greatsword",
+    "name": "Dark Moon Greatsword",
+    "description": "La legendaria espada de Ranni. Canaliza el poder de la luna oscura en ataques mágicos.",
+    "location": "Moonlight Altar",
+    "type": "arma",
+    "damage": "82",
+    "weight": "10.0"
+  },
+  {
+    "id": "malikeths-black-blade",
+    "name": "Maliketh's Black Blade",
+    "description": "La espada negra de Maliketh, capaz de cortar la Destino de la Muerte misma.",
+    "location": "Crumbling Farum Azula",
+    "type": "arma",
+    "damage": "96",
+    "weight": "8.0"
+  },
+  {
+    "id": "godslayers-greatsword",
+    "name": "Godslayer's Greatsword",
+    "description": "Una espada grande que consume la Destino de la Muerte. Su habilidad especial es letal.",
+    "location": "Divine Tower of Caelid",
+    "type": "arma",
+    "damage": "119",
+    "weight": "8.5"
+  },
+  {
+    "id": "wing-of-astel",
+    "name": "Wing of Astel",
+    "description": "Una espada curva que canaliza el poder de las estrellas. Sus ataques especiales son cósmicos.",
+    "location": "Uhl Palace Ruins",
+    "type": "arma",
+    "damage": "65",
+    "weight": "3.0"
+  }
+]

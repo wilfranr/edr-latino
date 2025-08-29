@@ -1,0 +1,238 @@
+[
+  {
+    "id": "17f695abef9l0i1ujzrup5y0z7rw6",
+    "name": "Abductor Virgins",
+    "image": null,
+    "region": "Mount Gelmir",
+    "description": "Constructos mecánicos mortales que empuñan espadas masivas.",
+    "location": "Volcano Manor",
+    "drops": [
+      "10.000 Runas",
+      "Inquisitor's Girandole"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69b4ba0al0i1uk6s98t1nbtxunt",
+    "name": "Alecto, Black Knife Ringleader",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69b4ba0al0i1uk6s98t1nbtxunt.png",
+    "region": "Liurnia of the Lakes",
+    "description": "Guerrero notablemente ágil y agresivo. Peligroso incluso para aquellos con cobertura de escudo...",
+    "location": "Ringleader's Evergoal, Liurnia of the Lakes",
+    "drops": [
+      "8.000 Runas",
+      "Black Knife Tiche"
+    ],
+    "healthPoints": "???"
+  },
+  {
+    "id": "17f69a3ca37l0i1ukd1lq14ctafbk",
+    "name": "Adan, Thief Of Fire",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a3ca37l0i1ukd1lq14ctafbk.png",
+    "region": "Liurnia of the Lakes",
+    "description": "Un prisionero de evergaol y ex mago de batalla, Adan empuña un mayal con púas y usa conocimiento robado de magia de fuego con gran efecto.",
+    "location": "Malefactor's Evergaol",
+    "drops": [
+      "3.800 Runas",
+      "Flame of the Fell God"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69a63610l0i1ukyx7xgx6vf0zoa",
+    "name": "Ancient Dragon Lansseax",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a63610l0i1ukyx7xgx6vf0zoa.png",
+    "region": "Altus Plateau",
+    "description": "Lansseax era la hermana de Fortissax. Se dice que tomó la forma de un humano para comunicarse con los caballeros como sacerdotisa del culto del dragón antiguo.",
+    "location": "Altus Plateau",
+    "drops": [
+      "60.000 Runas",
+      "Lansseax's Glaive"
+    ],
+    "healthPoints": "9087"
+  },
+  {
+    "id": "17f69590896l0i1ul0hnmor8iyf9xd",
+    "name": "Ancestor Spirit",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69590896l0i1ul0hnmor8iyf9xd.png",
+    "region": "Limgrave",
+    "description": "Un espíritu brillante que toma la forma de un ciervo grande, convirtiéndose en una amenaza amenazante cuando carga contra objetivos.",
+    "location": "Siofra River",
+    "drops": [
+      "13.000 Runas",
+      "Ancestral Follower Ashes"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69878c4al0i1ul0i7dsfou8igrk",
+    "name": "Ancient Hero Of Zamor",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69878c4al0i1ul0i7dsfou8igrk.png",
+    "region": "Weeping Peninsula",
+    "description": "Criatura notablemente ágil, hecha de escarcha, susceptible a ataques mágicos.",
+    "location": "Weeping Evergaol, Giant-Conquering Hero's Grave",
+    "drops": [
+      "5,400 Runas",
+      "Radagon's Scarseal",
+      "83,000 Runas",
+      "Zamor Curved Sword",
+      "Zamor Mask",
+      "Zamor Armor",
+      "Zamor Bracelets",
+      "Zamor Legwraps"
+    ],
+    "healthPoints": "2200"
+  },
+  {
+    "id": "17f69bcfd7dl0i1ul502rklvi8tx62",
+    "name": "Astel, Stars Of Darkness",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69bcfd7dl0i1ul502rklvi8tx62.png",
+    "region": "Consecrated Snowfield",
+    "description": "Una criatura hostil, masiva tipo libélula-dragón. Amenazante y extremadamente poderosa.",
+    "location": "Yelough Anix Tunnel in Consecrated Snowfield",
+    "drops": [
+      "120000 Runas",
+      "Meteorite of Astel"
+    ],
+    "healthPoints": "25,376"
+  },
+  {
+    "id": "17f69d4387al0i1ulpqqumwqw05j3c",
+    "name": "Beast Of Farum Azula",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69d4387al0i1ulpqqumwqw05j3c.png",
+    "region": "Limgrave",
+    "description": "Criatura que vive bajo tierra encontrada en Groveside Cave",
+    "location": "Groveside Cave",
+    "drops": [
+      "1000 Runas",
+      "Flamedrake Talisman"
+    ],
+    "healthPoints": "1960"
+  },
+  {
+    "id": "17f69bd3c06l0i1ulx2jxbiogta1i",
+    "name": "Black Knife Assassin",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69bd3c06l0i1ulx2jxbiogta1i.png",
+    "region": "Limgrave",
+    "description": "Figuras oscuras implacables y ágiles que llevan una hoja mortal.",
+    "location": "Deathtouched Catacombs, Black Knife Catacombs, Sage's Cave",
+    "drops": [
+      "1,600 Runas",
+      "Assassin's Crimson Dagger",
+      "1,600 Runas",
+      "Assassin's Cerulean Dagger",
+      "Concealing Veil",
+      "11,339 Runas",
+      "Black Knife"
+    ],
+    "healthPoints": "2750"
+  },
+  {
+    "id": "17f69637e92l0i1um8wqsflgk3i9yr",
+    "name": "Bloodhound Knight Darriwil",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69637e92l0i1um8wqsflgk3i9yr.png",
+    "region": "Limgrave",
+    "description": "Los sabuesos despiadados atacan con gracia y agilidad, nunca retrocediendo o dando un momento de descanso.",
+    "location": "Limgrave, Forlon Hound Evergaol",
+    "drops": [
+      "1900 Runas",
+      "Bloodhound's Fang"
+    ],
+    "healthPoints": "14,792"
+  },
+  {
+    "id": "17f69725115l0i1urx3t47u0gfs43",
+    "name": "Flying Dragon Agheel",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69725115l0i1urx3t47u0gfs43.png",
+    "region": "Limgrave",
+    "description": "Un dragón masivo temido por la mayoría ubicado dentro de las Ruinas Quemadas por Dragón en Limgrave",
+    "location": "Limgrave, Dragon-Burnt Ruins",
+    "drops": [
+      "5000 Runas",
+      "Dragon Heart"
+    ],
+    "healthPoints": "3200"
+  },
+  {
+    "id": "17f69ba1aa7l0i1us08w3dodkoeju",
+    "name": "Fire Giant",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69ba1aa7l0i1us08w3dodkoeju.png",
+    "region": "Mountaintops of the Giants",
+    "description": "Al darse cuenta de que las llamas de su forja nunca morirían, la Reina Marika lo marcó con una maldición. \"Oh gigante insignificante, que cuides tu llama por la eternidad.\"",
+    "location": "Mountaintops of the Giants",
+    "drops": [
+      "180,000 Runas",
+      "Remembrance of the Fire Giant"
+    ],
+    "healthPoints": "126,720"
+  },
+  {
+    "id": "17f6953f0d5l0i1uthl5j30bc50wdo",
+    "name": "Godrick The Grafted",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f6953f0d5l0i1uthl5j30bc50wdo.png",
+    "region": "Limgrave",
+    "description": "Godrick el Injertado es el gobernante del Castillo Stormveil, empuñando un hacha dorada grande. Ha injertado muchos brazos en su cuerpo, un símbolo de poder para todos aquellos que podrían intentar deponerlo.",
+    "location": "Stormveil Castle",
+    "drops": [
+      "Godrick's Great Rune",
+      "Remembrance of the Grafted"
+    ],
+    "healthPoints": "6080"
+  },
+  {
+    "id": "17f69a48308l0i1ux3rigvv37tx84f",
+    "name": "Malenia, Blade Of Miquella",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69a48308l0i1ux3rigvv37tx84f.png",
+    "region": "Consecrated Snowfield",
+    "description": "...Presta atención a mis palabras. Soy Malenia. Hoja de Miquella. Y nunca he conocido la derrota.",
+    "location": "Elphael, Brace of the Haligtree",
+    "drops": [
+      "Malenia's Great Rune",
+      "Remembrance of the Rot Goddess",
+      "480,000 Runas"
+    ],
+    "healthPoints": "26,128"
+  },
+  {
+    "id": "17f69dc74fdl0i1v1wz3qrzn19aps8",
+    "name": "Starscourge Radahn",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f69dc74fdl0i1v1wz3qrzn19aps8.png",
+    "region": "Caelid",
+    "description": "El General Radahn está maldito para vagar para siempre. Devorado desde adentro por la podredumbre escarlata de Malenia, su ingenio se ha ido hace mucho tiempo. Ahora reúne los cadáveres de antiguos amigos y enemigos por igual, devorándolos como un perro.",
+    "location": "Caelid",
+    "drops": [
+      "70,000 Runas",
+      "Remembrance of the Starscourge, Radahn's Great Rune"
+    ],
+    "healthPoints": "25,856"
+  },
+  {
+    "id": "17f699dadfbl0i1uqmgi50oii11eaj",
+    "name": "Elden Beast",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f699dadfbl0i1uqmgi50oii11eaj.png",
+    "region": "Altus Plateau",
+    "description": "Se dice que hace mucho tiempo, la Voluntad Mayor envió una estrella dorada que llevaba una bestia a las Tierras Intermedias, que más tarde se convertiría en el Anillo de Elden.",
+    "location": "Elden Throne",
+    "drops": [
+      "500000 Runas",
+      "Elden Remembrance"
+    ],
+    "healthPoints": "26,880"
+  },
+  {
+    "id": "17f6992d42bl0i1v2mmti9t0qkl5yj",
+    "name": "Tree Sentinel",
+    "image": "https://eldenring.fanapis.com/images/bosses/17f6992d42bl0i1v2mmti9t0qkl5yj.png",
+    "region": "Limgrave",
+    "description": "El centinela fuertemente blindado y altamente decorado protege el árbol. ¿Quién se atrevería a oponerse a él?",
+    "location": "Limgrave road",
+    "drops": [
+      "3200 Runas",
+      "16000 Runas (NG+1)",
+      "Golden Halberd",
+      "Erdtree Greatshield",
+      "Hero's Rune [1]"
+    ],
+    "healthPoints": "1954"
+  }
+]

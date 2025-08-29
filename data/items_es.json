@@ -1,0 +1,72 @@
+[
+  {
+    "id": "golden-seed",
+    "name": "Golden Seed",
+    "description": "Una semilla dorada que puede usarse para mejorar tu Frasco de Lágrimas Sagradas.",
+    "location": "Limgrave",
+    "type": "objeto"
+  },
+  {
+    "id": "sacred-tear",
+    "name": "Sacred Tear",
+    "description": "Una lágrima sagrada que restaura la salud cuando se usa en el Frasco de Lágrimas Sagradas.",
+    "location": "Church of Elleh",
+    "type": "objeto"
+  },
+  {
+    "id": "smithing-stone-1",
+    "name": "Smithing Stone [1]",
+    "description": "Piedra de forja básica que permite mejorar armas hasta +3.",
+    "location": "Limgrave Tunnels",
+    "type": "objeto"
+  },
+  {
+    "id": "golden-rune-1",
+    "name": "Golden Rune [1]",
+    "description": "Runa dorada que otorga runas cuando se consume.",
+    "location": "Limgrave",
+    "type": "objeto"
+  },
+  {
+    "id": "memory-stone",
+    "name": "Memory Stone",
+    "description": "Piedra de memoria que aumenta el número de slots de hechizos disponibles.",
+    "location": "Raya Lucaria Academy",
+    "type": "objeto"
+  },
+  {
+    "id": "larval-tear",
+    "name": "Larval Tear",
+    "description": "Lágrima larval que permite reespecificar tu personaje en la Renacida.",
+    "location": "Nokron, Eternal City",
+    "type": "objeto"
+  },
+  {
+    "id": "ancient-dragon-smithing-stone",
+    "name": "Ancient Dragon Smithing Stone",
+    "description": "Piedra de forja de dragón antiguo que permite mejorar armas hasta +25.",
+    "location": "Crumbling Farum Azula",
+    "type": "objeto"
+  },
+  {
+    "id": "somber-ancient-dragon-smithing-stone",
+    "name": "Somber Ancient Dragon Smithing Stone",
+    "description": "Piedra de forja sombría de dragón antiguo que permite mejorar armas sombrías hasta +10.",
+    "location": "Crumbling Farum Azula",
+    "type": "objeto"
+  },
+  {
+    "id": "great-grave-glovewort",
+    "name": "Great Grave Glovewort",
+    "description": "Glovewort de tumba grande que permite mejorar espíritus hasta +10.",
+    "location": "Mountaintops of the Giants",
+    "type": "objeto"
+  },
+  {
+    "id": "great-ghost-glovewort",
+    "name": "Great Ghost Glovewort",
+    "description": "Glovewort fantasma grande que permite mejorar espíritus sombríos hasta +10.",
+    "location": "Mountaintops of the Giants",
+    "type": "objeto"
+  }
+]

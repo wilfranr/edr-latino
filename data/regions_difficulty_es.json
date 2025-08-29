@@ -1,0 +1,170 @@
+[
+  {
+    "id": "limgrave",
+    "name": "Limgrave",
+    "description": "La región inicial de Elden Ring, perfecta para aprender los fundamentos del juego.",
+    "difficulty": "Fácil",
+    "recommendedLevel": "1-30",
+    "bosses": [
+      "Tree Sentinel",
+      "Flying Dragon Agheel",
+      "Margit, the Fell Omen",
+      "Godrick the Grafted"
+    ],
+    "tips": [
+      "Comienza explorando la Iglesia de Elleh",
+      "Enfrenta al Tree Sentinel solo cuando tengas más experiencia",
+      "Recolecta Golden Seeds para mejorar tu Frasco de Lágrimas Sagradas"
+    ]
+  },
+  {
+    "id": "weeping-peninsula",
+    "name": "Weeping Peninsula",
+    "description": "Una península al sur que ofrece desafíos moderados y recompensas valiosas.",
+    "difficulty": "Fácil",
+    "recommendedLevel": "15-40",
+    "bosses": [
+      "Leonine Misbegotten",
+      "Ancient Hero of Zamor"
+    ],
+    "tips": [
+      "Visita el Castillo Morne para obtener el Grafted Blade Greatsword",
+      "Explora las catacumbas para encontrar objetos únicos",
+      "Esta zona es ideal para ganar experiencia antes de Liurnia"
+    ]
+  },
+  {
+    "id": "liurnia-of-the-lakes",
+    "name": "Liurnia of the Lakes",
+    "description": "Una vasta región de lagos que presenta desafíos más complejos y magia poderosa.",
+    "difficulty": "Medio",
+    "recommendedLevel": "30-60",
+    "bosses": [
+      "Red Wolf of Radagon",
+      "Rennala, Queen of the Full Moon",
+      "Royal Knight Loretta"
+    ],
+    "tips": [
+      "La Academia Raya Lucaria es el punto focal de esta región",
+      "Aprende a manejar enemigos mágicos y a distancia",
+      "Busca Memory Stones para aumentar tus slots de hechizos"
+    ]
+  },
+  {
+    "id": "caelid",
+    "name": "Caelid",
+    "description": "Una tierra maldita por la podredumbre escarlata, hogar de criaturas corrompidas y jefes temibles.",
+    "difficulty": "Difícil",
+    "recommendedLevel": "50-80",
+    "bosses": [
+      "Starscourge Radahn",
+      "Decaying Ekzykes",
+      "Putrid Tree Spirit"
+    ],
+    "tips": [
+      "La podredumbre escarlata causa daño continuo, lleva curas",
+      "Radahn es uno de los jefes más difíciles del juego",
+      "Usa armas de fuego contra criaturas corrompidas"
+    ]
+  },
+  {
+    "id": "altus-plateau",
+    "name": "Altus Plateau",
+    "description": "Una meseta elevada que alberga la capital Leyndell y presenta desafíos de nivel alto.",
+    "difficulty": "Difícil",
+    "recommendedLevel": "60-90",
+    "bosses": [
+      "Draconic Tree Sentinel",
+      "Godfrey, First Elden Lord",
+      "Morgott, the Omen King"
+    ],
+    "tips": [
+      "Leyndell es una ciudad laberíntica, explora con paciencia",
+      "Los enemigos aquí son significativamente más fuertes",
+      "Busca armas y armaduras de nivel alto"
+    ]
+  },
+  {
+    "id": "mount-gelmir",
+    "name": "Mount Gelmir",
+    "description": "Un volcán activo que alberga la Mansión del Volcán y jefes únicos.",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "70-100",
+    "bosses": [
+      "Rykard, Lord of Blasphemy",
+      "Godskin Noble",
+      "Abductor Virgins"
+    ],
+    "tips": [
+      "La Serpent-Hunter es esencial para Rykard",
+      "Los enemigos aquí usan fuego y magia oscura",
+      "Esta zona es opcional pero ofrece recompensas únicas"
+    ]
+  },
+  {
+    "id": "mountaintops-of-the-giants",
+    "name": "Mountaintops of the Giants",
+    "description": "Las cumbres heladas donde residen los gigantes de fuego y desafíos extremos.",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "80-120",
+    "bosses": [
+      "Fire Giant",
+      "Commander Niall",
+      "Borealis the Freezing Fog"
+    ],
+    "tips": [
+      "El frío puede afectar tu resistencia",
+      "Los gigantes de fuego son vulnerables al daño de escarcha",
+      "Esta zona es para jugadores experimentados"
+    ]
+  },
+  {
+    "id": "consecrated-snowfield",
+    "name": "Consecrated Snowfield",
+    "description": "Un campo de nieve sagrado que oculta el acceso al Haligtree y Malenia.",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "90-130",
+    "bosses": [
+      "Malenia, Blade of Miquella",
+      "Putrid Grave Warden Duelist"
+    ],
+    "tips": [
+      "Malenia es considerada el jefe más difícil del juego",
+      "La visibilidad puede ser limitada por tormentas de nieve",
+      "Lleva muchas curas y paciencia"
+    ]
+  },
+  {
+    "id": "deeproot-depths",
+    "name": "Deeproot Depths",
+    "description": "Las profundidades subterráneas donde se encuentran las raíces del Árbol Áureo.",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "80-120",
+    "bosses": [
+      "Fia's Champions",
+      "Lichdragon Fortissax"
+    ],
+    "tips": [
+      "Esta zona es accesible después de completar la misión de Fia",
+      "Los enemigos aquí son fantasmas y criaturas ancestrales",
+      "Explora completamente para encontrar objetos únicos"
+    ]
+  },
+  {
+    "id": "crumbling-farum-azula",
+    "name": "Crumbling Farum Azula",
+    "description": "Una ciudad flotante en ruinas que alberga secretos antiguos y jefes legendarios.",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "100-150",
+    "bosses": [
+      "Godskin Duo",
+      "Maliketh, the Black Blade",
+      "Dragonlord Placidusax"
+    ],
+    "tips": [
+      "Esta es una de las zonas finales del juego",
+      "Los jefes aquí son extremadamente desafiantes",
+      "Asegúrate de tener tu build completamente optimizada"
+    ]
+  }
+]

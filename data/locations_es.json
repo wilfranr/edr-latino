@@ -1,0 +1,82 @@
+[
+  {
+    "id": "limgrave",
+    "name": "Limgrave",
+    "description": "La región inicial de Elden Ring, hogar de la Iglesia de Elleh y el Castillo Stormveil.",
+    "region": "Limgrave",
+    "difficulty": "Fácil",
+    "recommendedLevel": "1-30"
+  },
+  {
+    "id": "weeping-peninsula",
+    "name": "Weeping Peninsula",
+    "description": "Una península al sur de Limgrave, conocida por el Castillo Morne y sus catacumbas.",
+    "region": "Weeping Peninsula",
+    "difficulty": "Fácil",
+    "recommendedLevel": "15-40"
+  },
+  {
+    "id": "liurnia-of-the-lakes",
+    "name": "Liurnia of the Lakes",
+    "description": "Una vasta región de lagos y pantanos, hogar de la Academia Raya Lucaria.",
+    "region": "Liurnia of the Lakes",
+    "difficulty": "Medio",
+    "recommendedLevel": "30-60"
+  },
+  {
+    "id": "caelid",
+    "name": "Caelid",
+    "description": "Una tierra maldita por la podredumbre escarlata, hogar de criaturas corrompidas.",
+    "region": "Caelid",
+    "difficulty": "Difícil",
+    "recommendedLevel": "50-80"
+  },
+  {
+    "id": "altus-plateau",
+    "name": "Altus Plateau",
+    "description": "Una meseta elevada que alberga la capital Leyndell y el Monte Gelmir.",
+    "region": "Altus Plateau",
+    "difficulty": "Difícil",
+    "recommendedLevel": "60-90"
+  },
+  {
+    "id": "mount-gelmir",
+    "name": "Mount Gelmir",
+    "description": "Un volcán activo que alberga la Mansión del Volcán y sus secretos.",
+    "region": "Mount Gelmir",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "70-100"
+  },
+  {
+    "id": "mountaintops-of-the-giants",
+    "name": "Mountaintops of the Giants",
+    "description": "Las cumbres heladas donde residen los gigantes de fuego y el Haligtree.",
+    "region": "Mountaintops of the Giants",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "80-120"
+  },
+  {
+    "id": "consecrated-snowfield",
+    "name": "Consecrated Snowfield",
+    "description": "Un campo de nieve sagrado que oculta el acceso al Haligtree.",
+    "region": "Consecrated Snowfield",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "90-130"
+  },
+  {
+    "id": "deeproot-depths",
+    "name": "Deeproot Depths",
+    "description": "Las profundidades subterráneas donde se encuentran las raíces del Árbol Áureo.",
+    "region": "Deeproot Depths",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "80-120"
+  },
+  {
+    "id": "crumbling-farum-azula",
+    "name": "Crumbling Farum Azula",
+    "description": "Una ciudad flotante en ruinas que alberga secretos antiguos y jefes legendarios.",
+    "region": "Crumbling Farum Azula",
+    "difficulty": "Muy Difícil",
+    "recommendedLevel": "100-150"
+  }
+]
