@@ -1,1 +1,142 @@
-[]
+[
+  {
+    "id": "golden-seed",
+    "name": "Golden Seed",
+    "description": "Una semilla dorada que puede usarse para mejorar tu Frasco de Lágrimas Sagradas.",
+    "location": "Limgrave",
+    "type": "objeto"
+  },
+  {
+    "id": "sacred-tear",
+    "name": "Sacred Tear",
+    "description": "Una lágrima sagrada que restaura la salud cuando se usa en el Frasco de Lágrimas Sagradas.",
+    "location": "Church of Elleh",
+    "type": "objeto"
+  },
+  {
+    "id": "smithing-stone-1",
+    "name": "Smithing Stone [1]",
+    "description": "Piedra de forja básica que permite mejorar armas hasta +3.",
+    "location": "Limgrave Tunnels",
+    "type": "objeto"
+  },
+  {
+    "id": "golden-rune-1",
+    "name": "Golden Rune [1]",
+    "description": "Runa dorada que otorga 200 runas cuando se consume.",
+    "location": "Limgrave",
+    "type": "objeto"
+  },
+  {
+    "id": "crimson-tear",
+    "name": "Crimson Tear",
+    "description": "Lágrima carmesí que restaura la salud cuando se usa en el Frasco de Lágrimas Sagradas.",
+    "location": "Stormhill",
+    "type": "objeto"
+  },
+  {
+    "id": "cerulean-tear",
+    "name": "Cerulean Tear",
+    "description": "Lágrima cerúlea que restaura la FP cuando se usa en el Frasco de Lágrimas Sagradas.",
+    "location": "Liurnia of the Lakes",
+    "type": "objeto"
+  },
+  {
+    "id": "memory-stone",
+    "name": "Memory Stone",
+    "description": "Piedra de memoria que aumenta el número de slots de hechizos disponibles.",
+    "location": "Raya Lucaria Academy",
+    "type": "objeto"
+  },
+  {
+    "id": "ancient-dragon-smithing-stone",
+    "name": "Ancient Dragon Smithing Stone",
+    "description": "Piedra de forja antigua que permite mejorar armas hasta +25.",
+    "location": "Mountaintops of the Giants",
+    "type": "objeto"
+  },
+  {
+    "id": "somber-ancient-dragon-smithing-stone",
+    "name": "Somber Ancient Dragon Smithing Stone",
+    "description": "Piedra de forja sombría antigua que permite mejorar armas especiales hasta +10.",
+    "location": "Crumbling Farum Azula",
+    "type": "objeto"
+  },
+  {
+    "id": "mimic-tear-ashes",
+    "name": "Mimic Tear Ashes",
+    "description": "Cenizas que invocan una copia de tu personaje para ayudarte en combate.",
+    "location": "Nokron, Eternal City",
+    "type": "objeto"
+  },
+  {
+    "id": "black-knife-tiche",
+    "name": "Black Knife Tiche",
+    "description": "Cenizas que invocan a Tiche, una asesina legendaria que puede eliminar jefes rápidamente.",
+    "location": "Ringleader's Evergaol",
+    "type": "objeto"
+  },
+  {
+    "id": "radagon-icon",
+    "name": "Radagon Icon",
+    "description": "Talismán que reduce el tiempo de lanzamiento de hechizos.",
+    "location": "Raya Lucaria Academy",
+    "type": "objeto"
+  },
+  {
+    "id": "green-turtle-talisman",
+    "name": "Green Turtle Talisman",
+    "description": "Talismán que acelera la regeneración de stamina.",
+    "location": "Summonwater Village",
+    "type": "objeto"
+  },
+  {
+    "id": "erdtree-favor",
+    "name": "Erdtree's Favor",
+    "description": "Talismán que aumenta la salud, stamina y equipamiento máximo.",
+    "location": "Fringefolk Hero's Grave",
+    "type": "objeto"
+  },
+  {
+    "id": "crimson-amber-medallion",
+    "name": "Crimson Amber Medallion",
+    "description": "Medallón que aumenta la salud máxima.",
+    "location": "Limgrave",
+    "type": "objeto"
+  },
+  {
+    "id": "cerulean-amber-medallion",
+    "name": "Cerulean Amber Medallion",
+    "description": "Medallón que aumenta la FP máxima.",
+    "location": "Liurnia of the Lakes",
+    "type": "objeto"
+  },
+  {
+    "id": "viridian-amber-medallion",
+    "name": "Viridian Amber Medallion",
+    "description": "Medallón que aumenta la stamina máxima.",
+    "location": "Weeping Peninsula",
+    "type": "objeto"
+  },
+  {
+    "id": "great-rune-of-godrick",
+    "name": "Great Rune of Godrick",
+    "description": "Gran Runa de Godrick que otorga bonificaciones a todas las estadísticas.",
+    "location": "Stormveil Castle",
+    "type": "objeto"
+  },
+  {
+    "id": "great-rune-of-rennala",
+    "name": "Great Rune of the Unborn",
+    "description": "Gran Runa de Rennala que permite reasignar estadísticas.",
+    "location": "Raya Lucaria Academy",
+    "type": "objeto"
+  },
+  {
+    "id": "great-rune-of-radahn",
+    "name": "Great Rune of Radahn",
+    "description": "Gran Runa de Radahn que aumenta la salud, FP y stamina máxima.",
+    "location": "Caelid",
+    "type": "objeto"
+  }
+]

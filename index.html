@@ -453,26 +453,106 @@
                     }
                 });
 
-                // Luego, asociamos los elementos (jefes, armas, etc.) a sus zonas/regiones
-                const allItems = [
-                    ...gameData.bosses.map(i => ({ ...i, type: 'jefes' })),
-                    ...gameData.weapons.map(i => ({ ...i, type: 'armas' })),
-                    ...gameData.items.map(i => ({ ...i, type: 'objetos' })),
-                    ...gameData.misiones.map(i => ({ ...i, type: 'misiones' }))
-                ];
+                // Mapeo manual de jefes a regiones para mejor precisión
+                const bossRegionMapping = {
+                    'grafted-scion': 'limgrave',
+                    'tree-sentinel': 'limgrave',
+                    'agheel-dragon': 'limgrave',
+                    'margit-fell-omen': 'limgrave',
+                    'godrick-grafted': 'limgrave',
+                    'leonine-misbegotten': 'limgrave',
+                    'demi-human-queen': 'weeping-peninsula',
+                    'black-knife-assassin': 'liurnia-of-the-lakes',
+                    'rennala-queen': 'liurnia-of-the-lakes',
+                    'radahn-starscourge': 'caelid',
+                    'mohg-lord': 'mohgwyn-palace',
+                    'malenia-blade': 'mountaintops-of-the-giants',
+                    'elden-beast': 'elden-throne'
+                };
 
-                allItems.forEach(item => {
-                    if (!item.location) return;
-                    
-                    // Normalizar nombres de zonas para agrupar mejor
-                    const zoneName = item.location.split(',')[0].trim();
-                    const zoneId = zoneName.toLowerCase().replace(/\s+/g, '-');
-
-                    // Asegurarse de que la zona existe antes de añadir el item
-                    if (gameData.zones[zoneId] && !gameData.zones[zoneId][item.type].includes(item.id)) {
-                        gameData.zones[zoneId][item.type].push(item.id);
+                // Asignar jefes a sus regiones correspondientes
+                gameData.bosses.forEach(boss => {
+                    const regionId = bossRegionMapping[boss.id];
+                    if (regionId && gameData.zones[regionId]) {
+                        if (!gameData.zones[regionId].jefes.includes(boss.id)) {
+                            gameData.zones[regionId].jefes.push(boss.id);
+                        }
                     }
                 });
+
+                // Asignar objetos a sus regiones
+                gameData.items.forEach(item => {
+                    if (!item.location) return;
+                    
+                    // Mapeo manual de ubicaciones a regiones
+                    let regionId = null;
+                    if (item.location.includes('Limgrave') || item.location.includes('Stormhill') || item.location.includes('Stormveil')) {
+                        regionId = 'limgrave';
+                    } else if (item.location.includes('Weeping Peninsula') || item.location.includes('Castle Morne')) {
+                        regionId = 'weeping-peninsula';
+                    } else if (item.location.includes('Liurnia') || item.location.includes('Raya Lucaria')) {
+                        regionId = 'liurnia-of-the-lakes';
+                    } else if (item.location.includes('Caelid')) {
+                        regionId = 'caelid';
+                    } else if (item.location.includes('Altus Plateau') || item.location.includes('Leyndell')) {
+                        regionId = 'altus-pleateau';
+                    } else if (item.location.includes('Mountaintops') || item.location.includes('Haligtree')) {
+                        regionId = 'mountaintops-of-the-giants';
+                    }
+
+                    if (regionId && gameData.zones[regionId]) {
+                        if (!gameData.zones[regionId].objetos.includes(item.id)) {
+                            gameData.zones[regionId].objetos.push(item.id);
+                        }
+                    }
+                });
+
+                // Asignar armas a regiones (ejemplo básico)
+                gameData.weapons.forEach(weapon => {
+                    if (!weapon.location) return;
+                    
+                    let regionId = null;
+                    if (weapon.location.includes('Limgrave') || weapon.location.includes('Stormveil')) {
+                        regionId = 'limgrave';
+                    } else if (weapon.location.includes('Liurnia') || weapon.location.includes('Raya Lucaria')) {
+                        regionId = 'liurnia-of-the-lakes';
+                    } else if (weapon.location.includes('Caelid')) {
+                        regionId = 'caelid';
+                    }
+
+                    if (regionId && gameData.zones[regionId]) {
+                        if (!gameData.zones[regionId].armas.includes(weapon.id)) {
+                            gameData.zones[regionId].armas.push(weapon.id);
+                        }
+                    }
+                });
+
+                // Asignar misiones a regiones
+                gameData.misiones.forEach(mision => {
+                    let regionId = null;
+                    if (mision.location.includes('Liurnia')) {
+                        regionId = 'liurnia-of-the-lakes';
+                    } else if (mision.location.includes('Deeproot')) {
+                        regionId = 'deeproot-depths';
+                    } else if (mision.location.includes('Subterranean')) {
+                        regionId = 'subterranean-shunning-grounds';
+                    }
+
+                    if (regionId && gameData.zones[regionId]) {
+                        if (!gameData.zones[regionId].misiones.includes(mision.id)) {
+                            gameData.zones[regionId].misiones.push(mision.id);
+                        }
+                    }
+                });
+
+                console.log('Zonas procesadas:', Object.keys(gameData.zones));
+                console.log('Jefes por zona:', Object.values(gameData.zones).map(zone => ({
+                    name: zone.name,
+                    jefes: zone.jefes.length,
+                    objetos: zone.objetos.length,
+                    armas: zone.armas.length,
+                    misiones: zone.misiones.length
+                })));
             }
 
             async function initializeApp() {
