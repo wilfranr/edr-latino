@@ -675,6 +675,11 @@
                     if (!gameData.misiones) gameData.misiones = [];
                     if (!gameData.armas) gameData.armas = [];
                     if (!gameData.objetos) gameData.objetos = [];
+                    
+                    // Crear alias para compatibilidad con nombres en español
+                    gameData.jefes = gameData.bosses;
+                    gameData.armas = gameData.weapons;
+                    gameData.objetos = gameData.items;
 
                     processApiData();
                     console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
