@@ -399,6 +399,10 @@
             position: relative;
             overflow: hidden;
             min-width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .bottom-nav-button.active {
@@ -420,7 +424,7 @@
 
         /* Ajustar el contenido principal para la navegación inferior */
         .container {
-            padding-bottom: 100px; /* Espacio para la navegación inferior */
+            padding-bottom: 60px; /* Espacio mínimo para la navegación inferior */
         }
 
         /* Animaciones para las tabs de equipamiento y objetos */
@@ -437,21 +441,51 @@
         /* Responsive para navegación inferior */
         @media (max-width: 640px) {
             #bottom-navigation {
-                padding: 8px;
+                padding: 4px;
             }
             
             .bottom-nav-button {
-                min-width: 60px;
-                padding: 8px 4px;
+                min-width: 50px;
+                padding: 4px 2px;
+                justify-content: flex-end;
             }
             
             .bottom-nav-button svg {
-                height: 20px;
-                width: 20px;
+                height: 18px;
+                width: 18px;
             }
             
             .bottom-nav-button span {
+                font-size: 9px;
+            }
+            
+            /* Reducir aún más el espacio en móviles */
+            .container {
+                padding-bottom: 50px !important;
+            }
+        }
+
+        /* Responsive para tabs de equipamiento */
+        @media (max-width: 768px) {
+            .equipment-tab-button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .equipment-tab-button span {
                 font-size: 10px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .equipment-tab-button {
+                padding: 6px 8px;
+                font-size: 12px;
+                margin: 0 2px;
+            }
+            
+            .equipment-tab-button span {
+                font-size: 9px;
             }
         }
 
@@ -465,7 +499,7 @@
 </head>
 <body>
 
-    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+    <div class="container mx-auto p-2 md:p-6 max-w-6xl">
 
         <!-- Pantalla de Lista de Jefes -->
         <main id="screen-zones">
@@ -589,23 +623,31 @@
             </header>
 
             <!-- Pestañas de navegación para equipamiento -->
-            <nav class="glass-nav flex justify-center p-2 mb-8 max-w-4xl mx-auto glass-slide-in">
-                <button data-equipment-tab="armas" class="equipment-tab-button glass-nav-button active font-semibold text-amber-400 py-3 px-6 mx-1">Armas <span id="armas-total-count" class="text-xs ml-1"></span></button>
-                <button data-equipment-tab="armaduras" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Armaduras <span id="armaduras-total-count" class="text-xs ml-1"></span></button>
-                <button data-equipment-tab="escudos" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Escudos <span id="escudos-total-count" class="text-xs ml-1"></span></button>
-                <button data-equipment-tab="talismanes" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Talismanes <span id="talismanes-total-count" class="text-xs ml-1"></span></button>
+            <nav class="glass-nav flex justify-center p-2 mb-8 max-w-6xl mx-auto glass-slide-in">
+                <button data-equipment-tab="espadas" class="equipment-tab-button glass-nav-button active font-semibold text-amber-400 py-3 px-4 mx-1">Espadas <span id="espadas-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="armas-pesadas" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-4 mx-1">Armas Pesadas <span id="armas-pesadas-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="armas-distancia" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-4 mx-1">Distancia <span id="armas-distancia-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="armas-magicas" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-4 mx-1">Mágicas <span id="armas-magicas-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="armaduras" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-4 mx-1">Armaduras <span id="armaduras-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="talismanes" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-4 mx-1">Talismanes <span id="talismanes-total-count" class="text-xs ml-1"></span></button>
             </nav>
 
             <!-- Contenido de las pestañas de equipamiento -->
             <div id="equipment-content-container">
-                <div id="equipment-armas" class="equipment-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Contenido de Armas -->
+                <div id="equipment-espadas" class="equipment-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Espadas -->
+                </div>
+                <div id="equipment-armas-pesadas" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armas Pesadas -->
+                </div>
+                <div id="equipment-armas-distancia" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armas de Distancia -->
+                </div>
+                <div id="equipment-armas-magicas" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armas Mágicas -->
                 </div>
                 <div id="equipment-armaduras" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Contenido de Armaduras -->
-                </div>
-                <div id="equipment-escudos" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Contenido de Escudos -->
                 </div>
                 <div id="equipment-talismanes" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Contenido de Talismanes -->
@@ -655,9 +697,9 @@
     </div>
 
     <!-- Navegación inferior fija -->
-    <nav id="bottom-navigation" class="fixed bottom-0 left-0 right-0 z-50 glass-nav p-4">
+    <nav id="bottom-navigation" class="fixed bottom-0 left-0 right-0 z-50 glass-nav p-2">
         <div class="container mx-auto max-w-6xl">
-            <div class="flex justify-around items-center">
+            <div class="flex justify-around items-end">
                 <button id="nav-zones" class="bottom-nav-button glass-nav-button active flex flex-col items-center py-2 px-4 text-amber-400">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -1343,14 +1385,31 @@
             }
 
             function renderEquipmentContent() {
-                // Renderizar armas
-                renderEquipmentTab('armas', gameData.weapons);
+                // Categorizar armas
+                const espadas = gameData.weapons.filter(weapon => 
+                    ['Straight Sword', 'Curved Sword', 'Thrusting Sword', 'Heavy Thrusting Sword', 'Katana', 'Dagger'].includes(weapon.category)
+                );
+                const armasPesadas = gameData.weapons.filter(weapon => 
+                    ['Greatsword', 'Curved Greatsword', 'Colossal Sword', 'Colossal Weapon', 'Greataxe', 'Great Spear', 'Halberd', 'Hammer', 'Warhammer', 'Flail', 'Whip'].includes(weapon.category)
+                );
+                const armasDistancia = gameData.weapons.filter(weapon => 
+                    ['Bow', 'Light Bow', 'Greatbow', 'Crossbow', 'Ballista'].includes(weapon.category)
+                );
+                const armasMagicas = gameData.weapons.filter(weapon => 
+                    ['Glintstone Staff', 'Sacred Seal', 'Torch'].includes(weapon.category)
+                );
+                const armasEspeciales = gameData.weapons.filter(weapon => 
+                    ['Claw', 'Fist', 'Reaper', 'Twinblade'].includes(weapon.category)
+                );
+                
+                // Renderizar cada categoría
+                renderEquipmentTab('espadas', espadas);
+                renderEquipmentTab('armas-pesadas', armasPesadas);
+                renderEquipmentTab('armas-distancia', armasDistancia);
+                renderEquipmentTab('armas-magicas', [...armasMagicas, ...armasEspeciales]);
                 
                 // Renderizar armaduras (si tenemos datos)
                 renderEquipmentTab('armaduras', gameData.armors || []);
-                
-                // Renderizar escudos (si tenemos datos)
-                renderEquipmentTab('escudos', gameData.shields || []);
                 
                 // Renderizar talismanes (si tenemos datos)
                 renderEquipmentTab('talismanes', gameData.talismans || []);
@@ -1370,34 +1429,59 @@
                     return;
                 }
                 
-                items.forEach((item, index) => {
-                    const isChecked = progressState[item.id] || false;
-                    const cardHtml = `
-                        <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
-                            <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
-                            <div class="ml-4">
-                                <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
-                                <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
-                                ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
-                            </div>
-                        </label>
-                    `;
-                    container.innerHTML += cardHtml;
-                });
+                // Mostrar indicador de carga
+                container.innerHTML = '<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-amber-400">Cargando...</p></div>';
                 
-                // Agregar event listeners a los checkboxes
-                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', (e) => {
-                        const card = e.target.closest('.glass-card');
-                        if (card) {
-                            card.classList.add('glass-press');
-                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                // Usar requestAnimationFrame para cargar de forma asíncrona
+                requestAnimationFrame(() => {
+                    let html = '';
+                    const batchSize = 20; // Cargar de 20 en 20
+                    let currentIndex = 0;
+                    
+                    function renderBatch() {
+                        const endIndex = Math.min(currentIndex + batchSize, items.length);
+                        
+                        for (let i = currentIndex; i < endIndex; i++) {
+                            const item = items[i];
+                            const isChecked = progressState[item.id] || false;
+                            html += `
+                                <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
+                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                                    <div class="ml-4">
+                                        <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                        <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
+                                        ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
+                                    </div>
+                                </label>
+                            `;
                         }
-                        if (navigator.vibrate) {
-                            navigator.vibrate(50);
+                        
+                        container.innerHTML = html;
+                        
+                        // Agregar event listeners a los checkboxes
+                        container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                            checkbox.addEventListener('change', (e) => {
+                                const card = e.target.closest('.glass-card');
+                                if (card) {
+                                    card.classList.add('glass-press');
+                                    setTimeout(() => card.classList.remove('glass-press'), 200);
+                                }
+                                if (navigator.vibrate) {
+                                    navigator.vibrate(50);
+                                }
+                                handleCheckboxChange(e);
+                            });
+                        });
+                        
+                        currentIndex = endIndex;
+                        
+                        // Si hay más elementos, continuar con el siguiente lote
+                        if (currentIndex < items.length) {
+                            requestAnimationFrame(renderBatch);
                         }
-                        handleCheckboxChange(e);
-                    });
+                    }
+                    
+                    renderBatch();
                 });
             }
 
@@ -1437,42 +1521,83 @@
                     return;
                 }
                 
-                items.forEach((item, index) => {
-                    const isChecked = progressState[item.id] || false;
-                    const cardHtml = `
-                        <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
-                            <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
-                            <div class="ml-4">
-                                <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
-                                <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
-                                ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
-                            </div>
-                        </label>
-                    `;
-                    container.innerHTML += cardHtml;
-                });
+                // Mostrar indicador de carga
+                container.innerHTML = '<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-amber-400">Cargando...</p></div>';
                 
-                // Agregar event listeners a los checkboxes
-                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', (e) => {
-                        const card = e.target.closest('.glass-card');
-                        if (card) {
-                            card.classList.add('glass-press');
-                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                // Usar requestAnimationFrame para cargar de forma asíncrona
+                requestAnimationFrame(() => {
+                    let html = '';
+                    const batchSize = 20; // Cargar de 20 en 20
+                    let currentIndex = 0;
+                    
+                    function renderBatch() {
+                        const endIndex = Math.min(currentIndex + batchSize, items.length);
+                        
+                        for (let i = currentIndex; i < endIndex; i++) {
+                            const item = items[i];
+                            const isChecked = progressState[item.id] || false;
+                            html += `
+                                <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
+                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                                    <div class="ml-4">
+                                        <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                        <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
+                                        ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
+                                    </div>
+                                </label>
+                            `;
                         }
-                        if (navigator.vibrate) {
-                            navigator.vibrate(50);
+                        
+                        container.innerHTML = html;
+                        
+                        // Agregar event listeners a los checkboxes
+                        container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                            checkbox.addEventListener('change', (e) => {
+                                const card = e.target.closest('.glass-card');
+                                if (card) {
+                                    card.classList.add('glass-press');
+                                    setTimeout(() => card.classList.remove('glass-press'), 200);
+                                }
+                                if (navigator.vibrate) {
+                                    navigator.vibrate(50);
+                                }
+                                handleCheckboxChange(e);
+                            });
+                        });
+                        
+                        currentIndex = endIndex;
+                        
+                        // Si hay más elementos, continuar con el siguiente lote
+                        if (currentIndex < items.length) {
+                            requestAnimationFrame(renderBatch);
                         }
-                        handleCheckboxChange(e);
-                    });
+                    }
+                    
+                    renderBatch();
                 });
             }
 
             function updateEquipmentCounters() {
+                // Calcular contadores para cada categoría de armas
+                const espadas = gameData.weapons.filter(weapon => 
+                    ['Straight Sword', 'Curved Sword', 'Thrusting Sword', 'Heavy Thrusting Sword', 'Katana', 'Dagger'].includes(weapon.category)
+                ).length;
+                const armasPesadas = gameData.weapons.filter(weapon => 
+                    ['Greatsword', 'Curved Greatsword', 'Colossal Sword', 'Colossal Weapon', 'Greataxe', 'Great Spear', 'Halberd', 'Hammer', 'Warhammer', 'Flail', 'Whip'].includes(weapon.category)
+                ).length;
+                const armasDistancia = gameData.weapons.filter(weapon => 
+                    ['Bow', 'Light Bow', 'Greatbow', 'Crossbow', 'Ballista'].includes(weapon.category)
+                ).length;
+                const armasMagicas = gameData.weapons.filter(weapon => 
+                    ['Glintstone Staff', 'Sacred Seal', 'Torch', 'Claw', 'Fist', 'Reaper', 'Twinblade'].includes(weapon.category)
+                ).length;
+                
                 const counters = {
-                    'armas': gameData.weapons.length,
+                    'espadas': espadas,
+                    'armas-pesadas': armasPesadas,
+                    'armas-distancia': armasDistancia,
+                    'armas-magicas': armasMagicas,
                     'armaduras': (gameData.armors || []).length,
-                    'escudos': (gameData.shields || []).length,
                     'talismanes': (gameData.talismans || []).length
                 };
                 
