@@ -382,6 +382,79 @@
             }
         }
 
+        /* Navegación inferior fija */
+        #bottom-navigation {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-top: 1px solid var(--glass-border);
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .bottom-nav-button {
+            background: transparent;
+            border: none;
+            border-radius: var(--glass-radius-small);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 80px;
+        }
+
+        .bottom-nav-button.active {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-nav-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .bottom-nav-button:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Ajustar el contenido principal para la navegación inferior */
+        .container {
+            padding-bottom: 100px; /* Espacio para la navegación inferior */
+        }
+
+        /* Animaciones para las tabs de equipamiento y objetos */
+        .equipment-content,
+        .items-content {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .equipment-tab-button,
+        .items-tab-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Responsive para navegación inferior */
+        @media (max-width: 640px) {
+            #bottom-navigation {
+                padding: 8px;
+            }
+            
+            .bottom-nav-button {
+                min-width: 60px;
+                padding: 8px 4px;
+            }
+            
+            .bottom-nav-button svg {
+                height: 20px;
+                width: 20px;
+            }
+            
+            .bottom-nav-button span {
+                font-size: 10px;
+            }
+        }
+
         /* Optimizaciones de rendimiento */
         .glass-card,
         .glass-button,
@@ -621,6 +694,8 @@
             const screenZones = document.getElementById('screen-zones');
             const screenZoneDetail = document.getElementById('screen-zone-detail');
             const screenDetail = document.getElementById('screen-detail');
+            const screenEquipment = document.getElementById('screen-equipment');
+            const screenItems = document.getElementById('screen-items');
             const zoneListContainer = document.getElementById('zone-list');
             const zoneDetailTitle = document.getElementById('zone-detail-title');
             const loadingIndicator = document.getElementById('loading-indicator');
@@ -628,6 +703,20 @@
             const backToZonesButton = document.getElementById('back-to-zones-button');
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Elementos de navegación inferior
+            const navZones = document.getElementById('nav-zones');
+            const navEquipment = document.getElementById('nav-equipment');
+            const navItems = document.getElementById('nav-items');
+            const bottomNavButtons = document.querySelectorAll('.bottom-nav-button');
+            
+            // Elementos de tabs de equipamiento
+            const equipmentTabButtons = document.querySelectorAll('.equipment-tab-button');
+            const equipmentContents = document.querySelectorAll('.equipment-content');
+            
+            // Elementos de tabs de objetos
+            const itemsTabButtons = document.querySelectorAll('.items-tab-button');
+            const itemsContents = document.querySelectorAll('.items-content');
 
             let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions };
             let progressState = {};
@@ -827,8 +916,10 @@
             function showZoneDetail(zoneId) {
                 currentZoneId = zoneId;
 
-                screenZones.classList.add('hidden');
-                screenDetail.classList.add('hidden');
+                // Ocultar todas las pantallas excepto la de detalle de zona
+                document.querySelectorAll('main').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
                 screenZoneDetail.classList.remove('hidden');
 
                 const zone = gameData.zones[zoneId];
@@ -959,8 +1050,10 @@
             }
 
             function showBossDetail(bossId, fromZoneId) {
-                screenZones.classList.add('hidden');
-                screenZoneDetail.classList.add('hidden');
+                // Ocultar todas las pantallas excepto la de detalle de jefe
+                document.querySelectorAll('main').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
                 screenDetail.classList.remove('hidden');
                 document.getElementById('detail-content').classList.add('hidden');
 
@@ -1157,13 +1250,16 @@
                 try {
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
-                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes] = await Promise.all([
+                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes] = await Promise.all([
                         fetch('./data/bosses.json'),
                         fetch('./data/weapons_es.json'),
                         fetch('./data/items_es.json'),
                         fetch('./data/locations_es.json'),
                         fetch('./data/regions_difficulty_es.json'),
-                        fetch('./data/missions_es.json')
+                        fetch('./data/missions_es.json'),
+                        fetch('./data/armors.json').catch(() => null),
+                        fetch('./data/shields.json').catch(() => null),
+                        fetch('./data/talismans.json').catch(() => null)
                     ]);
 
                     // Los archivos JSON son arrays directamente, no necesitan .data
@@ -1173,6 +1269,25 @@
                     gameData.locations = await locationsRes.json();
                     gameData.regionsDifficulty = await regionsDifficultyRes.json();
                     gameData.misiones = await missionsRes.json();
+                    
+                    // Cargar datos adicionales si están disponibles
+                    if (armorsRes) {
+                        gameData.armors = await armorsRes.json();
+                    } else {
+                        gameData.armors = [];
+                    }
+                    
+                    if (shieldsRes) {
+                        gameData.shields = await shieldsRes.json();
+                    } else {
+                        gameData.shields = [];
+                    }
+                    
+                    if (talismansRes) {
+                        gameData.talismans = await talismansRes.json();
+                    } else {
+                        gameData.talismans = [];
+                    }
                     
                     // Inicializar categorías que pueden no existir
                     if (!gameData.armas) gameData.armas = [];
@@ -1190,6 +1305,210 @@
                 } catch (error) {
                     loadingIndicator.innerHTML = `<p class="text-red-400 font-semibold">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen.</p><p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
                 }
+            }
+
+            // --- FUNCIONES DE NAVEGACIÓN PRINCIPAL ---
+            function showScreen(screenId) {
+                // Ocultar todas las pantallas
+                document.querySelectorAll('main').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
+                
+                // Mostrar la pantalla seleccionada
+                const targetScreen = document.getElementById(screenId);
+                if (targetScreen) {
+                    targetScreen.classList.remove('hidden');
+                    targetScreen.classList.add('glass-fade-in');
+                }
+                
+                // Actualizar navegación inferior
+                bottomNavButtons.forEach(btn => {
+                    btn.classList.remove('active', 'text-amber-400');
+                    btn.classList.add('text-zinc-400');
+                });
+                
+                // Activar el botón correspondiente
+                if (screenId === 'screen-zones') {
+                    navZones.classList.add('active', 'text-amber-400');
+                    navZones.classList.remove('text-zinc-400');
+                } else if (screenId === 'screen-equipment') {
+                    navEquipment.classList.add('active', 'text-amber-400');
+                    navEquipment.classList.remove('text-zinc-400');
+                } else if (screenId === 'screen-items') {
+                    navItems.classList.add('active', 'text-amber-400');
+                    navItems.classList.remove('text-zinc-400');
+                }
+                
+                window.scrollTo(0, 0);
+            }
+
+            function renderEquipmentContent() {
+                // Renderizar armas
+                renderEquipmentTab('armas', gameData.weapons);
+                
+                // Renderizar armaduras (si tenemos datos)
+                renderEquipmentTab('armaduras', gameData.armors || []);
+                
+                // Renderizar escudos (si tenemos datos)
+                renderEquipmentTab('escudos', gameData.shields || []);
+                
+                // Renderizar talismanes (si tenemos datos)
+                renderEquipmentTab('talismanes', gameData.talismans || []);
+                
+                // Actualizar contadores
+                updateEquipmentCounters();
+            }
+
+            function renderEquipmentTab(category, items) {
+                const container = document.getElementById(`equipment-${category}`);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (items.length === 0) {
+                    container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">No hay ${category} disponibles.</p></div>`;
+                    return;
+                }
+                
+                items.forEach((item, index) => {
+                    const isChecked = progressState[item.id] || false;
+                    const cardHtml = `
+                        <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
+                            <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                            <div class="ml-4">
+                                <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
+                                ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
+                            </div>
+                        </label>
+                    `;
+                    container.innerHTML += cardHtml;
+                });
+                
+                // Agregar event listeners a los checkboxes
+                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        const card = e.target.closest('.glass-card');
+                        if (card) {
+                            card.classList.add('glass-press');
+                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                        }
+                        if (navigator.vibrate) {
+                            navigator.vibrate(50);
+                        }
+                        handleCheckboxChange(e);
+                    });
+                });
+            }
+
+            function renderItemsContent() {
+                // Categorizar objetos
+                const consumibles = gameData.items.filter(item => 
+                    item.type && (item.type.includes('consumible') || item.type.includes('poción') || item.type.includes('comida'))
+                );
+                const materiales = gameData.items.filter(item => 
+                    item.type && (item.type.includes('material') || item.type.includes('crafting') || item.type.includes('upgrade'))
+                );
+                const claves = gameData.items.filter(item => 
+                    item.type && (item.type.includes('key') || item.type.includes('clave') || item.type.includes('llave'))
+                );
+                const otros = gameData.items.filter(item => 
+                    !consumibles.includes(item) && !materiales.includes(item) && !claves.includes(item)
+                );
+                
+                // Renderizar cada categoría
+                renderItemsTab('consumibles', consumibles);
+                renderItemsTab('materiales', materiales);
+                renderItemsTab('claves', claves);
+                renderItemsTab('otros', otros);
+                
+                // Actualizar contadores
+                updateItemsCounters();
+            }
+
+            function renderItemsTab(category, items) {
+                const container = document.getElementById(`items-${category}`);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (items.length === 0) {
+                    container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">No hay ${category} disponibles.</p></div>`;
+                    return;
+                }
+                
+                items.forEach((item, index) => {
+                    const isChecked = progressState[item.id] || false;
+                    const cardHtml = `
+                        <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
+                            <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                            <div class="ml-4">
+                                <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
+                                ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
+                            </div>
+                        </label>
+                    `;
+                    container.innerHTML += cardHtml;
+                });
+                
+                // Agregar event listeners a los checkboxes
+                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        const card = e.target.closest('.glass-card');
+                        if (card) {
+                            card.classList.add('glass-press');
+                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                        }
+                        if (navigator.vibrate) {
+                            navigator.vibrate(50);
+                        }
+                        handleCheckboxChange(e);
+                    });
+                });
+            }
+
+            function updateEquipmentCounters() {
+                const counters = {
+                    'armas': gameData.weapons.length,
+                    'armaduras': (gameData.armors || []).length,
+                    'escudos': (gameData.shields || []).length,
+                    'talismanes': (gameData.talismans || []).length
+                };
+                
+                Object.entries(counters).forEach(([category, count]) => {
+                    const counterElement = document.getElementById(`${category}-total-count`);
+                    if (counterElement) {
+                        counterElement.textContent = `(${count})`;
+                    }
+                });
+            }
+
+            function updateItemsCounters() {
+                const consumibles = gameData.items.filter(item => 
+                    item.type && (item.type.includes('consumible') || item.type.includes('poción') || item.type.includes('comida'))
+                ).length;
+                const materiales = gameData.items.filter(item => 
+                    item.type && (item.type.includes('material') || item.type.includes('crafting') || item.type.includes('upgrade'))
+                ).length;
+                const claves = gameData.items.filter(item => 
+                    item.type && (item.type.includes('key') || item.type.includes('clave') || item.type.includes('llave'))
+                ).length;
+                const otros = gameData.items.length - consumibles - materiales - claves;
+                
+                const counters = {
+                    'consumibles': consumibles,
+                    'materiales': materiales,
+                    'claves': claves,
+                    'otros': otros
+                };
+                
+                Object.entries(counters).forEach(([category, count]) => {
+                    const counterElement = document.getElementById(`${category}-total-count`);
+                    if (counterElement) {
+                        counterElement.textContent = `(${count})`;
+                    }
+                });
             }
 
             // --- NAVEGACIÓN ---
@@ -1219,6 +1538,94 @@
                 currentZoneId = null;
                 renderZones(); // Re-render para mostrar progreso actualizado
                 screenZones.classList.remove('hidden');
+            });
+
+            // --- NAVEGACIÓN INFERIOR ---
+            navZones.addEventListener('click', () => {
+                navZones.classList.add('glass-press');
+                setTimeout(() => navZones.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-zones');
+            });
+
+            navEquipment.addEventListener('click', () => {
+                navEquipment.classList.add('glass-press');
+                setTimeout(() => navEquipment.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-equipment');
+                renderEquipmentContent();
+            });
+
+            navItems.addEventListener('click', () => {
+                navItems.classList.add('glass-press');
+                setTimeout(() => navItems.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-items');
+                renderItemsContent();
+            });
+
+            // --- TABS DE EQUIPAMIENTO ---
+            equipmentTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.classList.add('glass-press');
+                    setTimeout(() => button.classList.remove('glass-press'), 200);
+                    if (navigator.vibrate) {
+                        navigator.vibrate(30);
+                    }
+                    
+                    const tabId = button.dataset.equipmentTab;
+
+                    // Actualizar botones
+                    equipmentTabButtons.forEach(btn => {
+                        btn.classList.remove('text-amber-400', 'active');
+                        btn.classList.add('text-zinc-400');
+                    });
+                    button.classList.add('text-amber-400', 'active');
+                    button.classList.remove('text-zinc-400');
+
+                    // Actualizar contenido
+                    equipmentContents.forEach(content => {
+                        content.classList.toggle('hidden', content.id !== `equipment-${tabId}`);
+                        if (content.id === `equipment-${tabId}`) {
+                            content.classList.add('glass-fade-in');
+                        }
+                    });
+                });
+            });
+
+            // --- TABS DE OBJETOS ---
+            itemsTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    button.classList.add('glass-press');
+                    setTimeout(() => button.classList.remove('glass-press'), 200);
+                    if (navigator.vibrate) {
+                        navigator.vibrate(30);
+                    }
+                    
+                    const tabId = button.dataset.itemsTab;
+
+                    // Actualizar botones
+                    itemsTabButtons.forEach(btn => {
+                        btn.classList.remove('text-amber-400', 'active');
+                        btn.classList.add('text-zinc-400');
+                    });
+                    button.classList.add('text-amber-400', 'active');
+                    button.classList.remove('text-zinc-400');
+
+                    // Actualizar contenido
+                    itemsContents.forEach(content => {
+                        content.classList.toggle('hidden', content.id !== `items-${tabId}`);
+                        if (content.id === `items-${tabId}`) {
+                            content.classList.add('glass-fade-in');
+                        }
+                    });
+                });
             });
 
             tabButtons.forEach(button => {
