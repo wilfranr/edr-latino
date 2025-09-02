@@ -499,7 +499,114 @@
                 </div>
             </div>
         </main>
+
+        <!-- Pantalla de Equipamiento (oculta por defecto) -->
+        <main id="screen-equipment" class="hidden">
+            <header class="text-center mb-8">
+                <h1 class="glass-title text-4xl font-bold mb-6">Equipamiento</h1>
+                <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
+                    <div class="flex justify-between mb-3">
+                        <span class="text-base font-semibold text-amber-400">Progreso de Equipamiento</span>
+                        <span id="equipment-progress-text" class="text-sm font-semibold text-amber-400">0%</span>
+                    </div>
+                    <div class="glass-progress w-full h-3">
+                        <div id="equipment-progress-bar" class="glass-progress-bar h-3" style="width: 0%"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Pestañas de navegación para equipamiento -->
+            <nav class="glass-nav flex justify-center p-2 mb-8 max-w-4xl mx-auto glass-slide-in">
+                <button data-equipment-tab="armas" class="equipment-tab-button glass-nav-button active font-semibold text-amber-400 py-3 px-6 mx-1">Armas <span id="armas-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="armaduras" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Armaduras <span id="armaduras-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="escudos" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Escudos <span id="escudos-total-count" class="text-xs ml-1"></span></button>
+                <button data-equipment-tab="talismanes" class="equipment-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Talismanes <span id="talismanes-total-count" class="text-xs ml-1"></span></button>
+            </nav>
+
+            <!-- Contenido de las pestañas de equipamiento -->
+            <div id="equipment-content-container">
+                <div id="equipment-armas" class="equipment-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armas -->
+                </div>
+                <div id="equipment-armaduras" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Armaduras -->
+                </div>
+                <div id="equipment-escudos" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Escudos -->
+                </div>
+                <div id="equipment-talismanes" class="equipment-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Talismanes -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Pantalla de Objetos (oculta por defecto) -->
+        <main id="screen-items" class="hidden">
+            <header class="text-center mb-8">
+                <h1 class="glass-title text-4xl font-bold mb-6">Objetos</h1>
+                <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
+                    <div class="flex justify-between mb-3">
+                        <span class="text-base font-semibold text-amber-400">Progreso de Objetos</span>
+                        <span id="items-progress-text" class="text-sm font-semibold text-amber-400">0%</span>
+                    </div>
+                    <div class="glass-progress w-full h-3">
+                        <div id="items-progress-bar" class="glass-progress-bar h-3" style="width: 0%"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Pestañas de navegación para objetos -->
+            <nav class="glass-nav flex justify-center p-2 mb-8 max-w-4xl mx-auto glass-slide-in">
+                <button data-items-tab="consumibles" class="items-tab-button glass-nav-button active font-semibold text-amber-400 py-3 px-6 mx-1">Consumibles <span id="consumibles-total-count" class="text-xs ml-1"></span></button>
+                <button data-items-tab="materiales" class="items-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Materiales <span id="materiales-total-count" class="text-xs ml-1"></span></button>
+                <button data-items-tab="claves" class="items-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Claves <span id="claves-total-count" class="text-xs ml-1"></span></button>
+                <button data-items-tab="otros" class="items-tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Otros <span id="otros-total-count" class="text-xs ml-1"></span></button>
+            </nav>
+
+            <!-- Contenido de las pestañas de objetos -->
+            <div id="items-content-container">
+                <div id="items-consumibles" class="items-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Consumibles -->
+                </div>
+                <div id="items-materiales" class="items-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Materiales -->
+                </div>
+                <div id="items-claves" class="items-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Claves -->
+                </div>
+                <div id="items-otros" class="items-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Contenido de Otros -->
+                </div>
+            </div>
+        </main>
     </div>
+
+    <!-- Navegación inferior fija -->
+    <nav id="bottom-navigation" class="fixed bottom-0 left-0 right-0 z-50 glass-nav p-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex justify-around items-center">
+                <button id="nav-zones" class="bottom-nav-button glass-nav-button active flex flex-col items-center py-2 px-4 text-amber-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="text-xs font-medium">Zonas</span>
+                </button>
+                <button id="nav-equipment" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span class="text-xs font-medium">Equipamiento</span>
+                </button>
+                <button id="nav-items" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span class="text-xs font-medium">Objetos</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
