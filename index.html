@@ -626,6 +626,58 @@
             </div>
         </main>
 
+        <!-- Pantalla de Detalle de Arma (oculta por defecto) -->
+        <main id="screen-weapon-detail" class="hidden">
+            <header class="mb-8">
+                <button id="back-to-equipment-button" class="glass-button flex items-center text-amber-400 hover:text-amber-300 font-semibold px-4 py-3 glass-fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    Volver a Equipamiento
+                </button>
+            </header>
+
+            <!-- Contenedor para los detalles del arma -->
+            <div id="weapon-detail-content" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <img id="weapon-detail-image" src="" alt="Imagen del arma" class="glass-card w-full h-auto object-cover p-2 glass-slide-in">
+                </div>
+                <div class="md:col-span-2">
+                    <h2 id="weapon-detail-name" class="glass-title text-4xl font-bold mb-4"></h2>
+                    <p id="weapon-detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Ubicación</h3>
+                            <p id="weapon-detail-location" class="text-zinc-200"></p>
+                        </div>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Categoría</h3>
+                            <p id="weapon-detail-category" class="text-zinc-200"></p>
+                        </div>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Peso</h3>
+                            <p id="weapon-detail-weight" class="text-zinc-200"></p>
+                        </div>
+                        <div class="glass-card p-4 glass-fade-in col-span-full">
+                            <h3 class="font-bold text-amber-500 mb-2">Ataque</h3>
+                            <div id="weapon-detail-attack" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+                        </div>
+                        <div class="glass-card p-4 glass-fade-in col-span-full">
+                            <h3 class="font-bold text-amber-500 mb-2">Defensa</h3>
+                            <div id="weapon-detail-defence" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+                        </div>
+                         <div class="glass-card p-4 glass-fade-in col-span-full">
+                            <h3 class="font-bold text-amber-500 mb-2">Atributos Requeridos</h3>
+                            <div id="weapon-detail-required" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+                        </div>
+                        <div class="glass-card p-4 glass-fade-in col-span-full">
+                            <h3 class="font-bold text-amber-500 mb-2">Escalado de Atributos</h3>
+                            <div id="weapon-detail-scales" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
         <!-- Pantalla de Equipamiento (oculta por defecto) -->
         <main id="screen-equipment" class="hidden">
             <header class="text-center mb-8">
@@ -761,6 +813,7 @@
             const screenZones = document.getElementById('screen-zones');
             const screenZoneDetail = document.getElementById('screen-zone-detail');
             const screenDetail = document.getElementById('screen-detail');
+            const screenWeaponDetail = document.getElementById('screen-weapon-detail');
             const screenEquipment = document.getElementById('screen-equipment');
             const screenItems = document.getElementById('screen-items');
             const zoneListContainer = document.getElementById('zone-list');
@@ -1188,6 +1241,68 @@
                 }
             }
 
+            function showWeaponDetail(weaponId) {
+                document.querySelectorAll('main').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
+                const weaponDetailScreen = document.getElementById('screen-weapon-detail');
+                weaponDetailScreen.classList.remove('hidden');
+                document.getElementById('weapon-detail-content').classList.add('hidden');
+
+                try {
+                    const weapon = gameData.weapons.find(w => w.id === weaponId);
+                    if (!weapon) throw new Error('No se pudo encontrar el detalle del arma.');
+
+                    document.getElementById('weapon-detail-image').src = weapon.image || 'https://via.placeholder.com/400x225.png?text=No+Image';
+                    document.getElementById('weapon-detail-name').textContent = weapon.name;
+                    document.getElementById('weapon-detail-description').textContent = weapon.description || 'No hay descripción disponible.';
+                    document.getElementById('weapon-detail-location').textContent = weapon.location || 'Desconocida';
+                    document.getElementById('weapon-detail-category').textContent = weapon.category || 'N/A';
+                    document.getElementById('weapon-detail-weight').textContent = weapon.weight || 'N/A';
+
+                    const attackContainer = document.getElementById('weapon-detail-attack');
+                    attackContainer.innerHTML = '';
+                    if (weapon.attack && weapon.attack.length > 0) {
+                        weapon.attack.forEach(stat => {
+                            attackContainer.innerHTML += `<div class="flex justify-between"><span>${stat.name}:</span><span>${stat.amount}</span></div>`;
+                        });
+                    }
+
+                    const defenceContainer = document.getElementById('weapon-detail-defence');
+                    defenceContainer.innerHTML = '';
+                    if (weapon.defence && weapon.defence.length > 0) {
+                        weapon.defence.forEach(stat => {
+                            defenceContainer.innerHTML += `<div class="flex justify-between"><span>${stat.name}:</span><span>${stat.amount}</span></div>`;
+                        });
+                    }
+
+                    const requiredContainer = document.getElementById('weapon-detail-required');
+                    requiredContainer.innerHTML = '';
+                    if (weapon.requiredAttributes && weapon.requiredAttributes.length > 0) {
+                        weapon.requiredAttributes.forEach(stat => {
+                            requiredContainer.innerHTML += `<div class="flex justify-between"><span>${stat.name}:</span><span>${stat.amount}</span></div>`;
+                        });
+                    }
+
+                    const scalesContainer = document.getElementById('weapon-detail-scales');
+                    scalesContainer.innerHTML = '';
+                    if (weapon.scalesWith && weapon.scalesWith.length > 0) {
+                        weapon.scalesWith.forEach(stat => {
+                            scalesContainer.innerHTML += `<div class="flex justify-between"><span>${stat.name}:</span><span>${stat.scaling}</span></div>`;
+                        });
+                    }
+
+                    document.getElementById('weapon-detail-content').classList.remove('hidden');
+                    document.getElementById('weapon-detail-content').classList.add('glass-fade-in');
+                    window.scrollTo(0, 0);
+
+                } catch (error) {
+                    document.getElementById('weapon-detail-name').textContent = 'Error al cargar';
+                    document.getElementById('weapon-detail-description').textContent = `No se pudo obtener el detalle de esta arma. ${error.message}`;
+                    console.error(error);
+                }
+            }
+
             function processApiData() {
                 // Primero, inicializamos las zonas a partir de las regiones únicas en locations.json
                 gameData.zones = {}; // Limpiar zonas existentes
@@ -1470,13 +1585,13 @@
                             const item = items[i];
                             const isChecked = progressState[item.id] || false;
                             html += `
-                                <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
-                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
-                                    <div class="ml-4">
+                                <label class="glass-card flex items-center p-4 cursor-pointer glass-slide-in">
+                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''}>
+                                    <div class="ml-4 flex-grow">
                                         <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
-                                        <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
-                                        ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
+                                        <p class="text-zinc-400 text-sm mt-1">${item.category || ''}</p>
                                     </div>
+                                    <button data-weapon-id="${item.id}" class="glass-button view-weapon-detail-btn text-xs text-amber-500 px-3 py-1 ml-2">Ver</button>
                                 </label>
                             `;
                         }
@@ -1495,6 +1610,18 @@
                                     navigator.vibrate(50);
                                 }
                                 handleCheckboxChange(e);
+                            });
+                        });
+
+                        container.querySelectorAll('.view-weapon-detail-btn').forEach(button => {
+                            button.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                button.classList.add('glass-press');
+                                setTimeout(() => button.classList.remove('glass-press'), 200);
+                                if (navigator.vibrate) {
+                                    navigator.vibrate(100);
+                                }
+                                showWeaponDetail(e.target.dataset.weaponId);
                             });
                         });
                         
@@ -1674,6 +1801,16 @@
                 if (fromZone) {
                     showZoneDetail(fromZone);
                 }
+            });
+
+            const backToEquipmentButton = document.getElementById('back-to-equipment-button');
+            backToEquipmentButton.addEventListener('click', () => {
+                backToEquipmentButton.classList.add('glass-press');
+                setTimeout(() => backToEquipmentButton.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-equipment');
             });
 
             backToZonesButton.addEventListener('click', () => {
