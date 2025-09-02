@@ -39,38 +39,377 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
+    <!-- Estilos personalizados Glassmorphism 2.0 -->
     <style>
-        /* Aplicamos las fuentes personalizadas */
+        /* Variables CSS para Glassmorphism 2.0 */
+        :root {
+            --glass-bg-primary: #0a0a0f;
+            --glass-bg-secondary: #1a1a2e;
+            --glass-bg-tertiary: #16213e;
+            --glass-accent-amber: #ffd700;
+            --glass-accent-emerald: #00ff88;
+            --glass-accent-purple: #8b5cf6;
+            --glass-accent-blue: #3b82f6;
+            --glass-text-primary: #ffffff;
+            --glass-text-secondary: #e2e8f0;
+            --glass-text-muted: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
+            --glass-blur: 16px;
+            --glass-radius: 16px;
+            --glass-radius-small: 12px;
+        }
+
+        /* Fondo dinámico con gradientes Aurora */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a1a1a; /* Un fondo oscuro para la página */
+            background: var(--glass-bg-primary);
+            color: var(--glass-text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
+
+        /* Fondo dinámico animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0f 100%);
+            animation: auroraFlow 20s ease-in-out infinite;
+            z-index: -2;
+        }
+
+        /* Animación del fondo Aurora */
+        @keyframes auroraFlow {
+            0%, 100% {
+                transform: translateX(0) translateY(0) scale(1);
+                filter: hue-rotate(0deg);
+            }
+            25% {
+                transform: translateX(-2%) translateY(-1%) scale(1.02);
+                filter: hue-rotate(10deg);
+            }
+            50% {
+                transform: translateX(1%) translateY(-2%) scale(0.98);
+                filter: hue-rotate(-5deg);
+            }
+            75% {
+                transform: translateX(-1%) translateY(1%) scale(1.01);
+                filter: hue-rotate(5deg);
+            }
+        }
+
+        /* Efecto parallax para el fondo */
+        .parallax-bg {
+            transform: translateZ(-1px) scale(1.1);
+            will-change: transform;
+        }
+
         .font-cinzel {
             font-family: 'Cinzel', serif;
         }
+
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Clases base para elementos de cristal */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--glass-radius);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0.6;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--glass-shadow-hover);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:active {
+            transform: translateY(-2px) scale(0.98);
+            backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            transition: all 0.1s ease;
+        }
+
+        .glass-button {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--glass-radius-small);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-button:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: var(--glass-shadow-hover);
+        }
+
+        .glass-button:active {
+            transform: translateY(1px) scale(0.95);
+            backdrop-filter: blur(calc(var(--glass-blur) + 2px));
+            -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 2px));
+            transition: all 0.1s ease;
+        }
+
+        .glass-progress {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--glass-radius-small);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glass-progress-bar {
+            background: linear-gradient(135deg, var(--glass-accent-amber), var(--glass-accent-emerald));
+            border-radius: var(--glass-radius-small);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--glass-radius);
+            box-shadow: var(--glass-shadow);
+            border: none;
+        }
+
+        .glass-nav-button {
+            background: transparent;
+            border: none;
+            border-radius: var(--glass-radius-small);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-nav-button.active {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-nav-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav-button:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Animaciones de entrada */
+        @keyframes glassSlideIn {
+            0% {
+                transform: translateY(30px) scale(0.9);
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+                backdrop-filter: blur(var(--glass-blur));
+            }
+        }
+
+        @keyframes glassFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+                backdrop-filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                backdrop-filter: blur(var(--glass-blur));
+            }
+        }
+
+        @keyframes glassPress {
+            0% {
+                transform: scale(1);
+                backdrop-filter: blur(var(--glass-blur));
+            }
+            50% {
+                transform: scale(0.95);
+                backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+            }
+            100% {
+                transform: scale(1);
+                backdrop-filter: blur(var(--glass-blur));
+            }
+        }
+
+        .glass-slide-in {
+            animation: glassSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-fade-in {
+            animation: glassFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-press {
+            animation: glassPress 0.2s ease-in-out;
+        }
+
+        /* Efecto de pulso para feedback */
+        @keyframes glassPulse {
+            0% {
+                box-shadow: var(--glass-shadow);
+            }
+            50% {
+                box-shadow: var(--glass-shadow-hover), 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+                box-shadow: var(--glass-shadow);
+            }
+        }
+
+        .glass-pulse {
+            animation: glassPulse 0.3s ease-in-out;
+        }
+
+        /* Checkboxes de cristal */
+        .glass-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .glass-checkbox:checked {
+            background: linear-gradient(135deg, var(--glass-accent-amber), var(--glass-accent-emerald));
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .glass-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Títulos expresivos */
+        .glass-title {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, var(--glass-accent-amber), var(--glass-accent-emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            :root {
+                --glass-blur: 12px;
+                --glass-radius: 12px;
+                --glass-radius-small: 8px;
+            }
+        }
+
+        /* Optimizaciones de rendimiento */
+        .glass-card,
+        .glass-button,
+        .glass-progress {
+            will-change: transform, backdrop-filter;
+        }
     </style>
 </head>
-<body class="bg-zinc-900 text-white">
+<body>
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
         <!-- Pantalla de Lista de Jefes -->
         <main id="screen-zones">
-            <header class="text-center mb-6">
-                <h1 class="font-cinzel text-4xl font-bold text-amber-400">Zonas de las Tierras Intermedias</h1>
-                <div class="mt-4 max-w-lg mx-auto">
-                    <div class="flex justify-between mb-1">
-                        <span class="text-base font-medium text-amber-400">Progreso General</span>
-                        <span id="overall-progress-text" class="text-sm font-medium text-amber-400">0%</span>
+            <header class="text-center mb-8">
+                <h1 class="glass-title text-4xl font-bold mb-6">Zonas de las Tierras Intermedias</h1>
+                <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
+                    <div class="flex justify-between mb-3">
+                        <span class="text-base font-semibold text-amber-400">Progreso General</span>
+                        <span id="overall-progress-text" class="text-sm font-semibold text-amber-400">0%</span>
                     </div>
-                    <div class="w-full bg-zinc-700 rounded-full h-2.5"><div id="overall-progress-bar" class="bg-amber-500 h-2.5 rounded-full" style="width: 0%"></div></div>
+                    <div class="glass-progress w-full h-3">
+                        <div id="overall-progress-bar" class="glass-progress-bar h-3" style="width: 0%"></div>
+                    </div>
                 </div>
             </header>
 
-            <div id="loading-indicator" class="text-center text-amber-400 text-xl py-10">Cargando zonas...</div>
+            <div id="loading-indicator" class="text-center text-amber-400 text-xl py-10 glass-card p-6 max-w-md mx-auto glass-fade-in">Cargando zonas...</div>
             <div id="zone-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Las tarjetas de las zonas se insertarán aquí por JavaScript -->
             </div>
@@ -79,21 +418,21 @@
         <!-- Pantalla de Jefes de Zona (oculta por defecto) -->
         <main id="screen-zone-detail" class="hidden">
             <header class="mb-8">
-                <button id="back-to-zones-button" class="flex items-center text-amber-400 hover:text-amber-300 font-semibold">
+                <button id="back-to-zones-button" class="glass-button flex items-center text-amber-400 hover:text-amber-300 font-semibold px-4 py-3 glass-fade-in">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                     Volver a las Zonas
                 </button>
             </header>
-            <div class="text-center mb-4">
-                <h1 id="zone-detail-title" class="font-cinzel text-4xl font-bold text-amber-400"></h1>
+            <div class="text-center mb-6">
+                <h1 id="zone-detail-title" class="glass-title text-4xl font-bold"></h1>
             </div>
 
             <!-- Pestañas de navegación -->
-            <nav class="flex justify-center border-b border-zinc-700 mb-6">
-                <button data-tab="jefes" class="tab-button font-semibold text-amber-400 border-b-2 border-amber-400 py-2 px-4">Jefes <span id="jefes-progress-text" class="text-xs ml-1"></span></button>
-                <button data-tab="misiones" class="tab-button font-semibold text-zinc-400 py-2 px-4">Misiones <span id="misiones-progress-text" class="text-xs ml-1"></span></button>
-                <button data-tab="armas" class="tab-button font-semibold text-zinc-400 py-2 px-4">Armas <span id="armas-progress-text" class="text-xs ml-1"></span></button>
-                <button data-tab="objetos" class="tab-button font-semibold text-zinc-400 py-2 px-4">Objetos <span id="objetos-progress-text" class="text-xs ml-1"></span></button>
+            <nav class="glass-nav flex justify-center p-2 mb-8 max-w-2xl mx-auto glass-slide-in">
+                <button data-tab="jefes" class="tab-button glass-nav-button active font-semibold text-amber-400 py-3 px-6 mx-1">Jefes <span id="jefes-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="misiones" class="tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Misiones <span id="misiones-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="armas" class="tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Armas <span id="armas-progress-text" class="text-xs ml-1"></span></button>
+                <button data-tab="objetos" class="tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Objetos <span id="objetos-progress-text" class="text-xs ml-1"></span></button>
             </nav>
 
             <!-- Contenido de las pestañas -->
@@ -116,7 +455,7 @@
         <!-- Pantalla de Detalle de Jefe (oculta por defecto) -->
         <main id="screen-detail" class="hidden">
             <header class="mb-8">
-                <button id="back-button" class="flex items-center text-amber-400 hover:text-amber-300 font-semibold">
+                <button id="back-button" class="glass-button flex items-center text-amber-400 hover:text-amber-300 font-semibold px-4 py-3 glass-fade-in">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                     Volver
                 </button>
@@ -125,35 +464,35 @@
             <!-- Contenedor para los detalles del jefe -->
             <div id="detail-content" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="md:col-span-1">
-                    <img id="detail-image" src="" alt="Imagen del jefe" class="w-full h-auto object-cover rounded-lg shadow-lg border-2 border-zinc-700">
+                    <img id="detail-image" src="" alt="Imagen del jefe" class="glass-card w-full h-auto object-cover p-2 glass-slide-in">
                 </div>
                 <div class="md:col-span-2">
-                    <h2 id="detail-name" class="font-cinzel text-4xl font-bold text-amber-400 mb-4"></h2>
+                    <h2 id="detail-name" class="glass-title text-4xl font-bold mb-4"></h2>
                     <p id="detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
-                        <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-amber-500 mb-1">Ubicación</h3>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Ubicación</h3>
                             <p id="detail-location" class="text-zinc-200"></p>
                         </div>
-                         <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-amber-500 mb-1">Puntos de Vida</h3>
+                         <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Puntos de Vida</h3>
                             <p id="detail-health" class="text-zinc-200"></p>
                         </div>
-                        <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-amber-500 mb-1">Runas Obtenidas</h3>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Runas Obtenidas</h3>
                             <p id="detail-runes" class="text-zinc-200"></p>
                         </div>
-                        <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-amber-500 mb-1">Recompensas (Drops)</h3>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-amber-500 mb-2">Recompensas (Drops)</h3>
                             <ul id="detail-drops" class="list-disc list-inside text-zinc-200"></ul>
                         </div>
-                        <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-green-400 mb-1">Debilidades</h3>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-green-400 mb-2">Debilidades</h3>
                             <ul id="detail-weaknesses" class="list-disc list-inside text-zinc-200"></ul>
                         </div>
-                        <div class="bg-zinc-800 p-4 rounded-lg">
-                            <h3 class="font-bold text-red-400 mb-1">Fortalezas</h3>
+                        <div class="glass-card p-4 glass-fade-in">
+                            <h3 class="font-bold text-red-400 mb-2">Fortalezas</h3>
                             <ul id="detail-strengths" class="list-disc list-inside text-zinc-200"></ul>
                         </div>
                     </div>
@@ -233,18 +572,24 @@
                     zones.forEach(zone => {
                         const zoneProgress = calculateZoneProgress(zone.id);
                         const card = document.createElement('div');
-                        card.className = 'bg-zinc-800 p-6 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300';
+                        card.className = 'glass-card p-6 cursor-pointer glass-slide-in';
                         card.dataset.id = zone.id;
 
                         card.innerHTML = `
-                            <div class="flex justify-between items-center mb-2">
-                                <h3 class="font-cinzel text-2xl font-bold text-white">${zone.name}</h3>
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="font-orbitron text-2xl font-bold text-white">${zone.name}</h3>
                                 <span class="text-amber-400 font-semibold">${zoneProgress.toFixed(0)}%</span>
                             </div>
                             <p class="text-zinc-400 text-sm mt-2 mb-4 h-10">${zone.description || 'Una de las regiones de las Tierras Intermedias.'}</p>
-                            <div class="w-full bg-zinc-700 rounded-full h-2.5"><div class="bg-amber-500 h-2.5 rounded-full" style="width: ${zoneProgress}%"></div></div>
+                            <div class="glass-progress w-full h-3">
+                                <div class="glass-progress-bar h-3" style="width: ${zoneProgress}%"></div>
+                            </div>
                         `;
-                        card.addEventListener('click', () => showZoneDetail(zone.id));
+                        card.addEventListener('click', () => {
+                            card.classList.add('glass-press');
+                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                            showZoneDetail(zone.id);
+                        });
                         zoneListContainer.appendChild(card);
                     });
 
@@ -252,7 +597,7 @@
                     console.error(error);
                     // Mostramos un mensaje de error más descriptivo en la UI
                     loadingIndicator.innerHTML = `
-                        <p class="text-red-400">Error al cargar las zonas.</p>
+                        <p class="text-red-400 font-semibold">Error al cargar las zonas.</p>
                         <p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
                 }
             }
@@ -284,7 +629,7 @@
                 // Verificar si la categoría existe en gameData
                 if (!gameData[category]) {
                     console.warn(`Categoría '${category}' no encontrada en gameData`);
-                    container.innerHTML = `<p class="text-zinc-400 col-span-full text-center">Categoría '${category}' no disponible.</p>`;
+                    container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">Categoría '${category}' no disponible.</p></div>`;
                     return;
                 }
                 
@@ -298,7 +643,7 @@
                 container.innerHTML = ''; // Limpiar
 
                 if (items.length === 0) {
-                    container.innerHTML = `<p class="text-zinc-400 col-span-full text-center">No hay ${category} registrados en esta zona.</p>`;
+                    container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">No hay ${category} registrados en esta zona.</p></div>`;
                     return;
                 }
 
@@ -312,27 +657,27 @@
                         const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : difficulty <= 6 ? 'text-orange-400' : 'text-red-400';
                         
                         cardHtml = `
-                            <label class="flex items-center bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
-                                <input type="checkbox" data-id="${item.id}" class="progress-checkbox h-5 w-5 rounded bg-zinc-900 border-zinc-600 text-amber-500 focus:ring-amber-600" ${isChecked ? 'checked' : ''}>
-                                <div class="ml-3 flex-grow">
+                            <label class="glass-card flex items-center p-4 cursor-pointer glass-slide-in">
+                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''}>
+                                <div class="ml-4 flex-grow">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
+                                        <span class="text-white font-semibold ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
                                         <span class="text-xs ${difficultyColor} font-medium">${difficultyText}</span>
                                     </div>
-                                    <div class="flex items-center mt-1 text-xs text-zinc-400">
+                                    <div class="flex items-center mt-2 text-xs text-zinc-400">
                                         <span>${item.healthPoints || '???'} HP</span>
                                         ${item.drops && item.drops.find(drop => drop.includes('Runes')) ? 
                                             `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
                                     </div>
                                 </div>
-                                <button data-boss-id="${item.id}" class="view-detail-btn text-xs text-amber-500 hover:underline ml-2">Ver</button>
+                                <button data-boss-id="${item.id}" class="glass-button view-detail-btn text-xs text-amber-500 px-3 py-1 ml-2">Ver</button>
                             </label>
                         `;
                     } else {
                         cardHtml = `
-                            <label class="flex items-start bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
-                                <input type="checkbox" data-id="${item.id}" class="progress-checkbox h-5 w-5 rounded bg-zinc-900 border-zinc-600 text-amber-500 focus:ring-amber-600 mt-1" ${isChecked ? 'checked' : ''}>
-                                <div class="ml-3">
+                            <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
+                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                                <div class="ml-4">
                                     <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
                                     <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
                                 </div>
@@ -342,10 +687,31 @@
                     container.innerHTML += cardHtml;
                 });
 
-                container.querySelectorAll('.progress-checkbox').forEach(checkbox => checkbox.addEventListener('change', handleCheckboxChange));
+                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        // Animación de cristal
+                        const card = e.target.closest('.glass-card');
+                        if (card) {
+                            card.classList.add('glass-press');
+                            setTimeout(() => card.classList.remove('glass-press'), 200);
+                        }
+                        // Retroalimentación háptica
+                        if (navigator.vibrate) {
+                            navigator.vibrate(50);
+                        }
+                        handleCheckboxChange(e);
+                    });
+                });
                 container.querySelectorAll('.view-detail-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.preventDefault(); // Evita que el label active el checkbox
+                        // Animación de cristal
+                        button.classList.add('glass-press');
+                        setTimeout(() => button.classList.remove('glass-press'), 200);
+                        // Retroalimentación háptica
+                        if (navigator.vibrate) {
+                            navigator.vibrate(100);
+                        }
                         showBossDetail(e.target.dataset.bossId, zone.id);
                     });
                 });
@@ -376,7 +742,7 @@
                 const jefesTab = document.getElementById('tab-jefes');
                 if (jefesTab && zone.jefes && zone.jefes.length > 0) {
                     const orderIndicator = document.createElement('div');
-                    orderIndicator.className = 'text-xs text-zinc-500 text-center mb-3 p-2 bg-zinc-900 rounded';
+                    orderIndicator.className = 'glass-card text-xs text-zinc-500 text-center mb-4 p-3 glass-fade-in';
                     orderIndicator.innerHTML = '🗡️ Jefes ordenados por dificultad (más fácil → más difícil)';
                     jefesTab.insertBefore(orderIndicator, jefesTab.firstChild);
                 }
@@ -393,16 +759,17 @@
                 // Activar la primera pestaña por defecto
                 tabButtons.forEach(btn => {
                     if (btn.dataset.tab === 'jefes') {
-                        btn.classList.add('text-amber-400', 'border-amber-400');
+                        btn.classList.add('text-amber-400', 'active');
                         btn.classList.remove('text-zinc-400');
                     } else {
-                        btn.classList.remove('text-amber-400', 'border-amber-400');
+                        btn.classList.remove('text-amber-400', 'active');
                         btn.classList.add('text-zinc-400');
                     }
                 });
                 tabContents.forEach(content => {
                     if (content.id === 'tab-jefes') {
                         content.classList.remove('hidden');
+                        content.classList.add('glass-fade-in');
                     } else {
                         content.classList.add('hidden');
                     }
@@ -543,6 +910,7 @@
                     }
 
                     document.getElementById('detail-content').classList.remove('hidden'); // Mostrar contenido
+                    document.getElementById('detail-content').classList.add('glass-fade-in'); // Agregar animación
                     window.scrollTo(0, 0); // Ir al inicio de la página
 
                 } catch (error) {
@@ -713,12 +1081,19 @@
                     loadProgress();
                     renderZones();
                 } catch (error) {
-                    loadingIndicator.innerHTML = `<p class="text-red-400">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen. <br><br> ${error.message}</p>`;
+                    loadingIndicator.innerHTML = `<p class="text-red-400 font-semibold">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen.</p><p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
                 }
             }
 
             // --- NAVEGACIÓN ---
             backButton.addEventListener('click', () => {
+                // Animación de cristal
+                backButton.classList.add('glass-press');
+                setTimeout(() => backButton.classList.remove('glass-press'), 200);
+                // Retroalimentación háptica
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
                 const fromZone = backButton.dataset.fromZone;
                 if (fromZone) {
                     showZoneDetail(fromZone);
@@ -726,6 +1101,13 @@
             });
 
             backToZonesButton.addEventListener('click', () => {
+                // Animación de cristal
+                backToZonesButton.classList.add('glass-press');
+                setTimeout(() => backToZonesButton.classList.remove('glass-press'), 200);
+                // Retroalimentación háptica
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
                 screenZoneDetail.classList.add('hidden');
                 currentZoneId = null;
                 renderZones(); // Re-render para mostrar progreso actualizado
@@ -734,23 +1116,73 @@
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
+                    // Animación de cristal
+                    button.classList.add('glass-press');
+                    setTimeout(() => button.classList.remove('glass-press'), 200);
+                    // Retroalimentación háptica
+                    if (navigator.vibrate) {
+                        navigator.vibrate(30);
+                    }
+                    
                     const tabId = button.dataset.tab;
 
                     tabButtons.forEach(btn => {
-                        btn.classList.remove('text-amber-400', 'border-amber-400');
+                        btn.classList.remove('text-amber-400', 'active');
                         btn.classList.add('text-zinc-400');
                     });
-                    button.classList.add('text-amber-400', 'border-amber-400');
+                    button.classList.add('text-amber-400', 'active');
                     button.classList.remove('text-zinc-400');
 
                     tabContents.forEach(content => {
                         content.classList.toggle('hidden', content.id !== `tab-${tabId}`);
+                        if (content.id === `tab-${tabId}`) {
+                            content.classList.add('glass-fade-in');
+                        }
                     });
                 });
             });
 
+            // --- EFECTO PARALLAX ---
+            function initParallax() {
+                let ticking = false;
+                
+                function updateParallax() {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll('.parallax-bg');
+                    
+                    parallaxElements.forEach(element => {
+                        const speed = 0.5;
+                        element.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                    
+                    ticking = false;
+                }
+                
+                function requestTick() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateParallax);
+                        ticking = true;
+                    }
+                }
+                
+                window.addEventListener('scroll', requestTick);
+            }
+
+            // --- TRANSICIONES DE PANTALLA ---
+            function addScreenTransitions() {
+                const screens = document.querySelectorAll('main');
+                
+                screens.forEach(screen => {
+                    screen.style.transition = 'opacity 0.4s ease-in-out, transform 0.4s ease-in-out';
+                });
+            }
+
             // Iniciar la carga de datos
             initializeApp();
+            
+            // Inicializar efectos adicionales
+            initParallax();
+            addScreenTransitions();
         });
     </script>
 </body>
