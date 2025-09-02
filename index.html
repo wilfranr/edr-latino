@@ -578,11 +578,30 @@
                     <p id="detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
+                        <nav class="glass-nav">
+                            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                                <h1 class="text-2xl font-bold text-amber-400 font-cinzel">Elden Ring Companion</h1>
+                                <div class="flex space-x-4 items-center">
+                                    <button id="homeBtn" class="glass-button">Inicio</button>
+                                    <button id="bossesBtn" class="glass-button">Jefes</button>
+                                    <button id="equipmentBtn" class="glass-button">Equipo</button>
+                                    <button id="itemsBtn" class="glass-button">Objetos</button>
+                                    <button id="installButton" class="glass-button hidden bg-green-600 hover:bg-green-700">
+                                        <span class="flex items-center">
+                                            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                            </svg>
+                                            Instalar App
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </nav>
                         <div class="glass-card p-4 glass-fade-in">
                             <h3 class="font-bold text-amber-500 mb-2">Ubicación</h3>
                             <p id="detail-location" class="text-zinc-200"></p>
                         </div>
-                         <div class="glass-card p-4 glass-fade-in">
+                        <div class="glass-card p-4 glass-fade-in">
                             <h3 class="font-bold text-amber-500 mb-2">Puntos de Vida</h3>
                             <p id="detail-health" class="text-zinc-200"></p>
                         </div>
@@ -718,6 +737,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                     <span class="text-xs font-medium">Objetos</span>
+                </button>
+                <button id="installButton" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400">
+                    <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    <span class="text-xs font-medium">Instalar</span>
                 </button>
             </div>
         </div>
@@ -1823,6 +1848,9 @@
             initParallax();
             addScreenTransitions();
         });
-    </script>
-</body>
+        </script>
+        
+        <!-- Script para el manejo de la PWA -->
+        <script src="js/app.js"></script>
+    </body>
 </html>
