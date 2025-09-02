@@ -1,6 +1,6 @@
-const CACHE_NAME = 'elden-ring-companion-v2.0';
-const STATIC_CACHE = 'elden-ring-static-v2.0';
-const DYNAMIC_CACHE = 'elden-ring-dynamic-v2.0';
+const CACHE_NAME = 'elden-ring-companion-v2.1';
+const STATIC_CACHE = 'elden-ring-static-v2.1';
+const DYNAMIC_CACHE = 'elden-ring-dynamic-v2.1';
 
 const assetsToCache = [
   './',
@@ -19,7 +19,7 @@ const assetsToCache = [
 
 // Evento 'install': se dispara cuando el Service Worker se instala
 self.addEventListener('install', event => {
-  console.log('🔄 SW: Instalando Elden Ring Companion v2.0...');
+  console.log('🔄 SW: Instalando Elden Ring Companion v2.1...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => {
@@ -161,7 +161,7 @@ self.addEventListener('message', event => {
   }
   
   if (event.data && event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: '2.0.0' });
+    event.ports[0].postMessage({ version: '2.1.0' });
   }
 });
 
