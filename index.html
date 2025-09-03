@@ -1325,7 +1325,7 @@
                     }
                 });
 
-                // Mapeo automático de jefes a regiones basado en los datos reales
+                // Mapeo automático de jefes a regiones basado en los datos reales (español)
                 gameData.bosses.forEach(boss => {
                     if (!boss.region) return;
                     
@@ -1335,21 +1335,21 @@
                     
                     if (regionName.includes('limgrave')) {
                         regionId = 'limgrave';
-                    } else if (regionName.includes('weeping peninsula')) {
+                    } else if (regionName.includes('península llorona')) {
                         regionId = 'weeping-peninsula';
-                    } else if (regionName.includes('liurnia') || regionName.includes('liunia')) {
+                    } else if (regionName.includes('liurnia de los lagos') || regionName.includes('liurnia')) {
                         regionId = 'liurnia-of-the-lakes';
-                    } else if (regionName.includes('caelid') || regionName.includes('dragonbarrow')) {
+                    } else if (regionName.includes('caelid')) {
                         regionId = 'caelid';
-                    } else if (regionName.includes('altus plateau') || regionName.includes('leyndell')) {
+                    } else if (regionName.includes('meseta de altus') || regionName.includes('altus')) {
                         regionId = 'altus-pleateau';
-                    } else if (regionName.includes('mountaintop') || regionName.includes('consecrated snowfield') || regionName.includes('haligtree')) {
+                    } else if (regionName.includes('cumbres de los gigantes') || regionName.includes('campo de nieve consagrado') || regionName.includes('haligtree')) {
                         regionId = 'mountaintops-of-the-giants';
-                    } else if (regionName.includes('mount gelmir') || regionName.includes('volcano manor')) {
+                    } else if (regionName.includes('monte gelmir') || regionName.includes('gelmir')) {
                         regionId = 'mount-gelmir';
-                    } else if (regionName.includes('deeproot') || regionName.includes('mohgwyn')) {
+                    } else if (regionName.includes('profundidades de raíz profunda') || regionName.includes('mohgwyn')) {
                         regionId = 'deeproot-depths';
-                    } else if (regionName.includes('crumbling farum azula')) {
+                    } else if (regionName.includes('farum azula en ruinas') || regionName.includes('farum azula')) {
                         regionId = 'crumbling-farum-azula';
                     }
 
@@ -1433,7 +1433,7 @@
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
                     const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes] = await Promise.all([
-                        fetch('./data/bosses.json'),
+                        fetch('./data/bosses_es.json'),
                         fetch('./data/weapons_es.json'),
                         fetch('./data/items_es.json'),
                         fetch('./data/locations_es.json'),
