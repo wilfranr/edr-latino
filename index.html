@@ -517,7 +517,7 @@
             </header>
 
             <div id="loading-indicator" class="text-center text-amber-400 text-xl py-10 glass-card p-6 max-w-md mx-auto glass-fade-in">Cargando zonas...</div>
-            <div id="zone-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="zone-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-24">
                 <!-- Las tarjetas de las zonas se insertarán aquí por JavaScript -->
             </div>
         </main>
@@ -543,7 +543,7 @@
             </nav>
 
             <!-- Contenido de las pestañas -->
-            <div id="tab-content-container">
+            <div id="tab-content-container" class="pb-24">
                 <div id="tab-jefes" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <!-- Contenido de Jefes -->
                 </div>
@@ -569,7 +569,7 @@
             </header>
 
             <!-- Contenedor para los detalles del jefe -->
-            <div id="detail-content" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div id="detail-content" class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-24">
                 <div class="md:col-span-1">
                     <img id="detail-image" src="" alt="Imagen del jefe" class="glass-card w-full h-auto object-cover p-2 glass-slide-in">
                 </div>
@@ -1326,9 +1326,6 @@
                 });
 
                 // Mapeo automático de jefes a regiones basado en los datos reales (español)
-                console.log('Zonas disponibles:', Object.keys(gameData.zones));
-                let limgraveBosses = 0;
-                
                 gameData.bosses.forEach(boss => {
                     if (!boss.region) return;
                     
@@ -1338,8 +1335,6 @@
                     
                     if (regionName.includes('limgrave')) {
                         regionId = 'limgrave';
-                        limgraveBosses++;
-                        console.log(`Jefe de Limgrave encontrado: ${boss.name} (${boss.region})`);
                     } else if (regionName.includes('península llorona')) {
                         regionId = 'weeping-peninsula';
                     } else if (regionName.includes('liurnia de los lagos') || regionName.includes('liurnia')) {
@@ -1362,13 +1357,8 @@
                         if (!gameData.zones[regionId].jefes.includes(boss.id)) {
                             gameData.zones[regionId].jefes.push(boss.id);
                         }
-                    } else if (regionId) {
-                        console.log(`Zona no encontrada para regionId: ${regionId}, boss: ${boss.name}`);
                     }
                 });
-                
-                console.log(`Total jefes de Limgrave procesados: ${limgraveBosses}`);
-                console.log(`Jefes asignados a Limgrave: ${gameData.zones['limgrave']?.jefes?.length || 0}`);
 
                 // Asignar objetos a sus regiones
                 gameData.items.forEach(item => {
