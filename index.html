@@ -505,6 +505,27 @@
         <main id="screen-zones">
             <header class="text-center mb-8">
                 <h1 class="glass-title text-4xl font-bold mb-6">Zonas de las Tierras Intermedias</h1>
+                
+                <!-- Búsqueda General -->
+                <div class="glass-card p-6 max-w-2xl mx-auto glass-slide-in mb-6">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="general-search" 
+                            placeholder="Buscar jefes, armas, objetos, ubicaciones..." 
+                            class="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300"
+                        >
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="search-results" class="mt-4 hidden">
+                        <!-- Los resultados de búsqueda se mostrarán aquí -->
+                    </div>
+                </div>
+                
                 <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
                     <div class="flex justify-between mb-3">
                         <span class="text-base font-semibold text-amber-400">Progreso General</span>
@@ -542,6 +563,25 @@
                 <button data-tab="objetos" class="tab-button glass-nav-button font-semibold text-zinc-400 py-3 px-6 mx-1">Objetos <span id="objetos-progress-text" class="text-xs ml-1"></span></button>
             </nav>
 
+            <!-- Búsqueda específica por sección -->
+            <div id="section-search-container" class="mb-6 max-w-2xl mx-auto">
+                <div class="glass-card p-4">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="section-search" 
+                            placeholder="Buscar en esta sección..." 
+                            class="w-full px-4 py-2 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300 text-sm"
+                        >
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Contenido de las pestañas -->
             <div id="tab-content-container" class="pb-24">
                 <div id="tab-jefes" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -578,25 +618,6 @@
                     <p id="detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
-                        <nav class="glass-nav">
-                            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-                                <h1 class="text-2xl font-bold text-amber-400 font-cinzel">Elden Ring Companion</h1>
-                                <div class="flex space-x-4 items-center">
-                                    <button id="homeBtn" class="glass-button">Inicio</button>
-                                    <button id="bossesBtn" class="glass-button">Jefes</button>
-                                    <button id="equipmentBtn" class="glass-button">Equipo</button>
-                                    <button id="itemsBtn" class="glass-button">Objetos</button>
-                                    <button id="installButton-detail" class="glass-button hidden bg-green-600 hover:bg-green-700">
-                                        <span class="flex items-center">
-                                            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                                            </svg>
-                                            Instalar App
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </nav>
                         <div class="glass-card p-4 glass-fade-in">
                             <h3 class="font-bold text-amber-500 mb-2">Ubicación</h3>
                             <p id="detail-location" class="text-zinc-200"></p>
@@ -682,6 +703,24 @@
         <main id="screen-equipment" class="hidden">
             <header class="text-center mb-8">
                 <h1 class="glass-title text-4xl font-bold mb-6">Equipamiento</h1>
+                
+                <!-- Búsqueda de Equipamiento -->
+                <div class="glass-card p-6 max-w-2xl mx-auto glass-slide-in mb-6">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="equipment-search" 
+                            placeholder="Buscar armas, armaduras, talismanes..." 
+                            class="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300"
+                        >
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
                     <div class="flex justify-between mb-3">
                         <span class="text-base font-semibold text-amber-400">Progreso de Equipamiento</span>
@@ -730,6 +769,24 @@
         <main id="screen-items" class="hidden">
             <header class="text-center mb-8">
                 <h1 class="glass-title text-4xl font-bold mb-6">Objetos</h1>
+                
+                <!-- Búsqueda de Objetos -->
+                <div class="glass-card p-6 max-w-2xl mx-auto glass-slide-in mb-6">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="items-search" 
+                            placeholder="Buscar consumibles, materiales, objetos clave..." 
+                            class="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300"
+                        >
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
                     <div class="flex justify-between mb-3">
                         <span class="text-base font-semibold text-amber-400">Progreso de Objetos</span>
@@ -973,8 +1030,8 @@
                         const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : difficulty <= 6 ? 'text-orange-400' : 'text-red-400';
                         
                         cardHtml = `
-                            <label class="glass-card flex items-center p-4 cursor-pointer glass-slide-in">
-                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''}>
+                            <div class="glass-card flex items-center p-4 cursor-pointer glass-slide-in" onclick="showBossDetail('${item.id}', '${zone.id}')">
+                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
                                 <div class="ml-4 flex-grow">
                                     <div class="flex items-center justify-between">
                                         <span class="text-white font-semibold ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
@@ -986,18 +1043,17 @@
                                             `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
                                     </div>
                                 </div>
-                                <button data-boss-id="${item.id}" class="glass-button view-detail-btn text-xs text-amber-500 px-3 py-1 ml-2">Ver</button>
-                            </label>
+                            </div>
                         `;
                     } else {
                         cardHtml = `
-                            <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
-                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
+                            <div class="glass-card flex items-start p-4 cursor-pointer glass-slide-in" onclick="showItemDetail('${item.id}', '${category}')">
+                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
                                 <div class="ml-4">
                                     <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
                                     <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
                                 </div>
-                            </label>
+                            </div>
                         `;
                     }
                     container.innerHTML += cardHtml;
@@ -1943,6 +1999,389 @@
                 });
             });
 
+            // --- SISTEMA DE BÚSQUEDA ---
+            
+            // Variables para búsqueda
+            let searchTimeout = null;
+            let currentSearchResults = [];
+            
+            // Función de búsqueda general
+            function performGeneralSearch(query) {
+                if (!query || query.trim().length < 2) {
+                    hideGeneralSearchResults();
+                    return;
+                }
+                
+                const searchTerm = query.toLowerCase().trim();
+                const results = [];
+                
+                // Buscar en jefes
+                if (gameData.bosses) {
+                    gameData.bosses.forEach(boss => {
+                        if (boss.name.toLowerCase().includes(searchTerm) || 
+                            boss.description.toLowerCase().includes(searchTerm) ||
+                            boss.region.toLowerCase().includes(searchTerm) ||
+                            boss.location.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                type: 'jefe',
+                                data: boss,
+                                match: boss.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en armas
+                if (gameData.weapons) {
+                    gameData.weapons.forEach(weapon => {
+                        if (weapon.name.toLowerCase().includes(searchTerm) || 
+                            weapon.description.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                type: 'arma',
+                                data: weapon,
+                                match: weapon.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en objetos
+                if (gameData.items) {
+                    gameData.items.forEach(item => {
+                        if (item.name.toLowerCase().includes(searchTerm) || 
+                            item.description.toLowerCase().includes(searchTerm) ||
+                            item.location.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en ubicaciones
+                if (gameData.zones) {
+                    Object.values(gameData.zones).forEach(zone => {
+                        if (zone.name.toLowerCase().includes(searchTerm) || 
+                            zone.description.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                type: 'ubicación',
+                                data: zone,
+                                match: zone.name
+                            });
+                        }
+                    });
+                }
+                
+                currentSearchResults = results.slice(0, 10); // Limitar a 10 resultados
+                displayGeneralSearchResults();
+            }
+            
+            // Mostrar resultados de búsqueda general
+            function displayGeneralSearchResults() {
+                const resultsContainer = document.getElementById('search-results');
+                if (!resultsContainer) return;
+                
+                if (currentSearchResults.length === 0) {
+                    resultsContainer.innerHTML = `
+                        <div class="text-center py-4">
+                            <p class="text-zinc-400">No se encontraron resultados</p>
+                        </div>
+                    `;
+                } else {
+                    let html = '<div class="space-y-2">';
+                    currentSearchResults.forEach(result => {
+                        const typeIcon = getTypeIcon(result.type);
+                        const typeColor = getTypeColor(result.type);
+                        
+                        html += `
+                            <div class="glass-card p-3 cursor-pointer hover:bg-zinc-700/30 transition-colors" 
+                                 onclick="handleSearchResultClick('${result.type}', '${result.data.id}')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <span class="text-2xl">${typeIcon}</span>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-white font-semibold">${result.match}</span>
+                                            <span class="text-xs px-2 py-1 rounded-full ${typeColor}">${result.type}</span>
+                                        </div>
+                                        <p class="text-zinc-400 text-sm mt-1">${result.data.description || result.data.region || ''}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    resultsContainer.innerHTML = html;
+                }
+                
+                resultsContainer.classList.remove('hidden');
+            }
+            
+            // Ocultar resultados de búsqueda general
+            function hideGeneralSearchResults() {
+                const resultsContainer = document.getElementById('search-results');
+                if (resultsContainer) {
+                    resultsContainer.classList.add('hidden');
+                }
+            }
+            
+            // Función de búsqueda específica por sección
+            function performSectionSearch(query, section) {
+                if (!query || query.trim().length < 2) {
+                    // Si no hay query, mostrar todos los elementos
+                    if (currentZoneId) {
+                        showZoneDetail(currentZoneId);
+                    }
+                    return;
+                }
+                
+                const searchTerm = query.toLowerCase().trim();
+                const container = document.getElementById(`tab-${section}`);
+                if (!container) return;
+                
+                // Obtener todos los elementos de la sección actual
+                const items = container.querySelectorAll('.glass-card');
+                let visibleCount = 0;
+                
+                items.forEach(item => {
+                    const nameElement = item.querySelector('span, .font-bold');
+                    const descriptionElement = item.querySelector('p');
+                    
+                    const name = nameElement ? nameElement.textContent.toLowerCase() : '';
+                    const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                    
+                    if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Mostrar mensaje si no hay resultados
+                if (visibleCount === 0) {
+                    container.innerHTML = `
+                        <div class="glass-card col-span-full text-center p-6 glass-fade-in">
+                            <p class="text-zinc-400">No se encontraron resultados para "${query}"</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Función de búsqueda para equipamiento
+            function performEquipmentSearch(query) {
+                if (!query || query.trim().length < 2) {
+                    // Si no hay query, mostrar todos los elementos
+                    renderEquipmentContent();
+                    return;
+                }
+                
+                const searchTerm = query.toLowerCase().trim();
+                const containers = document.querySelectorAll('.equipment-content');
+                
+                containers.forEach(container => {
+                    const items = container.querySelectorAll('.glass-card');
+                    let visibleCount = 0;
+                    
+                    items.forEach(item => {
+                        const nameElement = item.querySelector('span, .font-bold');
+                        const descriptionElement = item.querySelector('p');
+                        
+                        const name = nameElement ? nameElement.textContent.toLowerCase() : '';
+                        const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                        
+                        if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Mostrar mensaje si no hay resultados en este contenedor
+                    if (visibleCount === 0 && items.length > 0) {
+                        const noResultsMsg = container.querySelector('.no-results-message');
+                        if (!noResultsMsg) {
+                            const msg = document.createElement('div');
+                            msg.className = 'glass-card col-span-full text-center p-6 glass-fade-in no-results-message';
+                            msg.innerHTML = `<p class="text-zinc-400">No se encontraron resultados para "${query}"</p>`;
+                            container.appendChild(msg);
+                        }
+                    } else {
+                        const noResultsMsg = container.querySelector('.no-results-message');
+                        if (noResultsMsg) {
+                            noResultsMsg.remove();
+                        }
+                    }
+                });
+            }
+            
+            // Función de búsqueda para objetos
+            function performItemsSearch(query) {
+                if (!query || query.trim().length < 2) {
+                    // Si no hay query, mostrar todos los elementos
+                    renderItemsContent();
+                    return;
+                }
+                
+                const searchTerm = query.toLowerCase().trim();
+                const containers = document.querySelectorAll('.items-content');
+                
+                containers.forEach(container => {
+                    const items = container.querySelectorAll('.glass-card');
+                    let visibleCount = 0;
+                    
+                    items.forEach(item => {
+                        const nameElement = item.querySelector('span, .font-bold');
+                        const descriptionElement = item.querySelector('p');
+                        
+                        const name = nameElement ? nameElement.textContent.toLowerCase() : '';
+                        const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                        
+                        if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Mostrar mensaje si no hay resultados en este contenedor
+                    if (visibleCount === 0 && items.length > 0) {
+                        const noResultsMsg = container.querySelector('.no-results-message');
+                        if (!noResultsMsg) {
+                            const msg = document.createElement('div');
+                            msg.className = 'glass-card col-span-full text-center p-6 glass-fade-in no-results-message';
+                            msg.innerHTML = `<p class="text-zinc-400">No se encontraron resultados para "${query}"</p>`;
+                            container.appendChild(msg);
+                        }
+                    } else {
+                        const noResultsMsg = container.querySelector('.no-results-message');
+                        if (noResultsMsg) {
+                            noResultsMsg.remove();
+                        }
+                    }
+                });
+            }
+            
+            // Funciones auxiliares para iconos y colores
+            function getTypeIcon(type) {
+                const icons = {
+                    'jefe': '👹',
+                    'arma': '⚔️',
+                    'objeto': '📦',
+                    'ubicación': '🗺️'
+                };
+                return icons[type] || '❓';
+            }
+            
+            function getTypeColor(type) {
+                const colors = {
+                    'jefe': 'bg-red-500/20 text-red-400',
+                    'arma': 'bg-blue-500/20 text-blue-400',
+                    'objeto': 'bg-green-500/20 text-green-400',
+                    'ubicación': 'bg-purple-500/20 text-purple-400'
+                };
+                return colors[type] || 'bg-gray-500/20 text-gray-400';
+            }
+            
+            // Función para manejar clics en resultados de búsqueda
+            window.handleSearchResultClick = function(type, id) {
+                hideGeneralSearchResults();
+                document.getElementById('general-search').value = '';
+                
+                if (type === 'jefe') {
+                    // Navegar al jefe específico
+                    const boss = gameData.bosses.find(b => b.id === id);
+                    if (boss) {
+                        // Buscar la zona del jefe
+                        const zone = Object.values(gameData.zones).find(z => 
+                            z.jefes && z.jefes.includes(id)
+                        );
+                        if (zone) {
+                            showZoneDetail(zone.id);
+                            // Activar la pestaña de jefes
+                            setTimeout(() => {
+                                const jefesTab = document.querySelector('[data-tab="jefes"]');
+                                if (jefesTab) jefesTab.click();
+                            }, 100);
+                        }
+                    }
+                } else if (type === 'arma') {
+                    // Navegar a la sección de equipamiento
+                    showScreen('screen-equipment');
+                    renderEquipmentContent();
+                } else if (type === 'objeto') {
+                    // Navegar a la sección de objetos
+                    showScreen('screen-items');
+                    renderItemsContent();
+                } else if (type === 'ubicación') {
+                    // Navegar a la zona específica
+                    showZoneDetail(id);
+                }
+            };
+            
+            // Inicializar eventos de búsqueda
+            function initializeSearchEvents() {
+                // Búsqueda general
+                const generalSearch = document.getElementById('general-search');
+                if (generalSearch) {
+                    generalSearch.addEventListener('input', (e) => {
+                        clearTimeout(searchTimeout);
+                        searchTimeout = setTimeout(() => {
+                            performGeneralSearch(e.target.value);
+                        }, 300);
+                    });
+                    
+                    // Ocultar resultados al hacer clic fuera
+                    document.addEventListener('click', (e) => {
+                        if (!generalSearch.contains(e.target) && !document.getElementById('search-results').contains(e.target)) {
+                            hideGeneralSearchResults();
+                        }
+                    });
+                }
+                
+                // Búsqueda específica por sección
+                const sectionSearch = document.getElementById('section-search');
+                if (sectionSearch) {
+                    sectionSearch.addEventListener('input', (e) => {
+                        clearTimeout(searchTimeout);
+                        searchTimeout = setTimeout(() => {
+                            const activeTab = document.querySelector('.tab-button.active');
+                            if (activeTab) {
+                                const section = activeTab.dataset.tab;
+                                performSectionSearch(e.target.value, section);
+                            }
+                        }, 300);
+                    });
+                }
+                
+                // Búsqueda de equipamiento
+                const equipmentSearch = document.getElementById('equipment-search');
+                if (equipmentSearch) {
+                    equipmentSearch.addEventListener('input', (e) => {
+                        clearTimeout(searchTimeout);
+                        searchTimeout = setTimeout(() => {
+                            performEquipmentSearch(e.target.value);
+                        }, 300);
+                    });
+                }
+                
+                // Búsqueda de objetos
+                const itemsSearch = document.getElementById('items-search');
+                if (itemsSearch) {
+                    itemsSearch.addEventListener('input', (e) => {
+                        clearTimeout(searchTimeout);
+                        searchTimeout = setTimeout(() => {
+                            performItemsSearch(e.target.value);
+                        }, 300);
+                    });
+                }
+            }
+
             // --- EFECTO PARALLAX ---
             function initParallax() {
                 let ticking = false;
@@ -1984,6 +2423,9 @@
             // Inicializar efectos adicionales
             initParallax();
             addScreenTransitions();
+            
+            // Inicializar sistema de búsqueda
+            initializeSearchEvents();
         });
         </script>
         
