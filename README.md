@@ -1,4 +1,4 @@
-# 🗡️ Elden Ring Companion - Guía Completa
+# 🗡️ ER Asistente - Guía Completa
 
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-brightgreen.svg)](https://web.dev/progressive-web-apps/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue.svg)](https://wilfranr.github.io/edr-latino/)
@@ -46,7 +46,7 @@ Una aplicación web progresiva (PWA) completa que te guía a través de las Tier
 ## 🚀 Cómo Usar
 
 ### **Opción 1: Navegador Web**
-1. Visita [Elden Ring Companion](https://wilfranr.github.io/edr-latino/)
+1. Visita [ER Asistente](https://wilfranr.github.io/edr-latino/)
 2. ¡Listo! La aplicación se carga automáticamente
 
 ### **Opción 2: Instalar como PWA**
@@ -184,7 +184,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ## 📞 Contacto
 
 - **GitHub**: [@wilfranr](https://github.com/wilfranr)
-- **Proyecto**: [Elden Ring Companion](https://github.com/wilfranr/edr-latino)
+- **Proyecto**: [ER Asistente](https://github.com/wilfranr/edr-latino)
 - **Live Demo**: [https://wilfranr.github.io/edr-latino/](https://wilfranr.github.io/edr-latino/)
 
 ---
@@ -193,7 +193,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 **¡Que la gracia te guíe, Tarnished!** 🗡️
 
-*Elden Ring Companion - Tu compañero en las Tierras Intermedias*
+*ER Asistente - Tu compañero en las Tierras Intermedias*
 
 [![PWA](https://img.shields.io/badge/PWA-Instalar-brightgreen.svg)](https://wilfranr.github.io/edr-latino/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repo-black.svg)](https://github.com/wilfranr/edr-latino)

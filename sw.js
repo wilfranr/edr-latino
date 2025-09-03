@@ -19,7 +19,7 @@ const assetsToCache = [
 
 // Evento 'install': se dispara cuando el Service Worker se instala
 self.addEventListener('install', event => {
-  console.log('🔄 SW: Instalando Elden Ring Companion v2.1...');
+  console.log('🔄 SW: Instalando ER Asistente v2.1...');
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => {
@@ -38,7 +38,7 @@ self.addEventListener('install', event => {
 
 // Evento 'activate': se dispara cuando el Service Worker se activa
 self.addEventListener('activate', event => {
-  console.log('🚀 SW: Activando Elden Ring Companion...');
+  console.log('🚀 SW: Activando ER Asistente...');
   event.waitUntil(
     caches.keys()
       .then(cacheNames => {
@@ -170,9 +170,9 @@ self.addEventListener('push', event => {
   if (event.data) {
     const data = event.data.json();
     const options = {
-      body: data.body || 'Nueva actualización disponible en Elden Ring Companion',
-      icon: './icons/icon-192x192.png',
-      badge: './icons/icon-72x72.png',
+      body: data.body || 'Nueva actualización disponible en ER Asistente',
+      icon: './icons/192x192.png',
+      badge: './icons/192x192.png',
       vibrate: [100, 50, 100],
       data: {
         dateOfArrival: Date.now(),
@@ -182,18 +182,18 @@ self.addEventListener('push', event => {
         {
           action: 'explore',
           title: 'Ver',
-          icon: './icons/icon-72x72.png'
+          icon: './icons/192x192.png'
         },
         {
           action: 'close',
           title: 'Cerrar',
-          icon: './icons/icon-72x72.png'
+          icon: './icons/192x192.png'
         }
       ]
     };
 
     event.waitUntil(
-      self.registration.showNotification('Elden Ring Companion', options)
+      self.registration.showNotification('ER Asistente', options)
     );
   }
 });

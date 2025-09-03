@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tu compañero definitivo para Elden Ring. Guía completa con jefes, armas, objetos, ubicaciones y misiones en español latino.">
     <meta name="keywords" content="Elden Ring, guía, jefes, armas, objetos, misiones, español, latino">
-    <meta name="author" content="Elden Ring Companion">
+    <meta name="author" content="ER Asistente">
     <meta name="theme-color" content="#f59e0b">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,18 +14,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wilfranr.github.io/edr-latino/">
-    <meta property="og:title" content="Elden Ring Companion - Guía Completa">
+    <meta property="og:title" content="ER Asistente - Guía Completa">
     <meta property="og:description" content="Tu compañero definitivo para Elden Ring. Guía completa con jefes, armas, objetos, ubicaciones y misiones en español latino.">
     <meta property="og:image" content="https://wilfranr.github.io/edr-latino/icons/icon-512x512.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://wilfranr.github.io/edr-latino/">
-    <meta property="twitter:title" content="Elden Ring Companion - Guía Completa">
+    <meta property="twitter:title" content="ER Asistente - Guía Completa">
     <meta property="twitter:description" content="Tu compañero definitivo para Elden Ring. Guía completa con jefes, armas, objetos, ubicaciones y misiones en español latino.">
     <meta property="twitter:image" content="https://wilfranr.github.io/edr-latino/icons/icon-512x512.png">
     
-    <title>Elden Ring Companion - Guía Completa</title>
+    <title>ER Asistente - Guía Completa</title>
     
     <!-- PWA Links -->
     <link rel="manifest" href="manifest.json">
@@ -361,6 +361,98 @@
             font-size: 12px;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
+
+        /* Checkboxes de cristal - Ocultos para usar swipe */
+        .glass-checkbox {
+            display: none;
+        }
+
+        /* Indicador de swipe - Eliminado */
+
+        /* Borde brillante para tarjeta completada */
+        .swipe-container.completed {
+            border: 2px solid var(--glass-accent-emerald);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.1);
+            animation: completedPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes completedPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.6), inset 0 0 10px rgba(16, 185, 129, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(16, 185, 129, 0.8), inset 0 0 15px rgba(16, 185, 129, 0.2);
+            }
+        }
+
+        /* Contenedor de swipe */
+        .swipe-container {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        /* Efecto de swipe */
+        .swipe-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--glass-accent-emerald);
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Overlay para desmarcar (rojo) */
+        .swipe-overlay.unmark {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.2));
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+
+        .swipe-overlay.show {
+            transform: translateX(0);
+        }
+
+        /* Animación de completado */
+        .swipe-completed {
+            animation: swipeComplete 0.6s ease;
+        }
+
+        @keyframes swipeComplete {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Indicador de ayuda para swipe */
+        .swipe-hint {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .swipe-container:hover .swipe-hint {
+            opacity: 0.7;
+        }
+
+        /* Animación de pulso eliminada - ya no hay indicadores */
 
         /* Títulos expresivos */
         .glass-title {
@@ -1240,6 +1332,241 @@
                 }
             }
 
+            // Función para manejar gestos de swipe
+            function handleSwipeGesture(itemId, isCompleted) {
+                progressState[itemId] = isCompleted;
+                saveProgress();
+
+                // Re-render la vista actual para actualizar barras de progreso
+                if (currentZoneId) {
+                    showZoneDetail(currentZoneId);
+                }
+            }
+
+            // Clase para manejar gestos de swipe
+            class SwipeHandler {
+                constructor(element, itemId) {
+                    this.element = element;
+                    this.itemId = itemId;
+                    this.startX = 0;
+                    this.startY = 0;
+                    this.currentX = 0;
+                    this.currentY = 0;
+                    this.isDragging = false;
+                    this.threshold = 50; // Distancia mínima para considerar swipe
+                    
+                    this.init();
+                }
+
+                init() {
+                    this.element.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+                    this.element.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
+                    this.element.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: false });
+                    
+                    // También agregar soporte para mouse (para testing en desktop)
+                    this.element.addEventListener('mousedown', this.handleMouseDown.bind(this));
+                    this.element.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                    this.element.addEventListener('mouseup', this.handleMouseUp.bind(this));
+                    this.element.addEventListener('mouseleave', this.handleMouseUp.bind(this));
+                }
+
+                handleTouchStart(e) {
+                    const touch = e.touches[0];
+                    this.startX = touch.clientX;
+                    this.startY = touch.clientY;
+                    this.isDragging = true;
+                    this.element.style.transition = 'none';
+                }
+
+                handleTouchMove(e) {
+                    if (!this.isDragging) return;
+                    
+                    const touch = e.touches[0];
+                    this.currentX = touch.clientX;
+                    this.currentY = touch.clientY;
+                    
+                    const deltaX = this.currentX - this.startX;
+                    const deltaY = this.currentY - this.startY;
+                    
+                    // Solo procesar si es más horizontal que vertical
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        e.preventDefault();
+                        
+                        const overlay = this.element.querySelector('.swipe-overlay');
+                        if (overlay) {
+                            // Swipe hacia la derecha (completar)
+                            if (deltaX > 0) {
+                                const progress = Math.min(deltaX / 100, 1);
+                                overlay.style.transform = `translateX(${(progress - 1) * 100}%)`;
+                                overlay.classList.remove('unmark');
+                                overlay.querySelector('span').textContent = 'Completar';
+                            }
+                            // Swipe hacia la izquierda (desmarcar)
+                            else if (deltaX < 0) {
+                                const progress = Math.min(Math.abs(deltaX) / 100, 1);
+                                overlay.style.transform = `translateX(${progress * 100}%)`;
+                                overlay.classList.add('unmark');
+                                overlay.querySelector('span').textContent = 'Desmarcar';
+                            }
+                        }
+                    }
+                }
+
+                handleTouchEnd(e) {
+                    if (!this.isDragging) return;
+                    
+                    this.isDragging = false;
+                    this.element.style.transition = '';
+                    
+                    const deltaX = this.currentX - this.startX;
+                    const deltaY = this.currentY - this.startY;
+                    
+                    // Verificar si es un swipe válido
+                    if (Math.abs(deltaX) > this.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+                        const currentState = progressState[this.itemId] || false;
+                        let isCompleted;
+                        
+                        if (deltaX > 0) {
+                            // Swipe hacia la derecha = completar
+                            isCompleted = true;
+                        } else {
+                            // Swipe hacia la izquierda = desmarcar
+                            isCompleted = false;
+                        }
+                        
+                        this.toggleCompletion(isCompleted);
+                    } else {
+                        // Resetear overlay
+                        this.resetOverlay();
+                    }
+                }
+
+                handleMouseDown(e) {
+                    this.startX = e.clientX;
+                    this.startY = e.clientY;
+                    this.isDragging = true;
+                    this.element.style.transition = 'none';
+                }
+
+                handleMouseMove(e) {
+                    if (!this.isDragging) return;
+                    
+                    this.currentX = e.clientX;
+                    this.currentY = e.clientY;
+                    
+                    const deltaX = this.currentX - this.startX;
+                    const deltaY = this.currentY - this.startY;
+                    
+                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                        e.preventDefault();
+                        
+                        const overlay = this.element.querySelector('.swipe-overlay');
+                        if (overlay) {
+                            // Swipe hacia la derecha (completar)
+                            if (deltaX > 0) {
+                                const progress = Math.min(deltaX / 100, 1);
+                                overlay.style.transform = `translateX(${(progress - 1) * 100}%)`;
+                                overlay.classList.remove('unmark');
+                                overlay.querySelector('span').textContent = 'Completar';
+                            }
+                            // Swipe hacia la izquierda (desmarcar)
+                            else if (deltaX < 0) {
+                                const progress = Math.min(Math.abs(deltaX) / 100, 1);
+                                overlay.style.transform = `translateX(${progress * 100}%)`;
+                                overlay.classList.add('unmark');
+                                overlay.querySelector('span').textContent = 'Desmarcar';
+                            }
+                        }
+                    }
+                }
+
+                handleMouseUp(e) {
+                    if (!this.isDragging) return;
+                    
+                    this.isDragging = false;
+                    this.element.style.transition = '';
+                    
+                    const deltaX = this.currentX - this.startX;
+                    const deltaY = this.currentY - this.startY;
+                    
+                    if (Math.abs(deltaX) > this.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+                        let isCompleted;
+                        
+                        if (deltaX > 0) {
+                            // Swipe hacia la derecha = completar
+                            isCompleted = true;
+                        } else {
+                            // Swipe hacia la izquierda = desmarcar
+                            isCompleted = false;
+                        }
+                        
+                        this.toggleCompletion(isCompleted);
+                    } else {
+                        // Resetear overlay
+                        this.resetOverlay();
+                    }
+                }
+
+                toggleCompletion(isCompleted) {
+                    const currentState = progressState[this.itemId] || false;
+                    
+                    // Solo cambiar si el estado es diferente
+                    if (currentState !== isCompleted) {
+                        // Retroalimentación háptica
+                        if (navigator.vibrate) {
+                            navigator.vibrate(isCompleted ? [50, 50, 50] : 50);
+                        }
+                        
+                        // Animación de completado
+                        this.element.classList.add('swipe-completed');
+                        setTimeout(() => {
+                            this.element.classList.remove('swipe-completed');
+                        }, 600);
+                        
+                        // Actualizar estado
+                        handleSwipeGesture(this.itemId, isCompleted);
+                        
+                        // Indicador visual eliminado - ahora se usa el borde de la tarjeta
+                        
+                        // Actualizar borde de la tarjeta completa
+                        if (isCompleted) {
+                            this.element.classList.add('completed');
+                        } else {
+                            this.element.classList.remove('completed');
+                        }
+                        
+                        // Actualizar texto tachado
+                        const textElement = this.element.querySelector('span');
+                        if (textElement) {
+                            if (isCompleted) {
+                                textElement.classList.add('line-through', 'text-zinc-400');
+                            } else {
+                                textElement.classList.remove('line-through', 'text-zinc-400');
+                            }
+                        }
+                        
+                        // Actualizar overlay text
+                        const overlay = this.element.querySelector('.swipe-overlay span');
+                        if (overlay) {
+                            overlay.textContent = isCompleted ? 'Desmarcar' : 'Completar';
+                        }
+                    }
+                    
+                    // Resetear overlay
+                    this.resetOverlay();
+                }
+
+                resetOverlay() {
+                    const overlay = this.element.querySelector('.swipe-overlay');
+                    if (overlay) {
+                        overlay.style.transform = 'translateX(-100%)';
+                        overlay.classList.remove('unmark');
+                        const currentState = progressState[this.itemId] || false;
+                        overlay.querySelector('span').textContent = currentState ? 'Desmarcar' : 'Completar';
+                    }
+                }
+            }
+
             function renderTabContent(zone, category) {
                 const container = document.getElementById(`tab-${category}`);
                 let itemIds = zone[category] || [];
@@ -1275,9 +1602,8 @@
                         const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : difficulty <= 6 ? 'text-orange-400' : 'text-red-400';
                         
                         cardHtml = `
-                            <div class="glass-card flex items-center p-4 cursor-pointer glass-slide-in" onclick="showBossDetail('${item.id}', '${zone.id}')">
-                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
-                                <div class="ml-4 flex-grow">
+                            <div class="glass-card swipe-container flex items-center p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}" onclick="showBossDetail('${item.id}', '${zone.id}')">
+                                <div class="flex-grow">
                                     <div class="flex items-center justify-between">
                                         <span class="text-white font-semibold ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
                                         <span class="text-xs ${difficultyColor} font-medium">${difficultyText}</span>
@@ -1288,36 +1614,33 @@
                                             `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
                                     </div>
                                 </div>
+                                <div class="swipe-overlay">
+                                    <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
+                                </div>
+                                <div class="swipe-hint">← Desliza</div>
                             </div>
                         `;
                     } else {
                         cardHtml = `
-                            <div class="glass-card flex items-start p-4 cursor-pointer glass-slide-in" onclick="showItemDetail('${item.id}', '${category}')">
-                                <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation()">
-                                <div class="ml-4">
+                            <div class="glass-card swipe-container flex items-start p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}" onclick="showItemDetail('${item.id}', '${category}')">
+                                <div>
                                     <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
                                     <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
                                 </div>
+                                <div class="swipe-overlay">
+                                    <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
+                                </div>
+                                <div class="swipe-hint">← Desliza</div>
                             </div>
                         `;
                     }
                     container.innerHTML += cardHtml;
                 });
 
-                container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', (e) => {
-                        // Animación de cristal
-                        const card = e.target.closest('.glass-card');
-                        if (card) {
-                            card.classList.add('glass-press');
-                            setTimeout(() => card.classList.remove('glass-press'), 200);
-                        }
-                        // Retroalimentación háptica
-                        if (navigator.vibrate) {
-                            navigator.vibrate(50);
-                        }
-                        handleCheckboxChange(e);
-                    });
+                // Inicializar gestos de swipe para cada tarjeta
+                container.querySelectorAll('.swipe-container').forEach(container => {
+                    const itemId = container.dataset.id;
+                    new SwipeHandler(container, itemId);
                 });
                 container.querySelectorAll('.view-detail-btn').forEach(button => {
                     button.addEventListener('click', (e) => {
@@ -2063,32 +2386,25 @@
                             const item = items[i];
                             const isChecked = progressState[item.id] || false;
                             html += `
-                                <label class="glass-card flex items-center p-4 cursor-pointer glass-slide-in">
-                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox" ${isChecked ? 'checked' : ''}>
-                                    <div class="ml-4 flex-grow">
+                                <div class="glass-card swipe-container flex items-center p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}">
+                                    <div class="flex-grow">
                                         <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
                                         <p class="text-zinc-400 text-sm mt-1">${item.category || ''}</p>
                                     </div>
                                     <button data-weapon-id="${item.id}" class="glass-button view-weapon-detail-btn text-xs text-amber-500 px-3 py-1 ml-2">Ver</button>
-                                </label>
+                                    <div class="swipe-overlay">
+                                        <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
+                                    </div>
+                                </div>
                             `;
                         }
                         
                         container.innerHTML = html;
                         
-                        // Agregar event listeners a los checkboxes
-                        container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
-                            checkbox.addEventListener('change', (e) => {
-                                const card = e.target.closest('.glass-card');
-                                if (card) {
-                                    card.classList.add('glass-press');
-                                    setTimeout(() => card.classList.remove('glass-press'), 200);
-                                }
-                                if (navigator.vibrate) {
-                                    navigator.vibrate(50);
-                                }
-                                handleCheckboxChange(e);
-                            });
+                        // Inicializar gestos de swipe para cada tarjeta
+                        container.querySelectorAll('.swipe-container').forEach(container => {
+                            const itemId = container.dataset.id;
+                            new SwipeHandler(container, itemId);
                         });
 
                         container.querySelectorAll('.view-weapon-detail-btn').forEach(button => {
@@ -2167,32 +2483,25 @@
                             const item = items[i];
                             const isChecked = progressState[item.id] || false;
                             html += `
-                                <label class="glass-card flex items-start p-4 cursor-pointer glass-slide-in">
-                                    <input type="checkbox" data-id="${item.id}" class="glass-checkbox progress-checkbox mt-1" ${isChecked ? 'checked' : ''}>
-                                    <div class="ml-4">
+                                <div class="glass-card swipe-container flex items-start p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}">
+                                    <div>
                                         <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
                                         <p class="text-zinc-400 text-sm mt-1">${item.description || 'Sin descripción disponible.'}</p>
                                         ${item.location ? `<p class="text-zinc-500 text-xs mt-2">📍 ${item.location}</p>` : ''}
                                     </div>
-                                </label>
+                                    <div class="swipe-overlay">
+                                        <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
+                                    </div>
+                                </div>
                             `;
                         }
                         
                         container.innerHTML = html;
                         
-                        // Agregar event listeners a los checkboxes
-                        container.querySelectorAll('.progress-checkbox').forEach(checkbox => {
-                            checkbox.addEventListener('change', (e) => {
-                                const card = e.target.closest('.glass-card');
-                                if (card) {
-                                    card.classList.add('glass-press');
-                                    setTimeout(() => card.classList.remove('glass-press'), 200);
-                                }
-                                if (navigator.vibrate) {
-                                    navigator.vibrate(50);
-                                }
-                                handleCheckboxChange(e);
-                            });
+                        // Inicializar gestos de swipe para cada tarjeta
+                        container.querySelectorAll('.swipe-container').forEach(container => {
+                            const itemId = container.dataset.id;
+                            new SwipeHandler(container, itemId);
                         });
                         
                         currentIndex = endIndex;

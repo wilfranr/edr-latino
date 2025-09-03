@@ -1,6 +1,6 @@
 {
-  "name": "Elden Ring Companion - Guía Completa",
-  "short_name": "ER Companion",
+  "name": "ER Asistente - Guía Completa",
+  "short_name": "ER Asistente",
   "description": "Tu compañero definitivo para Elden Ring. Guía completa con jefes, armas, objetos, ubicaciones y misiones en español latino.",
   "start_url": "./index.html",
   "scope": "./",
@@ -13,13 +13,13 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192x192.png?text=ER",
+      "src": "./icons/192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://via.placeholder.com/512x512.png?text=ER",
+      "src": "./icons/512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
