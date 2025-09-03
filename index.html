@@ -977,6 +977,7 @@
                 </div>
                 <div class="md:col-span-2">
                     <h2 id="detail-name" class="glass-title text-4xl font-bold mb-4"></h2>
+                    <div id="detail-status" class="mb-4"></div>
                     <p id="detail-description" class="text-zinc-300 mb-6 text-lg leading-relaxed"></p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-md">
@@ -988,10 +989,7 @@
                             <h3 class="font-bold text-amber-500 mb-2">Puntos de Vida</h3>
                             <p id="detail-health" class="text-zinc-200"></p>
                         </div>
-                        <div class="glass-card p-4 glass-fade-in">
-                            <h3 class="font-bold text-amber-500 mb-2">Runas Obtenidas</h3>
-                            <p id="detail-runes" class="text-zinc-200"></p>
-                        </div>
+
                         <div class="glass-card p-4 glass-fade-in">
                             <h3 class="font-bold text-amber-500 mb-2">Recompensas (Drops)</h3>
                             <ul id="detail-drops" class="list-disc list-inside text-zinc-200"></ul>
@@ -1681,6 +1679,7 @@
                 renderTabContent(zone, 'objetos');
                 
                 // Agregar indicador de ordenamiento por dificultad en la pestaña de jefes
+                
                 const jefesTab = document.getElementById('tab-jefes');
                 if (jefesTab && zone.jefes && zone.jefes.length > 0) {
                     const orderIndicator = document.createElement('div');
@@ -1811,10 +1810,23 @@
                     // Rellenar los detalles
                     document.getElementById('detail-image').src = boss.image || 'https://via.placeholder.com/400x225.png?text=No+Image';
                     document.getElementById('detail-name').textContent = boss.name;
+                    
+                    // Mostrar estado del jefe (completado o pendiente)
+                    const statusElement = document.getElementById('detail-status');
+                    const isCompleted = progressState[boss.id] || false;
+                    statusElement.innerHTML = `
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                            isCompleted 
+                                ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                                : 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                        }">
+                            ${isCompleted ? '✅ Completado' : '⏳ Pendiente'}
+                        </span>
+                    `;
+                    
                     document.getElementById('detail-description').textContent = boss.description || 'No hay descripción disponible.';
                     document.getElementById('detail-location').textContent = boss.location || 'Desconocida';
                     document.getElementById('detail-health').textContent = boss.healthPoints || 'No disponible';
-                    document.getElementById('detail-runes').textContent = boss.runes ? new Intl.NumberFormat().format(boss.runes) : 'No disponible';
                     
                     const dropsList = document.getElementById('detail-drops');
                     dropsList.innerHTML = '';
@@ -1986,7 +1998,6 @@
                     // Configurar campos específicos según el tipo de item
                     const locationElement = document.getElementById('detail-location');
                     const healthElement = document.getElementById('detail-health');
-                    const runesElement = document.getElementById('detail-runes');
                     const dropsElement = document.getElementById('detail-drops');
                     const weaknessesElement = document.getElementById('detail-weaknesses');
                     const strengthsElement = document.getElementById('detail-strengths');
@@ -2005,12 +2016,7 @@
                         healthElement.textContent = 'N/A';
                     }
 
-                    // Runas (si aplica)
-                    if (item.runes) {
-                        runesElement.textContent = new Intl.NumberFormat().format(item.runes);
-                    } else {
-                        runesElement.textContent = 'N/A';
-                    }
+
 
                     // Efectos o drops
                     dropsElement.innerHTML = '';
