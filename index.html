@@ -2852,7 +2852,6 @@
                 }
             });
 
-            let searchTimeout;
             timelineSearch.addEventListener('input', () => {
                 clearTimeout(searchTimeout);
                 searchTimeout = setTimeout(applyTimelineFilters, 300);
