@@ -38,6 +38,8 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -186,6 +188,14 @@
             backdrop-filter: blur(calc(var(--glass-blur) + 2px));
             -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 2px));
             transition: all 0.1s ease;
+        }
+
+        .glass-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.02);
+            transform: none;
+            box-shadow: var(--glass-shadow);
         }
 
         .glass-progress {
@@ -823,6 +833,30 @@
         .glass-progress {
             will-change: transform, backdrop-filter;
         }
+
+        /* Estilos para el panel de detalles de la línea de tiempo */
+        #timeline-details-sheet {
+            transform: translateY(100%);
+        }
+        #timeline-details-sheet.active {
+            transform: translateY(0);
+        }
+
+        #timeline-filters .filter-button.active {
+            background-color: var(--glass-accent-amber);
+            color: var(--glass-bg-primary);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            border-color: var(--glass-accent-amber);
+            font-weight: 600;
+        }
+
+        #timeline-filters .filter-button.active {
+            background-color: var(--glass-accent-amber);
+            color: var(--glass-bg-primary);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            border-color: var(--glass-accent-amber);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1148,6 +1182,56 @@
                 </div>
             </div>
         </main>
+
+        <!-- Pantalla de Guía/Línea de tiempo (oculta por defecto) -->
+        <main id="screen-timeline" class="hidden">
+            <div id="timeline-map" class="fixed top-0 left-0 h-full w-full z-0"></div>
+
+            <!-- Contenedor de la vista de lista -->
+            <div id="timeline-list-container" class="hidden absolute inset-0 pt-20 pb-24 bg-black/70 backdrop-blur-sm overflow-y-auto p-4">
+                <div id="timeline-controls" class="p-4 mb-4 glass-card">
+                    <input type="text" id="timeline-search" placeholder="Buscar en la guía..." class="w-full px-4 py-2 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 transition-all duration-300">
+                    <div id="timeline-filters" class="flex flex-wrap gap-2 mt-4">
+                        <!-- Los botones de filtro se generarán aquí -->
+                    </div>
+                </div>
+                <div id="timeline-list-content" class="space-y-6">
+                    <!-- El contenido de la lista se generará aquí -->
+                </div>
+            </div>
+
+            <!-- Panel de detalles inferior (Bottom Sheet) -->
+            <div id="timeline-details-sheet" class="fixed bottom-0 left-0 right-0 z-20 p-4 transition-transform duration-300 ease-in-out">
+                <div class="glass-card p-6 max-w-2xl mx-auto rounded-t-lg relative">
+                     <button id="timeline-sheet-close" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-3xl leading-none">&times;</button>
+                     <h2 id="timeline-sheet-title" class="glass-title text-2xl mb-2 pr-8"></h2>
+                     <p id="timeline-sheet-description" class="text-zinc-300"></p>
+                     <div id="timeline-sheet-items" class="mt-4 border-t border-zinc-700/50 pt-4"></div>
+                     <div id="timeline-story-nav" class="mt-4 flex justify-between items-center border-t border-zinc-700/50 pt-4 hidden">
+                        <button id="timeline-prev-button" class="glass-button flex items-center px-4 py-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                            Anterior
+                        </button>
+                        <span class="text-sm font-bold text-amber-400">Modo Historia</span>
+                        <button id="timeline-next-button" class="glass-button flex items-center px-4 py-2">
+                            Siguiente
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón para cambiar entre vista de mapa y lista -->
+            <button id="timeline-view-toggle" class="glass-button fixed bottom-24 right-4 z-30 w-16 h-16 rounded-full flex items-center justify-center">
+                <svg id="timeline-toggle-icon-list" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                <svg id="timeline-toggle-icon-map" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-.553-.894L15 2m-6 5l6 3m-6-3l6 3" />
+                </svg>
+            </button>
+        </main>
+
     </div>
 
     <!-- Navegación inferior fija -->
@@ -1173,6 +1257,12 @@
                     </svg>
                     <span class="text-xs font-medium">Objetos</span>
                 </button>
+                <button id="nav-timeline" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-.553-.894L15 2m-6 5l6 3m-6-3l6 3" />
+                    </svg>
+                    <span class="text-xs font-medium">Guía</span>
+                </button>
                 <button id="installButton-nav" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400" style="display: none;">
                     <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
@@ -1182,6 +1272,9 @@
             </div>
         </div>
     </nav>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1199,6 +1292,20 @@
             const screenWeaponDetail = document.getElementById('screen-weapon-detail');
             const screenEquipment = document.getElementById('screen-equipment');
             const screenItems = document.getElementById('screen-items');
+            const screenTimeline = document.getElementById('screen-timeline');
+            const timelineDetailsSheet = document.getElementById('timeline-details-sheet');
+            const timelineSheetClose = document.getElementById('timeline-sheet-close');
+            const timelineSheetTitle = document.getElementById('timeline-sheet-title');
+            const timelineSheetDescription = document.getElementById('timeline-sheet-description');
+            const timelineSheetItems = document.getElementById('timeline-sheet-items');
+            const timelineListContainer = document.getElementById('timeline-list-container');
+            const timelineViewToggle = document.getElementById('timeline-view-toggle');
+
+            // Elementos de la Guía
+            const timelineListContent = document.getElementById('timeline-list-content');
+            const timelineSearch = document.getElementById('timeline-search');
+            const timelineFilters = document.getElementById('timeline-filters');
+
             const zoneListContainer = document.getElementById('zone-list');
             const zoneDetailTitle = document.getElementById('zone-detail-title');
             const loadingIndicator = document.getElementById('loading-indicator');
@@ -1211,6 +1318,7 @@
             const navZones = document.getElementById('nav-zones');
             const navEquipment = document.getElementById('nav-equipment');
             const navItems = document.getElementById('nav-items');
+            const navTimeline = document.getElementById('nav-timeline');
             const bottomNavButtons = document.querySelectorAll('.bottom-nav-button');
 
             // Elementos de la barra superior
@@ -1230,10 +1338,15 @@
             const itemsTabButtons = document.querySelectorAll('.items-tab-button');
             const itemsContents = document.querySelectorAll('.items-content');
 
-            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions };
+            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions, timeline: [] };
             let progressState = {};
             const STORAGE_KEY = 'eldenRingProgress';
             let currentZoneId = null;
+            let timelineMap = null; // Variable para la instancia del mapa
+            let timelineMarkers = []; // Array para guardar los marcadores del mapa
+            let activeTimelineFilters = new Set();
+            let currentTimelineData = [];
+            let currentStoryIndex = -1;
 
             // --- MANEJO DE ESTADO Y PROGRESO ---
             function loadProgress() {
@@ -2199,7 +2312,7 @@
                 try {
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
-                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes] = await Promise.all([
+                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes, timelineRes] = await Promise.all([
                         fetch('./data/bosses_es.json'),
                         fetch('./data/weapons_es.json'),
                         fetch('./data/items_es.json'),
@@ -2208,13 +2321,15 @@
                         fetch('./data/missions_es.json'),
                         fetch('./data/armors.json').catch(() => null),
                         fetch('./data/shields.json').catch(() => null),
-                        fetch('./data/talismans.json').catch(() => null)
+                        fetch('./data/talismans.json').catch(() => null),
+                        fetch('./data/timeline_necro_es.json')
                     ]);
 
                     // Los archivos JSON son arrays directamente, no necesitan .data
                     gameData.bosses = await bossesRes.json();
                     gameData.weapons = await weaponsRes.json();
                     gameData.items = await itemsRes.json();
+                    gameData.timeline = await timelineRes.json();
                     gameData.locations = await locationsRes.json();
                     gameData.regionsDifficulty = await regionsDifficultyRes.json();
                     gameData.misiones = await missionsRes.json();
@@ -2326,6 +2441,9 @@
                 } else if (screenId === 'screen-items') {
                     navItems.classList.add('active', 'text-amber-400');
                     navItems.classList.remove('text-zinc-400');
+                } else if (screenId === 'screen-timeline') {
+                    navTimeline.classList.add('active', 'text-amber-400');
+                    navTimeline.classList.remove('text-zinc-400');
                 }
                 
                 window.scrollTo(0, 0);
@@ -2732,6 +2850,247 @@
                 updateBottomNavActive('nav-items');
                 renderItemsContent();
             });
+
+            navTimeline.addEventListener('click', () => {
+                navTimeline.classList.add('glass-press');
+                setTimeout(() => navTimeline.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-timeline');
+                updateBottomNavActive('nav-timeline');
+                if (!timelineMap) {
+                    initializeTimelineMap();
+                }
+            });
+
+            // --- INICIALIZACIÓN DEL MAPA ---
+            function initializeTimelineMap() {
+                const mapContainer = document.getElementById('timeline-map');
+                if (!mapContainer || timelineMap) return; // No re-inicializar
+
+                const mapImageUrl = 'https://preview.redd.it/high-quality-elden-ring-map-all-grace-sites-6509x6809-jpg-v0-q6m3ni3st4s81.jpg';
+                const imageBounds = [[0, 0], [6809, 6509]]; // Usamos las dimensiones de la imagen [height, width]
+
+                timelineMap = L.map('timeline-map', {
+                    crs: L.CRS.Simple,
+                    minZoom: -4,
+                    maxZoom: 2,
+                    zoomControl: false // Ocultamos el control de zoom por defecto
+                });
+
+                L.imageOverlay(mapImageUrl, imageBounds).addTo(timelineMap);
+                timelineMap.fitBounds(imageBounds);
+
+                // Añadir un control de zoom personalizado con el estilo de la app
+                const zoomControlContainer = L.control({position: 'bottomright'});
+                zoomControlContainer.onAdd = function (map) {
+                    const div = L.DomUtil.create('div', 'leaflet-bar');
+                    div.innerHTML = `
+                        <button class="glass-button p-2 text-lg leading-none" onclick="timelineMap.zoomIn()">+</button>
+                        <button class="glass-button p-2 text-lg leading-none mt-2" onclick="timelineMap.zoomOut()">-</button>
+                    `;
+                    L.DomEvent.disableClickPropagation(div);
+                    return div;
+                };
+                zoomControlContainer.addTo(timelineMap);
+
+                // Lógica del panel de detalles
+                timelineSheetClose.addEventListener('click', () => {
+                    timelineDetailsSheet.classList.remove('active');
+                });
+
+                // Renderizar filtros y contenido inicial
+                renderTimelineFilters();
+                applyTimelineFilters(); // Esto renderizará la lista y los marcadores iniciales
+
+                // Listeners para el modo historia
+                document.getElementById('timeline-next-button').addEventListener('click', () => {
+                    if (currentStoryIndex < currentTimelineData.length - 1) {
+                        currentStoryIndex++;
+                        const nextEventId = currentTimelineData[currentStoryIndex].id;
+                        panAndShowEvent(nextEventId);
+                    }
+                });
+
+                document.getElementById('timeline-prev-button').addEventListener('click', () => {
+                    if (currentStoryIndex > 0) {
+                        currentStoryIndex--;
+                        const prevEventId = currentTimelineData[currentStoryIndex].id;
+                        panAndShowEvent(prevEventId);
+                    }
+                });
+            }
+
+            function showTimelineEventDetails(eventId) {
+                const event = gameData.timeline.find(e => e.id === eventId);
+                if (!event) return;
+
+                currentStoryIndex = currentTimelineData.findIndex(e => e.id === eventId);
+                updateStoryModeUI();
+
+                timelineSheetTitle.textContent = event.title;
+                timelineSheetDescription.textContent = event.description;
+
+                timelineSheetItems.innerHTML = '';
+                if (event.items && event.items.length > 0) {
+                    const itemsHtml = event.items.map(item => `<span class="inline-block glass-button text-xs px-2 py-1 mr-2 mb-2">${item}</span>`).join('');
+                    timelineSheetItems.innerHTML = `<h3 class="font-bold text-amber-400 mb-2">Objetos Clave</h3>${itemsHtml}`;
+                }
+
+                timelineDetailsSheet.classList.add('active');
+            }
+
+            function panAndShowEvent(eventId) {
+                const event = gameData.timeline.find(e => e.id === eventId);
+                if (event && event.mapCoords) {
+                    const y = event.mapCoords.y;
+                    const x = event.mapCoords.x;
+                    timelineMap.flyTo([y, x], 0);
+                    showTimelineEventDetails(eventId);
+                }
+            }
+
+            function updateStoryModeUI() {
+                const prevButton = document.getElementById('timeline-prev-button');
+                const nextButton = document.getElementById('timeline-next-button');
+                const storyNav = document.getElementById('timeline-story-nav');
+
+                if (!prevButton || !nextButton || !storyNav) return;
+
+                if (currentStoryIndex === -1) {
+                    storyNav.classList.add('hidden');
+                    return;
+                }
+                storyNav.classList.remove('hidden');
+
+                prevButton.disabled = currentStoryIndex <= 0;
+                nextButton.disabled = currentStoryIndex >= currentTimelineData.length - 1;
+            }
+
+            function renderTimelineList(data) {
+                if (!data) return; // Guard clause
+
+                const groupedBySection = data.reduce((acc, event) => {
+                    const section = event.section;
+                    if (!acc[section]) {
+                        acc[section] = [];
+                    }
+                    acc[section].push(event);
+                    return acc;
+                }, {});
+
+                let html = '';
+                if(Object.keys(groupedBySection).length === 0) {
+                    html = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos que coincidan con tu búsqueda.</div>';
+                } else {
+                    for (const section in groupedBySection) {
+                        html += `<h2 class="font-cinzel text-2xl text-amber-400 font-bold sticky top-0 bg-black/50 py-2">${section}</h2>`;
+                        html += '<div class="space-y-4">';
+                        groupedBySection[section].forEach(event => {
+                            html += `
+                                <div class="glass-card p-4 cursor-pointer" data-event-id="${event.id}">
+                                    <h3 class="font-bold text-white">${event.title}</h3>
+                                    <p class="text-zinc-400 text-sm mt-1">${event.description}</p>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                    }
+                }
+                timelineListContent.innerHTML = html;
+            }
+
+            timelineListContent.addEventListener('click', (e) => {
+                const card = e.target.closest('.glass-card');
+                if (card && card.dataset.eventId) {
+                    const eventId = parseInt(card.dataset.eventId, 10);
+                    const event = gameData.timeline.find(e => e.id === eventId);
+                    if (event && event.mapCoords) {
+                        // Switch to map view
+                        timelineListContainer.classList.add('hidden');
+                        timelineViewToggle.querySelector('#timeline-toggle-icon-list').classList.remove('hidden');
+                        timelineViewToggle.querySelector('#timeline-toggle-icon-map').classList.add('hidden');
+
+                        // Pan to marker and show details
+                        const y = event.mapCoords.y;
+                        const x = event.mapCoords.x;
+                        timelineMap.setView([y, x], 0);
+                        showTimelineEventDetails(eventId);
+                    }
+                }
+            });
+
+            timelineViewToggle.addEventListener('click', () => {
+                timelineListContainer.classList.toggle('hidden');
+                timelineViewToggle.querySelector('#timeline-toggle-icon-list').classList.toggle('hidden');
+                timelineViewToggle.querySelector('#timeline-toggle-icon-map').classList.toggle('hidden');
+            });
+
+            function updateTimelineMarkers(data) {
+                // Limpiar marcadores existentes
+                timelineMarkers.forEach(marker => marker.remove());
+                timelineMarkers = [];
+
+                data.forEach(event => {
+                    if (event.mapCoords) {
+                        const y = event.mapCoords.y;
+                        const x = event.mapCoords.x;
+                        const marker = L.marker([y, x]);
+                        marker.on('click', () => showTimelineEventDetails(event.id));
+                        marker.addTo(timelineMap);
+                        timelineMarkers.push(marker);
+                    }
+                });
+            }
+
+            function renderTimelineFilters() {
+                const allCategories = gameData.timeline.flatMap(event => event.category);
+                const uniqueCategories = [...new Set(allCategories)];
+
+                timelineFilters.innerHTML = uniqueCategories.map(category => `
+                    <button class="glass-button text-xs px-3 py-1 filter-button" data-category="${category}">
+                        ${category}
+                    </button>
+                `).join('');
+            }
+
+            function applyTimelineFilters() {
+                const searchTerm = timelineSearch.value.toLowerCase();
+
+                const filteredData = gameData.timeline.filter(event => {
+                    const matchesCategory = activeTimelineFilters.size === 0 || event.category.some(cat => activeTimelineFilters.has(cat));
+                    const matchesSearch = !searchTerm || event.title.toLowerCase().includes(searchTerm) || event.description.toLowerCase().includes(searchTerm);
+                    return matchesCategory && matchesSearch;
+                });
+
+                // Sort to ensure consistent order for story mode
+                filteredData.sort((a, b) => a.id - b.id);
+                currentTimelineData = filteredData;
+
+                renderTimelineList(currentTimelineData);
+                updateTimelineMarkers(currentTimelineData);
+            }
+
+            timelineFilters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-button')) {
+                    const category = e.target.dataset.category;
+                    e.target.classList.toggle('active');
+                    if (activeTimelineFilters.has(category)) {
+                        activeTimelineFilters.delete(category);
+                    } else {
+                        activeTimelineFilters.add(category);
+                    }
+                    applyTimelineFilters();
+                }
+            });
+
+            let searchTimeout;
+            timelineSearch.addEventListener('input', () => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(applyTimelineFilters, 300);
+            });
+
 
             // --- TABS DE EQUIPAMIENTO ---
             equipmentTabButtons.forEach(button => {
