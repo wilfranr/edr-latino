@@ -504,7 +504,7 @@
         <!-- Pantalla de Lista de Jefes -->
         <main id="screen-zones">
             <header class="text-center mb-8">
-                <h1 class="glass-title text-4xl font-bold mb-6">Zonas de las Tierras Intermedias</h1>
+                <h1 class="glass-title text-4xl font-bold mb-6">Asistente Elden Ring</h1>
                 
                 <!-- Búsqueda General -->
                 <div class="glass-card p-6 max-w-2xl mx-auto glass-slide-in mb-6">
@@ -1359,6 +1359,143 @@
                 }
             }
 
+            function showItemDetail(itemId, category) {
+                // Ocultar todas las pantallas excepto la de detalle
+                document.querySelectorAll('main').forEach(screen => {
+                    screen.classList.add('hidden');
+                });
+                screenDetail.classList.remove('hidden');
+                document.getElementById('detail-content').classList.add('hidden');
+
+                // Configurar el botón de regreso para volver a la pantalla principal
+                backButton.dataset.fromZone = null;
+
+                try {
+                    // Buscar el item en la categoría correspondiente
+                    let item = null;
+                    let itemData = null;
+
+                    switch(category) {
+                        case 'items':
+                            itemData = gameData.items;
+                            break;
+                        case 'talismans':
+                            itemData = gameData.talismans;
+                            break;
+                        case 'armors':
+                            itemData = gameData.armors;
+                            break;
+                        case 'shields':
+                            itemData = gameData.shields;
+                            break;
+                        case 'ammos':
+                            itemData = gameData.ammos;
+                            break;
+                        case 'ashes':
+                            itemData = gameData.ashes;
+                            break;
+                        case 'spirits':
+                            itemData = gameData.spirits;
+                            break;
+                        case 'sorceries':
+                            itemData = gameData.sorceries;
+                            break;
+                        case 'incantations':
+                            itemData = gameData.incantations;
+                            break;
+                        default:
+                            throw new Error('Categoría no válida');
+                    }
+
+                    item = itemData.find(i => i.id === itemId);
+                    if (!item) throw new Error('No se pudo encontrar el detalle del objeto.');
+
+                    // Rellenar los detalles básicos
+                    document.getElementById('detail-image').src = item.image || 'https://via.placeholder.com/400x225.png?text=No+Image';
+                    document.getElementById('detail-name').textContent = item.name;
+                    document.getElementById('detail-description').textContent = item.description || 'No hay descripción disponible.';
+                    
+                    // Configurar campos específicos según el tipo de item
+                    const locationElement = document.getElementById('detail-location');
+                    const healthElement = document.getElementById('detail-health');
+                    const runesElement = document.getElementById('detail-runes');
+                    const dropsElement = document.getElementById('detail-drops');
+                    const weaknessesElement = document.getElementById('detail-weaknesses');
+                    const strengthsElement = document.getElementById('detail-strengths');
+
+                    // Ubicación
+                    if (item.location) {
+                        locationElement.textContent = item.location;
+                    } else {
+                        locationElement.textContent = 'Desconocida';
+                    }
+
+                    // Puntos de vida (si aplica)
+                    if (item.healthPoints) {
+                        healthElement.textContent = item.healthPoints;
+                    } else {
+                        healthElement.textContent = 'N/A';
+                    }
+
+                    // Runas (si aplica)
+                    if (item.runes) {
+                        runesElement.textContent = new Intl.NumberFormat().format(item.runes);
+                    } else {
+                        runesElement.textContent = 'N/A';
+                    }
+
+                    // Efectos o drops
+                    dropsElement.innerHTML = '';
+                    if (item.effect) {
+                        const li = document.createElement('li');
+                        li.textContent = item.effect;
+                        dropsElement.appendChild(li);
+                    } else if (item.drops && item.drops.length > 0) {
+                        item.drops.forEach(drop => {
+                            const li = document.createElement('li');
+                            li.textContent = drop;
+                            dropsElement.appendChild(li);
+                        });
+                    } else {
+                        dropsElement.innerHTML = '<li>No se conocen efectos especiales.</li>';
+                    }
+
+                    // Debilidades (si aplica)
+                    weaknessesElement.innerHTML = '';
+                    if (item.weaknesses && item.weaknesses.length > 0) {
+                        item.weaknesses.forEach(weakness => {
+                            const li = document.createElement('li');
+                            li.textContent = weakness;
+                            weaknessesElement.appendChild(li);
+                        });
+                    } else {
+                        weaknessesElement.innerHTML = '<li>N/A</li>';
+                    }
+
+                    // Fortalezas (si aplica)
+                    strengthsElement.innerHTML = '';
+                    if (item.strengths && item.strengths.length > 0) {
+                        item.strengths.forEach(strength => {
+                            const li = document.createElement('li');
+                            li.textContent = strength;
+                            strengthsElement.appendChild(li);
+                        });
+                    } else {
+                        strengthsElement.innerHTML = '<li>N/A</li>';
+                    }
+
+                    // Mostrar el contenido y hacer scroll al inicio
+                    document.getElementById('detail-content').classList.remove('hidden');
+                    document.getElementById('detail-content').classList.add('glass-fade-in');
+                    window.scrollTo(0, 0);
+
+                } catch (error) {
+                    document.getElementById('detail-name').textContent = 'Error al cargar';
+                    document.getElementById('detail-description').textContent = `No se pudo obtener el detalle de este objeto. ${error.message}`;
+                    console.error(error);
+                }
+            }
+
             function processApiData() {
                 // Primero, inicializamos las zonas a partir de las regiones únicas en locations.json
                 gameData.zones = {}; // Limpiar zonas existentes
@@ -1856,6 +1993,13 @@
                 const fromZone = backButton.dataset.fromZone;
                 if (fromZone) {
                     showZoneDetail(fromZone);
+                } else {
+                    // Si no hay zona de origen, volver a la pantalla principal
+                    document.querySelectorAll('main').forEach(screen => {
+                        screen.classList.add('hidden');
+                    });
+                    document.getElementById('screen-main').classList.remove('hidden');
+                    window.scrollTo(0, 0);
                 }
             });
 
@@ -2018,10 +2162,10 @@
                 // Buscar en jefes
                 if (gameData.bosses) {
                     gameData.bosses.forEach(boss => {
-                        if (boss.name.toLowerCase().includes(searchTerm) || 
-                            boss.description.toLowerCase().includes(searchTerm) ||
-                            boss.region.toLowerCase().includes(searchTerm) ||
-                            boss.location.toLowerCase().includes(searchTerm)) {
+                        if ((boss.name && boss.name.toLowerCase().includes(searchTerm)) || 
+                            (boss.description && boss.description.toLowerCase().includes(searchTerm)) ||
+                            (boss.region && boss.region.toLowerCase().includes(searchTerm)) ||
+                            (boss.location && boss.location.toLowerCase().includes(searchTerm))) {
                             results.push({
                                 type: 'jefe',
                                 data: boss,
@@ -2034,8 +2178,8 @@
                 // Buscar en armas
                 if (gameData.weapons) {
                     gameData.weapons.forEach(weapon => {
-                        if (weapon.name.toLowerCase().includes(searchTerm) || 
-                            weapon.description.toLowerCase().includes(searchTerm)) {
+                        if ((weapon.name && weapon.name.toLowerCase().includes(searchTerm)) || 
+                            (weapon.description && weapon.description.toLowerCase().includes(searchTerm))) {
                             results.push({
                                 type: 'arma',
                                 data: weapon,
@@ -2045,12 +2189,132 @@
                     });
                 }
                 
-                // Buscar en objetos
+                // Buscar en objetos generales
                 if (gameData.items) {
                     gameData.items.forEach(item => {
-                        if (item.name.toLowerCase().includes(searchTerm) || 
-                            item.description.toLowerCase().includes(searchTerm) ||
-                            item.location.toLowerCase().includes(searchTerm)) {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en talismanes
+                if (gameData.talismans) {
+                    gameData.talismans.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.effect && item.effect.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en armaduras
+                if (gameData.armors) {
+                    gameData.armors.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en escudos
+                if (gameData.shields) {
+                    gameData.shields.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en municiones
+                if (gameData.ammos) {
+                    gameData.ammos.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en cenizas de guerra
+                if (gameData.ashes) {
+                    gameData.ashes.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en espíritus
+                if (gameData.spirits) {
+                    gameData.spirits.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en hechizos
+                if (gameData.sorceries) {
+                    gameData.sorceries.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                type: 'objeto',
+                                data: item,
+                                match: item.name
+                            });
+                        }
+                    });
+                }
+                
+                // Buscar en encantamientos
+                if (gameData.incantations) {
+                    gameData.incantations.forEach(item => {
+                        if ((item.name && item.name.toLowerCase().includes(searchTerm)) || 
+                            (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                            (item.location && item.location.toLowerCase().includes(searchTerm))) {
                             results.push({
                                 type: 'objeto',
                                 data: item,
@@ -2063,8 +2327,8 @@
                 // Buscar en ubicaciones
                 if (gameData.zones) {
                     Object.values(gameData.zones).forEach(zone => {
-                        if (zone.name.toLowerCase().includes(searchTerm) || 
-                            zone.description.toLowerCase().includes(searchTerm)) {
+                        if ((zone.name && zone.name.toLowerCase().includes(searchTerm)) || 
+                            (zone.description && zone.description.toLowerCase().includes(searchTerm))) {
                             results.push({
                                 type: 'ubicación',
                                 data: zone,
@@ -2294,30 +2558,43 @@
                 document.getElementById('general-search').value = '';
                 
                 if (type === 'jefe') {
-                    // Navegar al jefe específico
+                    // Mostrar detalle del jefe directamente
                     const boss = gameData.bosses.find(b => b.id === id);
                     if (boss) {
-                        // Buscar la zona del jefe
+                        // Buscar la zona del jefe para el contexto de regreso
                         const zone = Object.values(gameData.zones).find(z => 
                             z.jefes && z.jefes.includes(id)
                         );
-                        if (zone) {
-                            showZoneDetail(zone.id);
-                            // Activar la pestaña de jefes
-                            setTimeout(() => {
-                                const jefesTab = document.querySelector('[data-tab="jefes"]');
-                                if (jefesTab) jefesTab.click();
-                            }, 100);
-                        }
+                        const fromZoneId = zone ? zone.id : null;
+                        showBossDetail(id, fromZoneId);
                     }
                 } else if (type === 'arma') {
-                    // Navegar a la sección de equipamiento
-                    showScreen('screen-equipment');
-                    renderEquipmentContent();
+                    // Mostrar detalle del arma directamente
+                    showWeaponDetail(id);
                 } else if (type === 'objeto') {
-                    // Navegar a la sección de objetos
-                    showScreen('screen-items');
-                    renderItemsContent();
+                    // Determinar la categoría del objeto y mostrar su detalle
+                    let category = 'items'; // categoría por defecto
+                    
+                    // Buscar en qué categoría está el objeto
+                    if (gameData.talismans && gameData.talismans.find(item => item.id === id)) {
+                        category = 'talismans';
+                    } else if (gameData.armors && gameData.armors.find(item => item.id === id)) {
+                        category = 'armors';
+                    } else if (gameData.shields && gameData.shields.find(item => item.id === id)) {
+                        category = 'shields';
+                    } else if (gameData.ammos && gameData.ammos.find(item => item.id === id)) {
+                        category = 'ammos';
+                    } else if (gameData.ashes && gameData.ashes.find(item => item.id === id)) {
+                        category = 'ashes';
+                    } else if (gameData.spirits && gameData.spirits.find(item => item.id === id)) {
+                        category = 'spirits';
+                    } else if (gameData.sorceries && gameData.sorceries.find(item => item.id === id)) {
+                        category = 'sorceries';
+                    } else if (gameData.incantations && gameData.incantations.find(item => item.id === id)) {
+                        category = 'incantations';
+                    }
+                    
+                    showItemDetail(id, category);
                 } else if (type === 'ubicación') {
                     // Navegar a la zona específica
                     showZoneDetail(id);
