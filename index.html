@@ -382,6 +382,176 @@
             }
         }
 
+        /* Barra superior fija */
+        #top-navigation {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .top-nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .top-nav-logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--glass-accent-amber);
+            text-decoration: none;
+        }
+
+        .top-nav-logo svg {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+
+        .top-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav-button {
+            background: transparent;
+            border: none;
+            color: var(--glass-text-secondary);
+            padding: 8px;
+            border-radius: var(--glass-radius-small);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-nav-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--glass-accent-amber);
+            transform: translateY(-1px);
+        }
+
+        .top-nav-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Menú desplegable */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 16px;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--glass-radius);
+            box-shadow: var(--glass-shadow);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: var(--glass-text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--glass-accent-amber);
+        }
+
+        .dropdown-item svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+        }
+
+        /* Búsqueda expandida en barra superior */
+        .search-expanded {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 16px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .search-expanded.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-expanded input {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        #top-search-results {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 12px;
+        }
+
+        #top-search-results .glass-card {
+            margin-bottom: 8px;
+        }
+
+        #top-search-results .glass-card:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Ajustar el contenido principal para la barra superior */
+        .main-content {
+            margin-top: 80px; /* Espacio para la barra superior */
+        }
+
         /* Navegación inferior fija */
         #bottom-navigation {
             background: rgba(255, 255, 255, 0.08);
@@ -436,6 +606,72 @@
         .equipment-tab-button,
         .items-tab-button {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Responsive para barra superior */
+        @media (max-width: 768px) {
+            .top-nav-container {
+                padding: 8px 12px;
+            }
+            
+            .top-nav-logo {
+                font-size: 1.25rem;
+            }
+            
+            .top-nav-logo svg {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .top-nav-button {
+                padding: 6px;
+            }
+            
+            .top-nav-button svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .dropdown-menu {
+                right: 8px;
+                min-width: 180px;
+            }
+            
+            .search-expanded {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-nav-logo {
+                font-size: 1.1rem;
+            }
+            
+            .top-nav-logo svg {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+            
+            .top-nav-actions {
+                gap: 8px;
+            }
+            
+            .dropdown-menu {
+                right: 4px;
+                min-width: 160px;
+            }
+            
+            .dropdown-item {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .dropdown-item svg {
+                width: 16px;
+                height: 16px;
+                margin-right: 10px;
+            }
         }
 
         /* Responsive para navegación inferior */
@@ -499,32 +735,85 @@
 </head>
 <body>
 
-    <div class="container mx-auto p-2 md:p-6 max-w-6xl">
+    <!-- Barra superior fija -->
+    <nav id="top-navigation">
+        <div class="top-nav-container">
+            <!-- Logo/Título -->
+            <a href="#" class="top-nav-logo" id="home-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                ER Asistente
+            </a>
+
+            <!-- Acciones de la barra superior -->
+            <div class="top-nav-actions">
+                <!-- Botón de búsqueda -->
+                <button id="search-toggle" class="top-nav-button" title="Buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+
+                <!-- Botón de menú hamburguesa -->
+                <div class="relative">
+                    <button id="menu-toggle" class="top-nav-button" title="Menú">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <!-- Menú desplegable -->
+                    <div id="dropdown-menu" class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-nav="zones">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Zonas y Jefes
+                        </a>
+                        <a href="#" class="dropdown-item" data-nav="equipment">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            Equipamiento
+                        </a>
+                        <a href="#" class="dropdown-item" data-nav="items">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                            Objetos
+                        </a>
+                        <a href="#" class="dropdown-item" id="installButton-top" style="display: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Instalar App
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Búsqueda expandida -->
+        <div id="search-expanded" class="search-expanded">
+            <input 
+                type="text" 
+                id="top-search-input" 
+                placeholder="Buscar jefes, armas, objetos, ubicaciones..." 
+                class="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300"
+            >
+            <div id="top-search-results" class="mt-4 hidden">
+                <!-- Los resultados de búsqueda se mostrarán aquí -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-2 md:p-6 max-w-6xl main-content">
 
         <!-- Pantalla de Lista de Jefes -->
         <main id="screen-zones">
             <header class="text-center mb-8">
-                <h1 class="glass-title text-4xl font-bold mb-6">Asistente Elden Ring</h1>
-                
-                <!-- Búsqueda General -->
-                <div class="glass-card p-6 max-w-2xl mx-auto glass-slide-in mb-6">
-                    <div class="relative">
-                        <input 
-                            type="text" 
-                            id="general-search" 
-                            placeholder="Buscar jefes, armas, objetos, ubicaciones..." 
-                            class="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all duration-300"
-                        >
-                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div id="search-results" class="mt-4 hidden">
-                        <!-- Los resultados de búsqueda se mostrarán aquí -->
-                    </div>
-                </div>
                 
                 <div class="glass-card p-6 max-w-lg mx-auto glass-slide-in">
                     <div class="flex justify-between mb-3">
@@ -886,6 +1175,15 @@
             const navEquipment = document.getElementById('nav-equipment');
             const navItems = document.getElementById('nav-items');
             const bottomNavButtons = document.querySelectorAll('.bottom-nav-button');
+
+            // Elementos de la barra superior
+            const homeLogo = document.getElementById('home-logo');
+            const searchToggle = document.getElementById('search-toggle');
+            const menuToggle = document.getElementById('menu-toggle');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const searchExpanded = document.getElementById('search-expanded');
+            const topSearchInput = document.getElementById('top-search-input');
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
             
             // Elementos de tabs de equipamiento
             const equipmentTabButtons = document.querySelectorAll('.equipment-tab-button');
@@ -1682,6 +1980,28 @@
                 }
             }
 
+            // --- FUNCIONES DE LA BARRA SUPERIOR ---
+            function toggleDropdownMenu() {
+                dropdownMenu.classList.toggle('active');
+            }
+
+            function hideDropdownMenu() {
+                dropdownMenu.classList.remove('active');
+            }
+
+            function toggleSearchExpanded() {
+                searchExpanded.classList.toggle('active');
+                if (searchExpanded.classList.contains('active')) {
+                    topSearchInput.focus();
+                }
+            }
+
+            function hideSearchExpanded() {
+                searchExpanded.classList.remove('active');
+                topSearchInput.value = '';
+                hideGeneralSearchResults();
+            }
+
             // --- FUNCIONES DE NAVEGACIÓN PRINCIPAL ---
             function showScreen(screenId) {
                 // Ocultar todas las pantallas
@@ -2027,6 +2347,79 @@
                 screenZones.classList.remove('hidden');
             });
 
+            // --- BARRA SUPERIOR ---
+            // Logo para volver al inicio
+            homeLogo.addEventListener('click', (e) => {
+                e.preventDefault();
+                homeLogo.classList.add('glass-press');
+                setTimeout(() => homeLogo.classList.remove('glass-press'), 200);
+                showScreen('screen-zones');
+                updateBottomNavActive('nav-zones');
+                hideDropdownMenu();
+                hideSearchExpanded();
+            });
+
+            // Toggle de búsqueda
+            searchToggle.addEventListener('click', () => {
+                searchToggle.classList.add('glass-press');
+                setTimeout(() => searchToggle.classList.remove('glass-press'), 200);
+                toggleSearchExpanded();
+                hideDropdownMenu();
+            });
+
+            // Toggle de menú desplegable
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.add('glass-press');
+                setTimeout(() => menuToggle.classList.remove('glass-press'), 200);
+                toggleDropdownMenu();
+                hideSearchExpanded();
+            });
+
+            // Navegación desde menú desplegable
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const navType = item.getAttribute('data-nav');
+                    if (navType) {
+                        item.classList.add('glass-press');
+                        setTimeout(() => item.classList.remove('glass-press'), 200);
+                        if (navType === 'zones') {
+                            showScreen('screen-zones');
+                            updateBottomNavActive('nav-zones');
+                        } else if (navType === 'equipment') {
+                            showScreen('screen-equipment');
+                            updateBottomNavActive('nav-equipment');
+                            renderEquipmentContent();
+                        } else if (navType === 'items') {
+                            showScreen('screen-items');
+                            updateBottomNavActive('nav-items');
+                            renderItemsContent();
+                        }
+                        hideDropdownMenu();
+                    }
+                });
+            });
+
+            // Búsqueda en barra superior
+            if (topSearchInput) {
+                topSearchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        performGeneralSearch(e.target.value);
+                    }, 300);
+                });
+            }
+
+            // Cerrar menús al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    hideDropdownMenu();
+                }
+                if (!searchToggle.contains(e.target) && !searchExpanded.contains(e.target)) {
+                    hideSearchExpanded();
+                }
+            });
+
             // --- NAVEGACIÓN INFERIOR ---
             navZones.addEventListener('click', () => {
                 navZones.classList.add('glass-press');
@@ -2345,10 +2738,24 @@
             // Mostrar resultados de búsqueda general
             function displayGeneralSearchResults() {
                 const resultsContainer = document.getElementById('search-results');
-                if (!resultsContainer) return;
+                const topResultsContainer = document.getElementById('top-search-results');
+                
+                // Mostrar en contenedor principal si existe
+                if (resultsContainer) {
+                    displayResultsInContainer(resultsContainer);
+                }
+                
+                // Mostrar en contenedor de barra superior si existe
+                if (topResultsContainer) {
+                    displayResultsInContainer(topResultsContainer);
+                }
+            }
+
+            function displayResultsInContainer(container) {
+                if (!container) return;
                 
                 if (currentSearchResults.length === 0) {
-                    resultsContainer.innerHTML = `
+                    container.innerHTML = `
                         <div class="text-center py-4">
                             <p class="text-zinc-400">No se encontraron resultados</p>
                         </div>
@@ -2378,17 +2785,23 @@
                         `;
                     });
                     html += '</div>';
-                    resultsContainer.innerHTML = html;
+                    container.innerHTML = html;
                 }
                 
-                resultsContainer.classList.remove('hidden');
+                container.classList.remove('hidden');
             }
             
             // Ocultar resultados de búsqueda general
             function hideGeneralSearchResults() {
                 const resultsContainer = document.getElementById('search-results');
+                const topResultsContainer = document.getElementById('top-search-results');
+                
                 if (resultsContainer) {
                     resultsContainer.classList.add('hidden');
+                }
+                
+                if (topResultsContainer) {
+                    topResultsContainer.classList.add('hidden');
                 }
             }
             
@@ -2555,7 +2968,20 @@
             // Función para manejar clics en resultados de búsqueda
             window.handleSearchResultClick = function(type, id) {
                 hideGeneralSearchResults();
-                document.getElementById('general-search').value = '';
+                
+                // Limpiar campos de búsqueda si existen
+                const generalSearch = document.getElementById('general-search');
+                const topSearchInput = document.getElementById('top-search-input');
+                
+                if (generalSearch) {
+                    generalSearch.value = '';
+                }
+                if (topSearchInput) {
+                    topSearchInput.value = '';
+                }
+                
+                // Cerrar búsqueda expandida si está abierta
+                hideSearchExpanded();
                 
                 if (type === 'jefe') {
                     // Mostrar detalle del jefe directamente
@@ -2603,7 +3029,7 @@
             
             // Inicializar eventos de búsqueda
             function initializeSearchEvents() {
-                // Búsqueda general
+                // Búsqueda general (si existe)
                 const generalSearch = document.getElementById('general-search');
                 if (generalSearch) {
                     generalSearch.addEventListener('input', (e) => {
