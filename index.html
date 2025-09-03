@@ -38,8 +38,6 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -1185,17 +1183,15 @@
 
         <!-- Pantalla de Guía/Línea de tiempo (oculta por defecto) -->
         <main id="screen-timeline" class="hidden">
-            <div id="timeline-map" class="fixed top-0 left-0 h-full w-full z-0"></div>
-
-            <!-- Contenedor de la vista de lista -->
-            <div id="timeline-list-container" class="hidden absolute inset-0 pt-20 pb-24 bg-black/70 backdrop-blur-sm overflow-y-auto p-4">
-                <div id="timeline-controls" class="p-4 mb-4 glass-card">
+             <div id="timeline-list-container" class="space-y-6 pb-24">
+                <div id="timeline-controls" class="p-4 mb-4 glass-card sticky top-20 z-10">
+                    <h1 class="glass-title text-3xl font-bold mb-4 text-center">Guía de Necrolimbo</h1>
                     <input type="text" id="timeline-search" placeholder="Buscar en la guía..." class="w-full px-4 py-2 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 transition-all duration-300">
                     <div id="timeline-filters" class="flex flex-wrap gap-2 mt-4">
                         <!-- Los botones de filtro se generarán aquí -->
                     </div>
                 </div>
-                <div id="timeline-list-content" class="space-y-6">
+                <div id="timeline-list-content" class="space-y-6 px-4">
                     <!-- El contenido de la lista se generará aquí -->
                 </div>
             </div>
@@ -1207,29 +1203,8 @@
                      <h2 id="timeline-sheet-title" class="glass-title text-2xl mb-2 pr-8"></h2>
                      <p id="timeline-sheet-description" class="text-zinc-300"></p>
                      <div id="timeline-sheet-items" class="mt-4 border-t border-zinc-700/50 pt-4"></div>
-                     <div id="timeline-story-nav" class="mt-4 flex justify-between items-center border-t border-zinc-700/50 pt-4 hidden">
-                        <button id="timeline-prev-button" class="glass-button flex items-center px-4 py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                            Anterior
-                        </button>
-                        <span class="text-sm font-bold text-amber-400">Modo Historia</span>
-                        <button id="timeline-next-button" class="glass-button flex items-center px-4 py-2">
-                            Siguiente
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                        </button>
-                    </div>
                 </div>
             </div>
-
-            <!-- Botón para cambiar entre vista de mapa y lista -->
-            <button id="timeline-view-toggle" class="glass-button fixed bottom-24 right-4 z-30 w-16 h-16 rounded-full flex items-center justify-center">
-                <svg id="timeline-toggle-icon-list" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                </svg>
-                <svg id="timeline-toggle-icon-map" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-.553-.894L15 2m-6 5l6 3m-6-3l6 3" />
-                </svg>
-            </button>
         </main>
 
     </div>
@@ -1273,9 +1248,6 @@
         </div>
     </nav>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // La API no tiene endpoint de misiones, las mantenemos localmente.
@@ -1299,7 +1271,6 @@
             const timelineSheetDescription = document.getElementById('timeline-sheet-description');
             const timelineSheetItems = document.getElementById('timeline-sheet-items');
             const timelineListContainer = document.getElementById('timeline-list-container');
-            const timelineViewToggle = document.getElementById('timeline-view-toggle');
 
             // Elementos de la Guía
             const timelineListContent = document.getElementById('timeline-list-content');
@@ -1342,11 +1313,8 @@
             let progressState = {};
             const STORAGE_KEY = 'eldenRingProgress';
             let currentZoneId = null;
-            let timelineMap = null; // Variable para la instancia del mapa
-            let timelineMarkers = []; // Array para guardar los marcadores del mapa
             let activeTimelineFilters = new Set();
             let currentTimelineData = [];
-            let currentStoryIndex = -1;
 
             // --- MANEJO DE ESTADO Y PROGRESO ---
             function loadProgress() {
@@ -1454,226 +1422,162 @@
                 }
             }
 
-            // Clase para manejar gestos de swipe
+            // Clase para manejar gestos de swipe y tap
             class SwipeHandler {
-                constructor(element, itemId) {
+                constructor(element, itemId, onSwipeCallback, onClickCallback) {
                     this.element = element;
                     this.itemId = itemId;
+                    this.onSwipeCallback = onSwipeCallback;
+                    this.onClickCallback = onClickCallback;
+
                     this.startX = 0;
                     this.startY = 0;
                     this.currentX = 0;
-                    this.currentY = 0;
                     this.isDragging = false;
+                    this.wasSwiped = false;
                     this.threshold = 50; // Distancia mínima para considerar swipe
                     
                     this.init();
                 }
 
                 init() {
-                    this.element.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+                    // Touch events
+                    this.element.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
                     this.element.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
-                    this.element.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: false });
+                    this.element.addEventListener('touchend', this.handleTouchEnd.bind(this));
                     
-                    // También agregar soporte para mouse (para testing en desktop)
+                    // Mouse events
                     this.element.addEventListener('mousedown', this.handleMouseDown.bind(this));
-                    this.element.addEventListener('mousemove', this.handleMouseMove.bind(this));
-                    this.element.addEventListener('mouseup', this.handleMouseUp.bind(this));
-                    this.element.addEventListener('mouseleave', this.handleMouseUp.bind(this));
+
+                    // Click event (para manejar taps)
+                    this.element.addEventListener('click', this.handleClick.bind(this));
                 }
 
                 handleTouchStart(e) {
-                    const touch = e.touches[0];
-                    this.startX = touch.clientX;
-                    this.startY = touch.clientY;
+                    if (e.touches.length > 1) return;
+                    this.startX = e.touches[0].clientX;
+                    this.startY = e.touches[0].clientY;
                     this.isDragging = true;
+                    this.wasSwiped = false;
                     this.element.style.transition = 'none';
                 }
 
                 handleTouchMove(e) {
-                    if (!this.isDragging) return;
+                    if (!this.isDragging || e.touches.length > 1) return;
                     
-                    const touch = e.touches[0];
-                    this.currentX = touch.clientX;
-                    this.currentY = touch.clientY;
-                    
+                    this.currentX = e.touches[0].clientX;
                     const deltaX = this.currentX - this.startX;
-                    const deltaY = this.currentY - this.startY;
-                    
-                    // Solo procesar si es más horizontal que vertical
-                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    const deltaY = e.touches[0].clientY - this.startY;
+
+                    if (Math.abs(deltaX) > Math.abs(deltaY) + 10) { // Prioritize horizontal movement
                         e.preventDefault();
-                        
-                        const overlay = this.element.querySelector('.swipe-overlay');
-                        if (overlay) {
-                            // Swipe hacia la derecha (completar)
-                            if (deltaX > 0) {
-                                const progress = Math.min(deltaX / 100, 1);
-                                overlay.style.transform = `translateX(${(progress - 1) * 100}%)`;
-                                overlay.classList.remove('unmark');
-                                overlay.querySelector('span').textContent = 'Completar';
-                            }
-                            // Swipe hacia la izquierda (desmarcar)
-                            else if (deltaX < 0) {
-                                const progress = Math.min(Math.abs(deltaX) / 100, 1);
-                                overlay.style.transform = `translateX(${progress * 100}%)`;
-                                overlay.classList.add('unmark');
-                                overlay.querySelector('span').textContent = 'Desmarcar';
-                            }
-                        }
+                        this.updateOverlay(deltaX);
                     }
                 }
 
-                handleTouchEnd(e) {
+                handleTouchEnd() {
                     if (!this.isDragging) return;
-                    
                     this.isDragging = false;
                     this.element.style.transition = '';
-                    
+
                     const deltaX = this.currentX - this.startX;
-                    const deltaY = this.currentY - this.startY;
-                    
-                    // Verificar si es un swipe válido
-                    if (Math.abs(deltaX) > this.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
-                        const currentState = progressState[this.itemId] || false;
-                        let isCompleted;
-                        
-                        if (deltaX > 0) {
-                            // Swipe hacia la derecha = completar
-                            isCompleted = true;
-                        } else {
-                            // Swipe hacia la izquierda = desmarcar
-                            isCompleted = false;
-                        }
-                        
-                        this.toggleCompletion(isCompleted);
-                    } else {
-                        // Resetear overlay
-                        this.resetOverlay();
+                    if (Math.abs(deltaX) > this.threshold) {
+                        this.wasSwiped = true;
+                        this.toggleCompletion(deltaX > 0);
                     }
+                    this.resetOverlay();
                 }
 
                 handleMouseDown(e) {
                     this.startX = e.clientX;
-                    this.startY = e.clientY;
                     this.isDragging = true;
+                    this.wasSwiped = false;
                     this.element.style.transition = 'none';
+
+                    const handleMouseMove = (event) => {
+                        if (!this.isDragging) return;
+                        this.currentX = event.clientX;
+                        const deltaX = this.currentX - this.startX;
+                        this.updateOverlay(deltaX);
+                    };
+
+                    const handleMouseUp = () => {
+                        if (!this.isDragging) return;
+                        this.isDragging = false;
+                        this.element.style.transition = '';
+
+                        const deltaX = this.currentX - this.startX;
+                        if (Math.abs(deltaX) > this.threshold) {
+                            this.wasSwiped = true;
+                            this.toggleCompletion(deltaX > 0);
+                        }
+                        this.resetOverlay();
+
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                    };
+                    
+                    document.addEventListener('mousemove', handleMouseMove);
+                    document.addEventListener('mouseup', handleMouseUp);
                 }
 
-                handleMouseMove(e) {
-                    if (!this.isDragging) return;
-                    
-                    this.currentX = e.clientX;
-                    this.currentY = e.clientY;
-                    
-                    const deltaX = this.currentX - this.startX;
-                    const deltaY = this.currentY - this.startY;
-                    
-                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                handleClick(e) {
+                    if (this.wasSwiped) {
                         e.preventDefault();
-                        
-                        const overlay = this.element.querySelector('.swipe-overlay');
-                        if (overlay) {
-                            // Swipe hacia la derecha (completar)
-                            if (deltaX > 0) {
-                                const progress = Math.min(deltaX / 100, 1);
-                                overlay.style.transform = `translateX(${(progress - 1) * 100}%)`;
-                                overlay.classList.remove('unmark');
-                                overlay.querySelector('span').textContent = 'Completar';
-                            }
-                            // Swipe hacia la izquierda (desmarcar)
-                            else if (deltaX < 0) {
-                                const progress = Math.min(Math.abs(deltaX) / 100, 1);
-                                overlay.style.transform = `translateX(${progress * 100}%)`;
-                                overlay.classList.add('unmark');
-                                overlay.querySelector('span').textContent = 'Desmarcar';
-                            }
-                        }
+                        e.stopPropagation();
+                        return;
+                    }
+                    if (this.onClickCallback) {
+                        this.onClickCallback();
                     }
                 }
 
-                handleMouseUp(e) {
-                    if (!this.isDragging) return;
+                updateOverlay(deltaX) {
+                    const overlay = this.element.querySelector('.swipe-overlay');
+                    if (!overlay) return;
+
+                    const progress = Math.min(Math.abs(deltaX) / (this.element.offsetWidth * 0.7), 1);
                     
-                    this.isDragging = false;
-                    this.element.style.transition = '';
-                    
-                    const deltaX = this.currentX - this.startX;
-                    const deltaY = this.currentY - this.startY;
-                    
-                    if (Math.abs(deltaX) > this.threshold && Math.abs(deltaX) > Math.abs(deltaY)) {
-                        let isCompleted;
-                        
-                        if (deltaX > 0) {
-                            // Swipe hacia la derecha = completar
-                            isCompleted = true;
-                        } else {
-                            // Swipe hacia la izquierda = desmarcar
-                            isCompleted = false;
-                        }
-                        
-                        this.toggleCompletion(isCompleted);
-                    } else {
-                        // Resetear overlay
-                        this.resetOverlay();
+                    if (deltaX > 0) { // Right swipe
+                        overlay.style.transform = `translateX(${(progress - 1) * 100}%)`;
+                        overlay.classList.remove('unmark');
+                        overlay.querySelector('span').textContent = 'Completar';
+                    } else { // Left swipe
+                        overlay.style.transform = `translateX(-${(1 - progress) * 100}%)`;
+                        overlay.classList.add('unmark');
+                        overlay.querySelector('span').textContent = 'Desmarcar';
                     }
                 }
 
                 toggleCompletion(isCompleted) {
                     const currentState = progressState[this.itemId] || false;
+                    if (currentState === isCompleted) return;
+
+                    if (navigator.vibrate) navigator.vibrate(50);
                     
-                    // Solo cambiar si el estado es diferente
-                    if (currentState !== isCompleted) {
-                        // Retroalimentación háptica
-                        if (navigator.vibrate) {
-                            navigator.vibrate(isCompleted ? [50, 50, 50] : 50);
-                        }
-                        
-                        // Animación de completado
-                        this.element.classList.add('swipe-completed');
-                        setTimeout(() => {
-                            this.element.classList.remove('swipe-completed');
-                        }, 600);
-                        
-                        // Actualizar estado
-                        handleSwipeGesture(this.itemId, isCompleted);
-                        
-                        // Indicador visual eliminado - ahora se usa el borde de la tarjeta
-                        
-                        // Actualizar borde de la tarjeta completa
-                        if (isCompleted) {
-                            this.element.classList.add('completed');
-                        } else {
-                            this.element.classList.remove('completed');
-                        }
-                        
-                        // Actualizar texto tachado
-                        const textElement = this.element.querySelector('span');
-                        if (textElement) {
-                            if (isCompleted) {
-                                textElement.classList.add('line-through', 'text-zinc-400');
-                            } else {
-                                textElement.classList.remove('line-through', 'text-zinc-400');
-                            }
-                        }
-                        
-                        // Actualizar overlay text
-                        const overlay = this.element.querySelector('.swipe-overlay span');
-                        if (overlay) {
-                            overlay.textContent = isCompleted ? 'Desmarcar' : 'Completar';
-                        }
+                    this.element.classList.add('swipe-completed');
+                    setTimeout(() => this.element.classList.remove('swipe-completed'), 600);
+
+                    handleSwipeGesture(this.itemId, isCompleted);
+
+                    this.element.classList.toggle('completed', isCompleted);
+                    const textElement = this.element.querySelector('.item-name');
+                    if (textElement) {
+                        textElement.classList.toggle('line-through', isCompleted);
+                        textElement.classList.toggle('text-zinc-400', isCompleted);
                     }
                     
-                    // Resetear overlay
-                    this.resetOverlay();
+                    if (this.onSwipeCallback) this.onSwipeCallback();
                 }
 
                 resetOverlay() {
                     const overlay = this.element.querySelector('.swipe-overlay');
                     if (overlay) {
+                        overlay.style.transition = 'transform 0.3s ease';
                         overlay.style.transform = 'translateX(-100%)';
-                        overlay.classList.remove('unmark');
-                        const currentState = progressState[this.itemId] || false;
-                        overlay.querySelector('span').textContent = currentState ? 'Desmarcar' : 'Completar';
+                        setTimeout(() => {
+                           overlay.style.transition = '';
+                        }, 300);
                     }
                 }
             }
@@ -1682,21 +1586,18 @@
                 const container = document.getElementById(`tab-${category}`);
                 let itemIds = zone[category] || [];
                 
-                // Verificar si la categoría existe en gameData
                 if (!gameData[category]) {
                     console.warn(`Categoría '${category}' no encontrada en gameData`);
                     container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">Categoría '${category}' no disponible.</p></div>`;
                     return;
                 }
                 
-                // Ordenar jefes por dificultad si es la categoría de jefes
                 if (category === 'jefes') {
                     itemIds = sortBossesByDifficulty([...itemIds]);
                 }
                 
                 const items = gameData[category].filter(item => itemIds.includes(item.id));
-
-                container.innerHTML = ''; // Limpiar
+                container.innerHTML = '';
 
                 if (items.length === 0) {
                     container.innerHTML = `<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">No hay ${category} registrados en esta zona.</p></div>`;
@@ -1704,67 +1605,48 @@
                 }
 
                 items.forEach((item, index) => {
-                    let cardHtml = '';
                     const isChecked = progressState[item.id] || false;
+                    const card = document.createElement('div');
+                    card.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
+                    card.dataset.id = item.id;
+
+                    let contentHtml = '';
+                    let onClickCallback;
 
                     if (category === 'jefes') {
                         const difficulty = calculateBossDifficulty(item);
-                        const difficultyText = difficulty <= 2 ? 'Fácil' : difficulty <= 4 ? 'Medio' : difficulty <= 6 ? 'Difícil' : 'Muy Difícil';
-                        const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : difficulty <= 6 ? 'text-orange-400' : 'text-red-400';
-                        
-                        cardHtml = `
-                            <div class="glass-card swipe-container flex items-center p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}" onclick="showBossDetail('${item.id}', '${zone.id}')">
-                                <div class="flex-grow">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-white font-semibold ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
-                                        <span class="text-xs ${difficultyColor} font-medium">${difficultyText}</span>
-                                    </div>
-                                    <div class="flex items-center mt-2 text-xs text-zinc-400">
-                                        <span>${item.healthPoints || '???'} HP</span>
-                                        ${item.drops && item.drops.find(drop => drop.includes('Runes')) ? 
-                                            `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
-                                    </div>
+                        const difficultyText = difficulty <= 2 ? 'Fácil' : difficulty <= 4 ? 'Medio' : 'Difícil';
+                        const difficultyColor = difficulty <= 2 ? 'text-green-400' : difficulty <= 4 ? 'text-yellow-400' : 'text-red-400';
+                        contentHtml = `
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <span class="item-name text-white font-semibold ${isChecked ? 'line-through text-zinc-400' : ''}">${index + 1}. ${item.name}</span>
+                                    <span class="text-xs ${difficultyColor} font-medium">${difficultyText}</span>
                                 </div>
-                                <div class="swipe-overlay">
-                                    <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
+                                <div class="flex items-center mt-2 text-xs text-zinc-400">
+                                    <span>${item.healthPoints || '???'} HP</span>
+                                    ${item.drops && item.drops.find(drop => drop.includes('Runes')) ?
+                                        `<span class="ml-3">${item.drops.find(drop => drop.includes('Runes'))}</span>` : ''}
                                 </div>
-                                <div class="swipe-hint">← Desliza</div>
-                            </div>
-                        `;
+                            </div>`;
+                        onClickCallback = () => showBossDetail(item.id, zone.id);
                     } else {
-                        cardHtml = `
-                            <div class="glass-card swipe-container flex items-start p-4 cursor-pointer glass-slide-in ${isChecked ? 'completed' : ''}" data-id="${item.id}" onclick="showItemDetail('${item.id}', '${category}')">
-                                <div>
-                                    <span class="font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
-                                    <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
-                                </div>
-                                <div class="swipe-overlay">
-                                    <span>${isChecked ? 'Desmarcar' : 'Completar'}</span>
-                                </div>
-                                <div class="swipe-hint">← Desliza</div>
-                            </div>
-                        `;
+                        contentHtml = `
+                            <div>
+                                <span class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${item.name}</span>
+                                <p class="text-zinc-400 text-sm mt-1">${item.description}</p>
+                            </div>`;
+                        onClickCallback = () => showItemDetail(item.id, category);
                     }
-                    container.innerHTML += cardHtml;
-                });
 
-                // Inicializar gestos de swipe para cada tarjeta
-                container.querySelectorAll('.swipe-container').forEach(container => {
-                    const itemId = container.dataset.id;
-                    new SwipeHandler(container, itemId);
-                });
-                container.querySelectorAll('.view-detail-btn').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault(); // Evita que el label active el checkbox
-                        // Animación de cristal
-                        button.classList.add('glass-press');
-                        setTimeout(() => button.classList.remove('glass-press'), 200);
-                        // Retroalimentación háptica
-                        if (navigator.vibrate) {
-                            navigator.vibrate(100);
-                        }
-                        showBossDetail(e.target.dataset.bossId, zone.id);
-                    });
+                    card.innerHTML = `
+                        ${contentHtml}
+                        <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
+                        <div class="swipe-hint">← Desliza</div>
+                    `;
+
+                    container.appendChild(card);
+                    new SwipeHandler(card, item.id, () => showZoneDetail(zone.id), onClickCallback);
                 });
             }
 
@@ -2366,6 +2248,10 @@
                     console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
                     loadProgress();
                     renderZones();
+
+                    // Inicializar la guía para que esté lista
+                    renderTimelineFilters();
+                    applyTimelineFilters();
                 } catch (error) {
                     loadingIndicator.innerHTML = `<p class="text-red-400 font-semibold">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen.</p><p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
                 }
@@ -2859,75 +2745,12 @@
                 }
                 showScreen('screen-timeline');
                 updateBottomNavActive('nav-timeline');
-                if (!timelineMap) {
-                    initializeTimelineMap();
-                }
             });
 
-            // --- INICIALIZACIÓN DEL MAPA ---
-            function initializeTimelineMap() {
-                const mapContainer = document.getElementById('timeline-map');
-                if (!mapContainer || timelineMap) return; // No re-inicializar
-
-                const mapImageUrl = 'https://preview.redd.it/high-quality-elden-ring-map-all-grace-sites-6509x6809-jpg-v0-q6m3ni3st4s81.jpg';
-                const imageBounds = [[0, 0], [6809, 6509]]; // Usamos las dimensiones de la imagen [height, width]
-
-                timelineMap = L.map('timeline-map', {
-                    crs: L.CRS.Simple,
-                    minZoom: -4,
-                    maxZoom: 2,
-                    zoomControl: false // Ocultamos el control de zoom por defecto
-                });
-
-                L.imageOverlay(mapImageUrl, imageBounds).addTo(timelineMap);
-                timelineMap.fitBounds(imageBounds);
-
-                // Añadir un control de zoom personalizado con el estilo de la app
-                const zoomControlContainer = L.control({position: 'bottomright'});
-                zoomControlContainer.onAdd = function (map) {
-                    const div = L.DomUtil.create('div', 'leaflet-bar');
-                    div.innerHTML = `
-                        <button class="glass-button p-2 text-lg leading-none" onclick="timelineMap.zoomIn()">+</button>
-                        <button class="glass-button p-2 text-lg leading-none mt-2" onclick="timelineMap.zoomOut()">-</button>
-                    `;
-                    L.DomEvent.disableClickPropagation(div);
-                    return div;
-                };
-                zoomControlContainer.addTo(timelineMap);
-
-                // Lógica del panel de detalles
-                timelineSheetClose.addEventListener('click', () => {
-                    timelineDetailsSheet.classList.remove('active');
-                });
-
-                // Renderizar filtros y contenido inicial
-                renderTimelineFilters();
-                applyTimelineFilters(); // Esto renderizará la lista y los marcadores iniciales
-
-                // Listeners para el modo historia
-                document.getElementById('timeline-next-button').addEventListener('click', () => {
-                    if (currentStoryIndex < currentTimelineData.length - 1) {
-                        currentStoryIndex++;
-                        const nextEventId = currentTimelineData[currentStoryIndex].id;
-                        panAndShowEvent(nextEventId);
-                    }
-                });
-
-                document.getElementById('timeline-prev-button').addEventListener('click', () => {
-                    if (currentStoryIndex > 0) {
-                        currentStoryIndex--;
-                        const prevEventId = currentTimelineData[currentStoryIndex].id;
-                        panAndShowEvent(prevEventId);
-                    }
-                });
-            }
-
+            // --- LÓGICA DE LA GUÍA ---
             function showTimelineEventDetails(eventId) {
                 const event = gameData.timeline.find(e => e.id === eventId);
                 if (!event) return;
-
-                currentStoryIndex = currentTimelineData.findIndex(e => e.id === eventId);
-                updateStoryModeUI();
 
                 timelineSheetTitle.textContent = event.title;
                 timelineSheetDescription.textContent = event.description;
@@ -2941,108 +2764,53 @@
                 timelineDetailsSheet.classList.add('active');
             }
 
-            function panAndShowEvent(eventId) {
-                const event = gameData.timeline.find(e => e.id === eventId);
-                if (event && event.mapCoords) {
-                    const y = event.mapCoords.y;
-                    const x = event.mapCoords.x;
-                    timelineMap.flyTo([y, x], 0);
-                    showTimelineEventDetails(eventId);
-                }
-            }
-
-            function updateStoryModeUI() {
-                const prevButton = document.getElementById('timeline-prev-button');
-                const nextButton = document.getElementById('timeline-next-button');
-                const storyNav = document.getElementById('timeline-story-nav');
-
-                if (!prevButton || !nextButton || !storyNav) return;
-
-                if (currentStoryIndex === -1) {
-                    storyNav.classList.add('hidden');
-                    return;
-                }
-                storyNav.classList.remove('hidden');
-
-                prevButton.disabled = currentStoryIndex <= 0;
-                nextButton.disabled = currentStoryIndex >= currentTimelineData.length - 1;
-            }
 
             function renderTimelineList(data) {
-                if (!data) return; // Guard clause
+                if (!data) return;
+
+                timelineListContent.innerHTML = ''; // Limpiar antes de renderizar
 
                 const groupedBySection = data.reduce((acc, event) => {
-                    const section = event.section;
-                    if (!acc[section]) {
-                        acc[section] = [];
-                    }
-                    acc[section].push(event);
+                    (acc[event.section] = acc[event.section] || []).push(event);
                     return acc;
                 }, {});
 
-                let html = '';
-                if(Object.keys(groupedBySection).length === 0) {
-                    html = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos que coincidan con tu búsqueda.</div>';
-                } else {
-                    for (const section in groupedBySection) {
-                        html += `<h2 class="font-cinzel text-2xl text-amber-400 font-bold sticky top-0 bg-black/50 py-2">${section}</h2>`;
-                        html += '<div class="space-y-4">';
-                        groupedBySection[section].forEach(event => {
-                            html += `
-                                <div class="glass-card p-4 cursor-pointer" data-event-id="${event.id}">
-                                    <h3 class="font-bold text-white">${event.title}</h3>
-                                    <p class="text-zinc-400 text-sm mt-1">${event.description}</p>
-                                </div>
-                            `;
-                        });
-                        html += '</div>';
-                    }
+                if (Object.keys(groupedBySection).length === 0) {
+                    timelineListContent.innerHTML = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos que coincidan con tu búsqueda.</div>';
+                    return;
                 }
-                timelineListContent.innerHTML = html;
+
+                for (const section in groupedBySection) {
+                    const sectionHeader = document.createElement('h2');
+                    sectionHeader.className = 'font-cinzel text-2xl text-amber-400 font-bold sticky top-20 bg-black/50 py-2';
+                    sectionHeader.textContent = section;
+                    timelineListContent.appendChild(sectionHeader);
+
+                    const sectionContainer = document.createElement('div');
+                    sectionContainer.className = 'space-y-4';
+
+                    groupedBySection[section].forEach(event => {
+                        const isChecked = progressState[event.id] || false;
+                        const card = document.createElement('div');
+                        card.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
+                        card.dataset.id = event.id;
+
+                        card.innerHTML = `
+                            <div>
+                                <h3 class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${event.title}</h3>
+                                <p class="text-zinc-400 text-sm mt-1">${event.description.substring(0, 100)}...</p>
+                            </div>
+                            <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
+                            <div class="swipe-hint">← Desliza</div>
+                        `;
+
+                        sectionContainer.appendChild(card);
+                        new SwipeHandler(card, event.id, null, () => showTimelineEventDetails(event.id));
+                    });
+                    timelineListContent.appendChild(sectionContainer);
+                }
             }
 
-            timelineListContent.addEventListener('click', (e) => {
-                const card = e.target.closest('.glass-card');
-                if (card && card.dataset.eventId) {
-                    const eventId = parseInt(card.dataset.eventId, 10);
-                    const event = gameData.timeline.find(e => e.id === eventId);
-                    if (event && event.mapCoords) {
-                        // Switch to map view
-                        timelineListContainer.classList.add('hidden');
-                        timelineViewToggle.querySelector('#timeline-toggle-icon-list').classList.remove('hidden');
-                        timelineViewToggle.querySelector('#timeline-toggle-icon-map').classList.add('hidden');
-
-                        // Pan to marker and show details
-                        const y = event.mapCoords.y;
-                        const x = event.mapCoords.x;
-                        timelineMap.setView([y, x], 0);
-                        showTimelineEventDetails(eventId);
-                    }
-                }
-            });
-
-            timelineViewToggle.addEventListener('click', () => {
-                timelineListContainer.classList.toggle('hidden');
-                timelineViewToggle.querySelector('#timeline-toggle-icon-list').classList.toggle('hidden');
-                timelineViewToggle.querySelector('#timeline-toggle-icon-map').classList.toggle('hidden');
-            });
-
-            function updateTimelineMarkers(data) {
-                // Limpiar marcadores existentes
-                timelineMarkers.forEach(marker => marker.remove());
-                timelineMarkers = [];
-
-                data.forEach(event => {
-                    if (event.mapCoords) {
-                        const y = event.mapCoords.y;
-                        const x = event.mapCoords.x;
-                        const marker = L.marker([y, x]);
-                        marker.on('click', () => showTimelineEventDetails(event.id));
-                        marker.addTo(timelineMap);
-                        timelineMarkers.push(marker);
-                    }
-                });
-            }
 
             function renderTimelineFilters() {
                 const allCategories = gameData.timeline.flatMap(event => event.category);
@@ -3064,12 +2832,11 @@
                     return matchesCategory && matchesSearch;
                 });
 
-                // Sort to ensure consistent order for story mode
+                // Sort to ensure consistent order
                 filteredData.sort((a, b) => a.id - b.id);
                 currentTimelineData = filteredData;
 
                 renderTimelineList(currentTimelineData);
-                updateTimelineMarkers(currentTimelineData);
             }
 
             timelineFilters.addEventListener('click', (e) => {
