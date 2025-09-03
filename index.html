@@ -1470,7 +1470,7 @@
                 return totalProgress / zoneIds.length;
             }
 
-            function showBossDetail(bossId, fromZoneId) {
+            window.showBossDetail = function(bossId, fromZoneId) {
                 // Ocultar todas las pantallas excepto la de detalle de jefe
                 document.querySelectorAll('main').forEach(screen => {
                     screen.classList.add('hidden');
@@ -1604,7 +1604,7 @@
                 }
             }
 
-            function showItemDetail(itemId, category) {
+            window.showItemDetail = function(itemId, category) {
                 // Ocultar todas las pantallas excepto la de detalle
                 document.querySelectorAll('main').forEach(screen => {
                     screen.classList.add('hidden');
