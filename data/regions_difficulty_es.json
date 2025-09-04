@@ -11,6 +11,15 @@
       "Margit, el Augurio Caído",
       "Godrick el Injertado"
     ],
+    "weapons": [
+      "Hacha de Mano",
+      "Espadón del Señor Juramentado"
+    ],
+    "items": [
+      "Semilla Dorada",
+      "Lágrima Sagrada",
+      "Runa Dorada [1]"
+    ],
     "tips": [
       "Comienza explorando la Iglesia de Elleh",
       "Enfrenta al Centinela del Árbol solo cuando tengas más experiencia",
@@ -27,6 +36,11 @@
       "Leonino Malnacido",
       "Héroe Antiguo de Zamor"
     ],
+    "weapons": [
+      "Espadón de Hoja Injertada",
+      "Zweihander"
+    ],
+    "items": [],
     "tips": [
       "Visita el Castillo Morne para obtener la Espada Grande de Hoja Injertada",
       "Explora las catacumbas para encontrar objetos únicos",
@@ -43,6 +57,13 @@
       "Lobo Rojo de Radagon",
       "Rennala, Reina de la Luna Llena",
       "Caballero Real Loretta"
+    ],
+    "weapons": [
+      "Espada del Caballero de Caria",
+      "Hacha de Congelación"
+    ],
+    "items": [
+      "Piedra de Memoria"
     ],
     "tips": [
       "La Academia Raya Lucaria es el punto focal de esta región",
@@ -61,6 +82,13 @@
       "Ekzykes en Descomposición",
       "Espíritu de Árbol Pútrido"
     ],
+    "weapons": [
+      "Espadón",
+      "Colmillo de Sabueso"
+    ],
+    "items": [
+      "Lágrima Larval"
+    ],
     "tips": [
       "La podredumbre escarlata causa daño continuo, lleva curas",
       "Radahn es uno de los jefes más difíciles del juego",
@@ -78,6 +106,11 @@
       "Godfrey, Primer Señor de Elden",
       "Morgott, Rey Augurio"
     ],
+    "weapons": [
+      "Espada Dorada del Troll",
+      "Gran Hacha de Verdugo"
+    ],
+    "items": [],
     "tips": [
       "Leyndell es una ciudad laberíntica, explora con paciencia",
       "Los enemigos aquí son significativamente más fuertes",
@@ -95,6 +128,11 @@
       "Noble de Piel Divina",
       "Vírgenes Secuestradoras"
     ],
+    "weapons": [
+      "Hoja Blasfema",
+      "Cañón de Jarro"
+    ],
+    "items": [],
     "tips": [
       "La Cazadora de Serpientes es esencial para Rykard",
       "Los enemigos aquí usan fuego y magia oscura",
@@ -112,6 +150,12 @@
       "Comandante Niall",
       "Borealis la Niebla Congelante"
     ],
+    "weapons": [
+      "Hacha Negra de Gárgola"
+    ],
+    "items": [
+      "Glovewort de Tumba Grande"
+    ],
     "tips": [
       "El frío puede afectar tu resistencia",
       "Los gigantes de fuego son vulnerables al daño de escarcha",
@@ -127,6 +171,12 @@
     "bosses": [
       "Malenia, Hoja de Miquella",
       "Duelista Guardián de Tumba Pútrido"
+    ],
+    "weapons": [
+      "Guadaña de Halo"
+    ],
+    "items": [
+      "Glovewort Fantasma Grande"
     ],
     "tips": [
       "Malenia es considerada el jefe más difícil del juego",
@@ -144,6 +194,10 @@
       "Campeones de Fia",
       "Dragón Liche Fortissax"
     ],
+    "weapons": [
+      "Bastón del Avatar"
+    ],
+    "items": [],
     "tips": [
       "Esta zona es accesible después de completar la misión de Fia",
       "Los enemigos aquí son fantasmas y criaturas ancestrales",
@@ -160,6 +214,11 @@
       "Dúo de Piel Divina",
       "Maliketh, la Hoja Negra",
       "Señor Dragón Placidusax"
+    ],
+    "weapons": [],
+    "items": [
+      "Piedra de Forja de Dragón Antiguo",
+      "Piedra de Forja Sombría de Dragón Antiguo"
     ],
     "tips": [
       "Esta es una de las zonas finales del juego",
