@@ -1184,8 +1184,8 @@
         <!-- Pantalla de Guía/Línea de tiempo (oculta por defecto) -->
         <main id="screen-timeline" class="hidden">
              <div id="timeline-list-container" class="space-y-6 pb-24">
-                <div id="timeline-controls" class="p-4 mb-4 glass-card sticky top-20 z-10">
-    <h1 class="glass-title text-3xl font-bold text-center">Progresión Recomendada</h1>
+<div id="timeline-controls" class="p-2 mb-4 glass-card z-10">
+    <h1 class="glass-title text-2xl font-bold text-center">Progresión Recomendada</h1>
                 </div>
                 <div id="timeline-list-content" class="space-y-6 px-4">
                     <!-- El contenido de la lista se generará aquí -->
@@ -1193,8 +1193,8 @@
             </div>
 
             <!-- Panel de detalles inferior (Bottom Sheet) -->
-            <div id="timeline-details-sheet" class="fixed bottom-0 left-0 right-0 z-20 p-4 transition-transform duration-300 ease-in-out">
-                <div class="glass-card p-6 max-w-2xl mx-auto rounded-t-lg relative">
+            <div id="timeline-details-sheet" class="fixed bottom-0 left-0 right-0 z-[110] p-4 transition-transform duration-300 ease-in-out">
+                <div class="glass-card p-6 max-w-2xl mx-auto rounded-t-lg relative" style="max-height: 85vh; overflow-y: auto;">
                      <button id="timeline-sheet-close" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-3xl leading-none">&times;</button>
                      <h2 id="timeline-sheet-title" class="glass-title text-2xl mb-2 pr-8"></h2>
                      <p id="timeline-sheet-description" class="text-zinc-300"></p>
