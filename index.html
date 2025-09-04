@@ -1186,9 +1186,22 @@
              <div id="timeline-list-container" class="space-y-6 pb-24">
                 <div id="timeline-controls" class="p-4 mb-4 glass-card sticky top-20 z-10">
                     <h1 class="glass-title text-3xl font-bold mb-4 text-center">Guía de Necrolimbo</h1>
-                    <input type="text" id="timeline-search" placeholder="Buscar en la guía..." class="w-full px-4 py-2 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 transition-all duration-300">
-                    <div id="timeline-filters" class="flex flex-wrap gap-2 mt-4">
-                        <!-- Los botones de filtro se generarán aquí -->
+    <div class="flex items-center gap-2">
+        <input type="text" id="timeline-search" placeholder="Buscar en la guía..." class="flex-grow px-4 py-2 bg-zinc-800/50 border border-zinc-600/50 rounded-lg text-white placeholder-zinc-400 focus:outline-none focus:border-amber-400 transition-all duration-300">
+
+        <div class="relative">
+            <button id="timeline-filter-toggle" class="glass-button p-3 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <div id="timeline-filters-dropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg glass-card p-4 z-20">
+                <h3 class="font-bold text-white mb-3">Filtrar por categoría:</h3>
+                <div id="timeline-filters-list" class="flex flex-col gap-2">
+                    <!-- Los botones de filtro se generarán aquí -->
+                </div>
+            </div>
+        </div>
                     </div>
                 </div>
                 <div id="timeline-list-content" class="space-y-6 px-4">
@@ -1272,10 +1285,27 @@
             const timelineSheetItems = document.getElementById('timeline-sheet-items');
             const timelineListContainer = document.getElementById('timeline-list-container');
 
+            timelineSheetClose.addEventListener('click', () => {
+                timelineDetailsSheet.classList.remove('active');
+            });
+
             // Elementos de la Guía
             const timelineListContent = document.getElementById('timeline-list-content');
             const timelineSearch = document.getElementById('timeline-search');
-            const timelineFilters = document.getElementById('timeline-filters');
+            const timelineFilterToggle = document.getElementById('timeline-filter-toggle');
+            const timelineFiltersDropdown = document.getElementById('timeline-filters-dropdown');
+            const timelineFiltersList = document.getElementById('timeline-filters-list');
+
+            timelineFilterToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                timelineFiltersDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!timelineFiltersDropdown.contains(e.target) && !timelineFilterToggle.contains(e.target)) {
+                    timelineFiltersDropdown.classList.add('hidden');
+                }
+            });
 
             const zoneListContainer = document.getElementById('zone-list');
             const zoneDetailTitle = document.getElementById('zone-detail-title');
@@ -1435,7 +1465,7 @@
                     this.currentX = 0;
                     this.isDragging = false;
                     this.wasSwiped = false;
-                    this.threshold = 50; // Distancia mínima para considerar swipe
+                    this.threshold = 80; // Distancia mínima para considerar swipe (aumentado de 50)
                     
                     this.init();
                 }
@@ -2816,8 +2846,8 @@
                 const allCategories = gameData.timeline.flatMap(event => event.category);
                 const uniqueCategories = [...new Set(allCategories)];
 
-                timelineFilters.innerHTML = uniqueCategories.map(category => `
-                    <button class="glass-button text-xs px-3 py-1 filter-button" data-category="${category}">
+                timelineFiltersList.innerHTML = uniqueCategories.map(category => `
+                    <button class="glass-button text-sm px-3 py-2 w-full text-left filter-button" data-category="${category}">
                         ${category}
                     </button>
                 `).join('');
@@ -2839,7 +2869,7 @@
                 renderTimelineList(currentTimelineData);
             }
 
-            timelineFilters.addEventListener('click', (e) => {
+            timelineFiltersList.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-button')) {
                     const category = e.target.dataset.category;
                     e.target.classList.toggle('active');
