@@ -29,7 +29,7 @@
     "id": "17f69d0313fl0i1uk8pokynv71bkz8",
     "name": "Alecto, Cabecilla del Cuchillo Negro",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69d0313fl0i1uk8pokynv71bkz8.png",
-    "region": "Limgrave",
+    "region": "Liurnia de los Lagos",
     "description": "Guerrera notablemente ágil y agresiva. Peligrosa incluso para aquellos con cobertura de escudo...",
     "location": "Limgrave",
     "drops": [
@@ -81,7 +81,7 @@
     "id": "17f69590896l0i1ul0hnmor8iyf9xd",
     "name": "Espíritu Ancestral",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69590896l0i1ul0hnmor8iyf9xd.png",
-    "region": "Río Siofra",
+    "region": "Limgrave",
     "description": "Un espíritu brillante que toma la forma de un gran ciervo, lo que lo convierte en una amenaza amenazante cuando carga contra los objetivos.",
     "location": "Río Siofra",
     "drops": [
@@ -113,7 +113,7 @@
     "id": "17f697240ecl0i1ul21nevug9wq54e",
     "name": "Clérigo Bestia",
     "image": "https://eldenring.fanapis.com/images/bosses/17f697240ecl0i1ul21nevug9wq54e.png",
-    "region": "Farum Azula en Ruinas",
+    "region": "Caelid",
     "description": "Temporalmente superado por su furia bestial, el Clérigo Bestia ataca ferozmente, arrojando rocas y a sí mismo a sus enemigos. Calma su agresión y devuélvelo a sus sentidos.",
     "location": "Farum Azula en Ruinas",
     "drops": [
@@ -138,7 +138,7 @@
     "id": "17f69d4387al0i1ulpqqumwqw05j3c",
     "name": "Bestia de Farum Azula",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69d4387al0i1ulpqqumwqw05j3c.png",
-    "region": "Farum Azula en Ruinas",
+    "region": "Limgrave",
     "description": "Criatura que vive bajo tierra y se encuentra en la Cueva de la Arboleda",
     "location": "Cueva de la Arboleda",
     "drops": [
@@ -196,7 +196,7 @@
     "id": "17f69bd3c06l0i1ulx2jxbiogta1i",
     "name": "Asesino del Cuchillo Negro",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69bd3c06l0i1ulx2jxbiogta1i.png",
-    "region": "Liurnia de los Lagos",
+    "region": "Limgrave",
     "description": "Figuras oscuras implacables y ágiles que portan un",
     "location": "Catacumbas de la Muerte, Catacumbas del Cuchillo Negro, Cueva del Sabio",
     "drops": [
@@ -413,7 +413,7 @@
     "id": "17f69625d6el0i1upqw478c5kvsjv3",
     "name": "Centinela Dracónico del Árbol",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69625d6el0i1upqw478c5kvsjv3.png",
-    "region": "Farum Azula en Ruinas",
+    "region": "Meseta de Altus",
     "description": "Caballero masivo vestido con una armadura dorada sobre un caballo gigante.",
     "location": "Afueras de la Capital, Farum Azula en Ruinas",
     "drops": [
@@ -427,7 +427,7 @@
     "id": "17f69de1071l0i1uprrms3umg3rug",
     "name": "Soldado Dragonkin",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69de1071l0i1uprrms3umg3rug.png",
-    "region": "Río Siofra",
+    "region": "Limgrave",
     "description": "Una criatura humanoide grande y hostil que despierta de su letargo directamente a la batalla.",
     "location": "Río Siofra, Lago de la Putrefacción",
     "drops": [
@@ -471,7 +471,7 @@
     "id": "17f699200d2l0i1uqbs9w1ijmp2ner",
     "name": "Soldado Dragonkin de Nokstella",
     "image": "https://eldenring.fanapis.com/images/bosses/17f699200d2l0i1uqbs9w1ijmp2ner.png",
-    "region": "Nokstella, Ciudad Eterna",
+    "region": "Limgrave",
     "description": "Enorme criatura de aspecto humanoide ubicada en las cuevas subterráneas de las Ruinas del Palacio de Uhl",
     "location": "Río Ainsel",
     "drops": [
@@ -593,7 +593,7 @@
     "id": "17f695d42c3l0i1uriibjok1ydfodg",
     "name": "Campeones de Fia",
     "image": "https://eldenring.fanapis.com/images/bosses/17f695d42c3l0i1uriibjok1ydfodg.png",
-    "region": "Profundidades de Raíz Profunda",
+    "region": "Limgrave",
     "description": "Cinco invasores convocados en un combate de resistencia en tres oleadas.",
     "location": "Profundidades de Raíz Profunda",
     "drops": [
@@ -917,7 +917,7 @@
     "id": "17f698b6791l0i1uvgjwlxwarfpe7a",
     "name": "Dúo de la Piel de Dios",
     "image": "https://eldenring.fanapis.com/images/bosses/17f698b6791l0i1uvgjwlxwarfpe7a.png",
-    "region": "Farum Azula en Ruinas",
+    "region": "Meseta de Altus",
     "description": "Un par complementario de criaturas extremadamente versadas en el combate dual. Estos seres logran un equilibrio excepcional en el combate, lo que resulta en una sinergia devastadora.",
     "location": "Farum Azula en Ruinas",
     "drops": [
@@ -957,7 +957,7 @@
     "id": "17f699223e7l0i1uwcol7wflmcgajb",
     "name": "Lichdragón Fortissax",
     "image": "https://eldenring.fanapis.com/images/bosses/17f699223e7l0i1uwcol7wflmcgajb.png",
-    "region": "Profundidades de Raíz Profunda",
+    "region": "Limgrave",
     "description": "Enorme dragón negro de cuatro alas con la capacidad de empuñar el rayo.",
     "location": "Profundidades de Raíz Profunda",
     "drops": [
@@ -1022,7 +1022,7 @@
     "id": "17f69dbf58cl0i1ux7vft8wsk6ejbb",
     "name": "Maliketh, la Hoja Negra",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69dbf58cl0i1ux7vft8wsk6ejbb.png",
-    "region": "Farum Azula en Ruinas",
+    "region": "Meseta de Altus",
     "description": "Oh, Muerte. Conviértete en mi hoja una vez más.",
     "location": "Farum Azula en Ruinas",
     "drops": [
@@ -1051,7 +1051,7 @@
     "id": "17f69e11c75l0i1uxa6gb2wpb12ipb",
     "name": "Lágrima Imitadora",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69e11c75l0i1uxa6gb2wpb12ipb.png",
-    "region": "Nokron, Ciudad Eterna",
+    "region": "Limgrave",
     "description": "Un ser excéntrico capaz de tomar una forma completa de su adversario, desde rasgos corporales hasta armamento.",
     "location": "Nokron, Ciudad Eterna",
     "drops": [
@@ -1078,7 +1078,7 @@
     "id": "17f697f4363l0i1uy2tk9e7g2jqcu",
     "name": "Mohg, Señor de la Sangre",
     "image": "https://eldenring.fanapis.com/images/bosses/17f697f4363l0i1uy2tk9e7g2jqcu.png",
-    "region": "Palacio de Mohgwyn",
+    "region": "Limgrave",
     "description": "¡Bienvenido, honorable invitado. Al lugar de nacimiento de nuestra Dinastía!",
     "location": "Palacio de Mohgwyn",
     "drops": [
@@ -1294,7 +1294,7 @@
     "id": "17f69ae5092l0i1v0k714w3s2jz8tj",
     "name": "Espíritu del Ancestro Real",
     "image": "https://eldenring.fanapis.com/images/bosses/17f69ae5092l0i1v0k714w3s2jz8tj.png",
-    "region": "Nokron, Ciudad Eterna",
+    "region": "Limgrave",
     "description": "Un espíritu que brilla con una pálida luz azul, suspendido en el aire y con la forma de un enorme ciervo.",
     "location": "Nokron, Ciudad Eterna",
     "drops": [
@@ -1465,7 +1465,7 @@
     "id": "17f697500cal0i1v2hh14qewvbrwrn",
     "name": "Gárgola Valiente",
     "image": "https://eldenring.fanapis.com/images/bosses/17f697500cal0i1v2hh14qewvbrwrn.png",
-    "region": "Acueducto de Siofra",
+    "region": "Limgrave",
     "description": "Al igual que el portador, las partes faltantes han sido reparadas con cera de cadáver; un mosaico de campeones.",
     "location": "Acueducto de Siofra",
     "drops": [
