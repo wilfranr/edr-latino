@@ -1,254 +1,56 @@
 [
   {
     "id": 1,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Salida de la Tumba Abandonada y Primeros Pasos",
-    "description": "El Sinluz emerge al exterior después de completar la sección de la Tumba Abandonada (el tutorial) y recoge la Efigie Dorada Pequeña junto al altar de invocación.",
-    "category": ["Ubicación", "Objeto"],
-    "items": ["Efigie Dorada Pequeña"],
-    "mapCoords": { "x": 450, "y": 850 }
+    "section": "Inicio en la Capilla de la espera",
+    "title": "Inicio en la Capilla de la espera",
+    "description": "Después de elegir la clase del personaje y ver la escena inicial, el jugador recupera el control dentro de la capilla [20]. Si el juego fue reservado, se recibe automáticamente el gesto **El Círculo** [21]. Se recoge el **Dedo Marchito de Sinluz** de un cadáver para abrir la puerta de salida [20]."
   },
   {
     "id": 2,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Encuentro con Varré y el Centinela Agreste",
-    "description": "El Sinluz llega al Lugar de Gracia 'El Primer Paso' y se encuentra con Varré, el Rostro Alabastrado. Cerca de este punto, se encuentra el jefe Centinela Agreste.",
-    "category": ["NPC", "Jefe", "Ubicación"],
-    "items": [],
-    "mapCoords": { "x": 460, "y": 830 }
+    "section": "Primer encuentro con el Vástago injertado",
+    "title": "Primer encuentro con el Vástago injertado",
+    "description": "Al salir de la capilla y cruzar el puente colgante, el jugador se enfrenta al **Vástago injertado**, el primer jefe del juego [21]. Normalmente, se espera que el jugador muera en este encuentro, lo que lleva directamente a la siguiente zona [21]. Si el jefe es derrotado, el jugador muere de todos modos o es forzado a morir para progresar [22]."
   },
   {
     "id": 3,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Descubrimiento de la Iglesia de Elleh",
-    "description": "El Sinluz se dirige al Noroeste y llega a la Iglesia de Elleh en ruinas, activando su Lugar de Gracia.",
-    "category": ["Ubicación", "NPC"],
-    "items": [],
-    "mapCoords": { "x": 400, "y": 750 }
+    "section": "Llegada a la Tumba abandonada",
+    "title": "Llegada a la Tumba abandonada",
+    "description": "El jugador es transportado automáticamente a esta cueva después de la Capilla de la espera y la muerte contra el Vástago injertado [21-23]. Se reciben automáticamente 3 **Vial de lágrimas carmesí** y 1 **Vial de lágrimas cerúleas** [23]. **Se recomienda tirarse por el agujero** para acceder a la Cueva del conocimiento [24]."
   },
   {
     "id": 4,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Interacción con el Comerciante Kale",
-    "description": "En la Iglesia de Elleh, el Sinluz encuentra al Comerciante Kale. Se recomienda comprar el Kit de Creación y una Antorcha.",
-    "category": ["NPC", "Objeto"],
-    "items": ["Kit de Creación", "Antorcha"],
-    "mapCoords": { "x": 405, "y": 745 }
+    "section": "Cueva del conocimiento (Tutorial)",
+    "title": "Cueva del conocimiento (Tutorial)",
+    "description": "En esta área se aprenden las mecánicas básicas del juego, como fijar la vista, atacar, protegerse, esquivar, usar armas a dos manos y sigilo [24-26]. Se lucha contra el jefe **Soldado de Godrick** [27]. Al salir, se regresa al mismo lugar de la Tumba abandonada y se obtiene el gesto **¡Fuerza!** de un cadáver [27]."
   },
   {
     "id": 5,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Encuentro con Melina en las Ruinas de la Puerta",
-    "description": "El Sinluz se dirige al Norte/Noreste hasta las Ruinas de la Puerta. En el Lugar de Gracia 'Parte delantera de la puerta', Melina aparece, permitiendo al Sinluz subir de nivel y convocar al caballo con el Silbato de Corcel Espectral.",
-    "category": ["Ubicación", "NPC", "Objeto", "Mecánica"],
-    "items": ["Silbato de Corcel Espectral"],
-    "mapCoords": { "x": 550, "y": 650 }
+    "section": "Lugar de Gracia Tumba abandonada",
+    "title": "Lugar de Gracia Tumba abandonada",
+    "description": "Después del tutorial o al tomar las escaleras directamente, el jugador llega a este Lugar de Gracia [23, 27]. Se recogen la **Rebanadora de dedos** y el **Dedo Doblado de Sinluz** de un cadáver [27]. **Opcional**: Si se eligió la Llave de espada pétrea como regalo inicial, se puede desbloquear la **Tumba del héroe de los aledaños**, aunque no se recomienda por su dificultad temprana [28, 29]."
   },
   {
     "id": 6,
-    "section": "Inicios del Viaje en Necrolimbo (Oeste)",
-    "title": "Encuentro con Renna (Ranni)",
-    "description": "Al regresar a la Iglesia de Elleh, el Sinluz se encuentra con Renna, quien le entrega la Campana Invocadora de Espíritus y las Cenizas de Lobo Solitario.",
-    "category": ["NPC", "Objeto"],
-    "items": ["Campana Invocadora de Espíritus", "Cenizas de Lobo Solitario"],
-    "mapCoords": { "x": 400, "y": 750 }
+    "section": "Salida al exterior (Necrolimbo)",
+    "title": "Salida al exterior (Necrolimbo)",
+    "description": "El jugador sale de la Tumba abandonada al exterior, entrando en la zona de Necrolimbo [28]."
   },
   {
     "id": 7,
-    "section": "Exploración y Batallas Iniciales",
-    "title": "Saqueo de Carruajes y Mapeo",
-    "description": "Desde 'Parte delantera de la puerta', el Sinluz se acerca sigilosamente a un carruaje para obtener el Espadón de Juramentado y a otro carruaje cercano al Este para conseguir un Mayal.",
-    "category": ["Objeto", "Arma"],
-    "items": ["Espadón de Juramentado", "Mayal"],
-    "mapCoords": { "x": 560, "y": 640 }
+    "section": "Exploración de Necrolimbo (Oeste)",
+    "title": "Exploración de Necrolimbo (Oeste)",
+    "description": "Se recoge la **Efigie dorada pequeña** [30]. Se encuentra a **Varré, el Rostro Alabastrado** [31]. Se puede enfrentar opcionalmente al jefe **Centinela agreste** [31]. Se visitan la **Iglesia de Elleh** (Lugar de gracia, Comerciante Kale, Kit de creación, Antorcha) [32, 33]. Se llega a las **Ruinas de la puerta**, donde se activa el Lugar de gracia **Parte delantera de la puerta** y **Melina** aparece para permitir la subida de nivel y otorgar el Silbato de corcel espectral [33, 34]. Después de la escena con Melina, se regresa a la Iglesia de Elleh para encontrar a **Renna**, quien entrega la **Campana invocadora de espíritus** y las **Cenizas de lobo solitario** [34]. Se exploran las Ruinas de la puerta (se obtiene el **Espadón de juramentado**, un **Mayal**, el **Mapa: Necrolimbo, oeste**, la Ceniza de Guerra: Pisotón tormentoso y el Cuchillo de afilar) [35, 36]. Se visita la **Cueva de la arboleda** (una mazmorra pequeña) [37]. Se encuentra a **Boc** cerca de la Cueva del litoral, iniciando o continuando su historia [37, 38]. Opcionalmente, se puede luchar contra la **Caballería nocturna** por la noche cerca de Boc [39]. Se desciende a la playa para entrar en la **Cueva del litoral**, que lleva a la **Iglesia de la Comunión Dragontina** [6, 38, 40]. En la Iglesia de la Comunión Dragontina, se activa el Lugar de Gracia y se aprende que los Corazones de dragón se pueden ofrecer para obtener encantamientos [41, 42]. Se exploran la **Cueva de Agualóbrega** (donde se encuentra a Parches) y las **Catacumbas de Aqualóbrega** (jefe: Duelista guardián de las tumbas) [43-45]. Se explora la **Mina de Necrolimbo** (jefe: Trol excavapiedra) [45-47]. Se encuentra a **Yura** y se inician sus eventos, explorando el Lago de Agheel donde se encuentra el jefe **Dragón volador Agheel** [45, 48, 49]. Se entra en la **Cárcel eterna del Sabueso Desolado** para luchar contra el jefe **Caballero sabueso Darriwil** [19]."
   },
   {
     "id": 8,
-    "section": "Exploración y Batallas Iniciales",
-    "title": "Enfrentamiento en las Ruinas de la Puerta",
-    "description": "El Sinluz se adentra en el otro lado de las Ruinas de la Puerta, enfrentándose a lobos y soldados. Se recupera el Mapa: Necrolimbo, Oeste junto a un pilar.",
-    "category": ["Ubicación", "Enemigo", "Objeto"],
-    "items": ["Mapa: Necrolimbo, Oeste"],
-    "mapCoords": { "x": 570, "y": 630 }
+    "section": "Exploración de Necrolimbo (Este)",
+    "title": "Exploración de Necrolimbo (Este)",
+    "description": "Después de completar Necrolimbo (Oeste), el siguiente destino es Necrolimbo (Este) [19, 50]. Se obtiene el **Mapa: Necrolimbo, este** [51]. Se visitan las **Ruinas de una posta** (jefe: Lunático calabezudo, encuentro con Sellen) [52, 53]. Se comienza la historia de **Blaidd, el Semilobo** y se avanza la de **Comerciante Kale** en las Ruinas del bosque neblinoso [54]. Se encuentra a **Kenneth Haight** y se inicia su misión [54]. Se visita el **Fuerte de Haigh** (se puede encontrar el Medallón de Dectus (izquierdo)) [55-57]. Se visita la **Tercera iglesia de Márika** (se obtienen Lágrima de cristal carmesí, Vial de médika milagrosa y Lágrima sagrada) [58]. Se inicia la historia de **D, cazador de los muertos**, que lleva a la **Aldea de Aguainvocante** [59]. **Regreso a la Capilla de la espera (más adelante en el juego)**: Desde la zona de “Los cuatro campanarios” en Liurnia (Oeste), uno de los portales teletransporta al jugador de vuelta a la Capilla de la espera [22]. Esto permite volver a enfrentarse al Vástago injertado y acceder a una puerta pequeña en la capilla para obtener el objeto **Rey de los halcones tormentosos** y la ceniza de espíritu **Halcón tormentoso Deenh** [17]."
   },
   {
     "id": 9,
-    "section": "Exploración y Batallas Iniciales",
-    "title": "Hallazgos en el Sótano de las Ruinas",
-    "description": "En las Ruinas de la Puerta, al bajar unas escaleras, se encuentra un cofre con la Ceniza de Guerra: Pisotón Tormentoso y el Cuchillo de Afilar.",
-    "category": ["Ubicación", "Objeto", "Ceniza de Guerra"],
-    "items": ["Ceniza de Guerra: Pisotón Tormentoso", "Cuchillo de Afilar"],
-    "mapCoords": { "x": 575, "y": 635 }
-  },
-  {
-    "id": 10,
-    "section": "Primeras Mazmorras y Encuentros Adicionales",
-    "title": "Visita a la Cueva de la Arboleda",
-    "description": "Se puede visitar esta pequeña mazmorra. Cerca de la entrada exterior, se examina a un soldado sentado junto a un cadáver para obtener Kukri x4.",
-    "category": ["Mazmorra", "Objeto"],
-    "items": ["Kukri x4"],
-    "mapCoords": { "x": 350, "y": 760 }
-  },
-  {
-    "id": 11,
-    "section": "Primeras Mazmorras y Encuentros Adicionales",
-    "title": "Encuentro con Boc y la Caballería Nocturna",
-    "description": "Se busca al NPC Boc. La Caballería Nocturna aparece de noche en los alrededores de donde está Boc.",
-    "category": ["NPC", "Jefe"],
-    "items": [],
-    "mapCoords": { "x": 500, "y": 680 }
-  },
-  {
-    "id": 12,
-    "section": "Primeras Mazmorras y Encuentros Adicionales",
-    "title": "Catacumbas de Escarpe Tormentoso",
-    "description": "Saliendo de la Cueva de la Arboleda, el Sinluz se dirige al Oeste para bajar a la playa. En la cima del acantilado, se encuentra la mazmorra Catacumbas de Escarpe Tormentoso.",
-    "category": ["Mazmorra"],
-    "items": [],
-    "mapCoords": { "x": 280, "y": 750 }
-  },
-  {
-    "id": 13,
-    "section": "Primeras Mazmorras y Encuentros Adicionales",
-    "title": "Enemigo Invisible en la Playa",
-    "description": "En la playa, al dirigirse a la derecha, se encuentra un rastro luminoso que indica la presencia de un enemigo invisible, del cual se obtiene la Ceniza de Guerra: Pisotón y Barrido.",
-    "category": ["Enemigo", "Ceniza de Guerra"],
-    "items": ["Ceniza de Guerra: Pisotón y Barrido"],
-    "mapCoords": { "x": 250, "y": 780 }
-  },
-  {
-    "id": 14,
-    "section": "Primeras Mazmorras y Encuentros Adicionales",
-    "title": "Cueva del Litoral y Comerciante",
-    "description": "Al Sur de la playa, se entra en la Cueva del Litoral. Después de pasar por la cueva, se puede visitar la Iglesia de la Comunión Dragontina. A la izquierda de la salida de la cueva, se encuentra el Comerciante Nómada 1.",
-    "category": ["Mazmorra", "Ubicación", "NPC"],
-    "items": [],
-    "mapCoords": { "x": 230, "y": 880 }
-  },
-  {
-    "id": 15,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Norte de la charca de Agheel",
-    "description": "Desde 'Parte delantera de la puerta', el Sinluz se dirige al Este/Sureste, activando el Lugar de Gracia 'Norte de la charca de Agheel'.",
-    "category": ["Ubicación"],
-    "items": [],
-    "mapCoords": { "x": 650, "y": 700 }
-  },
-  {
-    "id": 16,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Batalla en el Puente",
-    "description": "En un puente, el Sinluz se encuentra con soldados y un escarabajo que suelta la Ceniza de Guerra: Determinación. También se puede encontrar el Manual de armero [1].",
-    "category": ["Enemigo", "Ceniza de Guerra", "Objeto"],
-    "items": ["Ceniza de Guerra: Determinación", "Manual de armero [1]"],
-    "mapCoords": { "x": 620, "y": 680 }
-  },
-  {
-    "id": 17,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Carruaje con Gigantes",
-    "description": "Aparece un carruaje tirado por dos gigantes. Tras derrotarlos, se abre el cofre para obtener una Gran Hacha. Se encuentra Piedra de Forja [1] en un cadáver en el puente.",
-    "category": ["Enemigo", "Arma", "Objeto"],
-    "items": ["Gran Hacha", "Piedra de Forja [1]"],
-    "mapCoords": { "x": 610, "y": 670 }
-  },
-  {
-    "id": 18,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Encuentro con Yura",
-    "description": "El Sinluz continúa al Sur por el camino y luego al Oeste en la parte más al Sur del lago para encontrarse con Yura.",
-    "category": ["NPC"],
-    "items": [],
-    "mapCoords": { "x": 680, "y": 800 }
-  },
-  {
-    "id": 19,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Ruinas a Orillas del Mar",
-    "description": "Junto a unas ruinas, se encuentra el Lugar de Gracia 'Ruinas a orillas del mar'. Bajando a la playa desde allí, se puede conseguir la Ceniza de Guerra: Gravitas y el Talismán con Dragón Hierático.",
-    "category": ["Ubicación", "Ceniza de Guerra", "Talismán"],
-    "items": ["Ceniza de Guerra: Gravitas", "Talismán con Dragón Hierático"],
-    "mapCoords": { "x": 670, "y": 820 }
-  },
-  {
-    "id": 20,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Dragón Volador Agheel",
-    "description": "El Sinluz se adentra en el lago y se enfrenta al jefe Dragón Volador Agheel.",
-    "category": ["Jefe"],
-    "items": [],
-    "mapCoords": { "x": 750, "y": 780 }
-  },
-  {
-    "id": 21,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Ruinas Abrasadas por un Dragón",
-    "description": "En la parte Suroeste del lago, se encuentran no muertos, perros, Runas Doradas [11], Huevas de Cangrejo x1 y una Llave de Espada Pétrea x1.",
-    "category": ["Ubicación", "Objeto"],
-    "items": ["Runas Doradas [11]", "Huevas de Cangrejo x1", "Llave de Espada Pétrea x1"],
-    "mapCoords": { "x": 700, "y": 850 }
-  },
-  {
-    "id": 22,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Trampa de la Mina de Cristal de Sellia",
-    "description": "En estas ruinas, unas escaleras llevan a un cofre que teletransporta a la Mina de Cristal de Sellia en Montedrago, pero se recomienda no ir aún.",
-    "category": ["Ubicación", "Trampa"],
-    "items": [],
-    "mapCoords": { "x": 710, "y": 860 }
-  },
-  {
-    "id": 23,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Hoja Doble en el Sótano",
-    "description": "En las ruinas justo al lado (más al Sur), se encuentra la Hoja Doble en un cadáver en un sótano.",
-    "category": ["Arma", "Objeto"],
-    "items": ["Hoja Doble"],
-    "mapCoords": { "x": 715, "y": 870 }
-  },
-  {
-    "id": 24,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Cueva de Agualóbrega y Patches",
-    "description": "Continuando la historia de Yura y yendo por un riachuelo al Norte, se encuentran las mazmorras Cueva de Agualóbrega (donde está Patches) y Catacumbas de Agualóbrega.",
-    "category": ["Mazmorra", "NPC"],
-    "items": [],
-    "mapCoords": { "x": 700, "y": 650 }
-  },
-  {
-    "id": 25,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Mina de Necrolimbo y Ribera de Agualóbrega",
-    "description": "Se visita la Mina de Necrolimbo. Subiendo por el chorro de aire con el caballo, se encuentra el Lugar de Gracia 'Ribera de Agualóbrega'.",
-    "category": ["Mazmorra", "Ubicación"],
-    "items": [],
-    "mapCoords": { "x": 680, "y": 600 }
-  },
-  {
-    "id": 26,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Ceniza de Guerra: Desenvainar",
-    "description": "Cerca de 'Sur de la charca de Agheel', se encuentra un escarabajo con la Ceniza de Guerra: Desenvainar y una Lágrima Larvaria.",
-    "category": ["Ceniza de Guerra", "Objeto"],
-    "items": ["Ceniza de Guerra: Desenvainar", "Lágrima Larvaria"],
-    "mapCoords": { "x": 800, "y": 880 }
-  },
-  {
-    "id": 27,
-    "section": "Exploración de la Charca de Agheel y sus Alrededores",
-    "title": "Cárcel Eterna del Sabueso Desolado",
-    "description": "En lo alto de la montaña opuesta, el Sinluz se acerca a la entrada de la 'Cárcel Eterna del Sabueso Desolado' para enfrentarse al jefe Caballero Sabueso Darriwil.",
-    "category": ["Jefe", "Mazmorra"],
-    "items": [],
-    "mapCoords": { "x": 480, "y": 920 }
-  },
-  {
-    "id": 28,
-    "section": "Fin de la Exploración de Necrolimbo (Oeste)",
-    "title": "Paso a Necrolimbo (Este)",
-    "description": "Una vez completados los eventos en Necrolimbo (Oeste), el Sinluz procede a la siguiente zona, Necrolimbo (Este).",
-    "category": ["Ubicación"],
-    "items": [],
-    "mapCoords": { "x": 950, "y": 650 }
+    "section": "Siguiente destino",
+    "title": "Siguiente destino",
+    "description": "Después de Necrolimbo (Este), la guía indica que la próxima zona es **Península del Llanto** [18]."
   }
 ]
