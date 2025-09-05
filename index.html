@@ -908,6 +908,12 @@
                             </svg>
                             Objetos
                         </a>
+                        <a href="#" class="dropdown-item" data-nav="legendarios">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Legendarios
+                        </a>
                         <a href="#" class="dropdown-item" id="installButton-top" style="display: none;">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -1203,6 +1209,51 @@
             </div>
         </main>
 
+        <!-- Pantalla de Legendarios (oculta por defecto) -->
+        <main id="screen-legendarios" class="hidden">
+            <header class="text-center mb-8">
+                <h1 class="glass-title text-4xl font-bold mb-4">Guías Legendarias</h1>
+                <p class="text-zinc-300 text-lg">Construye los mejores personajes con estas guías detalladas</p>
+            </header>
+
+            <div class="max-w-6xl mx-auto px-4 pb-24">
+                <div id="legendarios-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Las tarjetas de las guías se insertarán aquí por JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Pantalla de Detalle de Guía Legendaria (oculta por defecto) -->
+        <main id="screen-legendario-detail" class="hidden">
+            <header class="mb-8">
+                <button id="back-to-legendarios-button" class="glass-button flex items-center text-amber-400 hover:text-amber-300 font-semibold px-4 py-3 glass-fade-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    Volver a las Guías
+                </button>
+            </header>
+            
+            <div class="text-center mb-6">
+                <h1 id="legendario-detail-title" class="glass-title text-4xl font-bold"></h1>
+                <p id="legendario-detail-subtitle" class="text-zinc-400 text-lg mt-2"></p>
+            </div>
+
+            <!-- Barra de progreso de la guía -->
+            <div class="glass-card p-6 max-w-2xl mx-auto mb-8 glass-slide-in">
+                <div class="flex justify-between mb-3">
+                    <span class="text-base font-semibold text-amber-400">Progreso de la Guía</span>
+                    <span id="legendario-progress-text" class="text-sm font-semibold text-amber-400">0%</span>
+                </div>
+                <div class="glass-progress w-full h-3">
+                    <div id="legendario-progress-bar" class="glass-progress-bar h-3" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Contenido de la guía -->
+            <div id="legendario-content" class="max-w-4xl mx-auto px-4 pb-24">
+                <!-- El contenido de la guía se generará aquí -->
+            </div>
+        </main>
+
     </div>
 
     <!-- Navegación inferior fija -->
@@ -1234,6 +1285,12 @@
                     </svg>
                     <span class="text-xs font-medium">Guía</span>
                 </button>
+                <button id="nav-legendarios" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-xs font-medium">Legendarios</span>
+                </button>
                 <button id="installButton-nav" class="bottom-nav-button glass-nav-button flex flex-col items-center py-2 px-4 text-zinc-400" style="display: none;">
                     <svg class="h-6 w-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
@@ -1251,6 +1308,216 @@
                 { id: "mision01", name: "Misión de Ranni", description: "Ayuda a la bruja Ranni a desafiar a los Dos Dedos y forjar la Edad de las Estrellas.", location: "Liurnia of the Lakes" },
                 { id: "mision02", name: "Misión de Fia", description: "Conviértete en el campeón de Fia, la Compañera de la Muerte, para dar a luz a la Runa de la Muerte.", location: "Deeproot Depths" },
                 { id: "mision03", name: "Misión de Hyetta", description: "Guía a la doncella Hyetta hacia los Tres Dedos para que se convierta en la portadora de la Llama Frenética.", location: "Subterranean Shunning-Grounds" }
+            ];
+
+            const mockLegendarios = [
+                {
+                    id: "samurai-legendario",
+                    title: "Samurái Legendario",
+                    subtitle: "Guía completa para crear el mejor Samurái",
+                    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                    color: "from-red-500 to-red-700",
+                    borderColor: "border-red-500",
+                    steps: [
+                        {
+                            id: "creacion-personaje",
+                            title: "Creación y preparación inicial del personaje",
+                            color: "amber-400",
+                            items: [
+                                "Crear un nuevo personaje y elegir la clase Samurái",
+                                "Personalizar el personaje y elegir el recuerdo de la Llave de Espada de Piedra",
+                                "Completar el tutorial para obtener entre 500 y 600 runas y asignar todos los frascos a la sanación"
+                            ]
+                        },
+                        {
+                            id: "primeros-pasos",
+                            title: "Primeros pasos y obtención del Mangual",
+                            color: "blue-400",
+                            items: [
+                                "Salir a Limgrave y dirigirse a la Iglesia de Elleh para recoger una Runa Dorada y la primera Piedra de Herrería",
+                                "Recoger las runas doradas de los cráneos que brillan en el suelo",
+                                "Acabar con los soldados de Godrick y entrar en la cueva a la izquierda del camino (presumiblemente la Cueva de Forja)",
+                                "Ignorar a los lobos en la cueva y derrotar al jefe final para obtener aproximadamente 1000 runas y un amuleto",
+                                "Al salir, acabar con todos los enemigos hasta las runas frente al Castillo de Stormville",
+                                "Dirigirse completamente a la derecha hacia una carroza para obtener el Mangual, un arma clave para la guía",
+                                "Farmear hasta tener 3000 runas para subir la Destreza a 18 (el Samurái empieza con 15)",
+                                "Aceptar la misión de Melina para obtener a Torrent",
+                                "Subir los tres niveles de Destreza necesarios"
+                            ]
+                        },
+                        {
+                            id: "items-clave",
+                            title: "Ítems clave y exploración temprana",
+                            color: "green-400",
+                            items: [
+                                "Con Torrent, dirigirse al final de las ruinas para coger el mapa y luego a la derecha para encontrar la Piedra de Afilar",
+                                "Volver a la Iglesia de Elleh para encontrar a Renna y obtener los espíritus de los lobos",
+                                "Bajar a la playa detrás del Primer Paso, entrar en la cueva a la izquierda, derrotar a los dos semihumanos grandes con ayuda de los lobos",
+                                "En la isla al final de la cueva, obtener una Piedra Sombreada Nivel 1 y una Piedra de Herrería Nivel 2",
+                                "Comprar tres Piedras de Herrería al mercader al final de la playa",
+                                "Encontrar una Pata de Ave Encurtida en Oro cerca de unos esqueletos que se levantan"
+                            ]
+                        },
+                        {
+                            id: "misiones-materiales",
+                            title: "Misiones y materiales de mejora",
+                            color: "purple-400",
+                            items: [
+                                "En el sector del Lago, encontrar una Piedra de Herrería Nivel 1 y hablar con Yura para iniciar su misión",
+                                "Pasar por debajo del puente, ser invadido y derrotar al enemigo",
+                                "Continuar por el río, encontrar a Yura de nuevo y agotar todos sus diálogos",
+                                "Dirigirse a la cueva de Patches, activar su pelea, perdonarle la vida y comprar tres Patas Encurtidas en Oro",
+                                "Continuar alrededor del lago, subir a una colina para encontrar la quinta Pata de Ave Encurtida en Oro",
+                                "Entrar a Stormville, subir hasta la primera Semilla Dorada, ir a la derecha y llamar la atención de un gigante para que rompa una estatua, obteniendo Piedras de Herrería Nivel 1 y 2"
+                            ]
+                        },
+                        {
+                            id: "caelid-farmeo",
+                            title: "Viaje a Caelid y farmeo de runas",
+                            color: "red-400",
+                            items: [
+                                "Detrás de la Tercera Iglesia de Marika, tomar un teletransportador a Caelid",
+                                "Ignorar enemigos, encontrar una Semilla Dorada debajo de una gárgola gigante",
+                                "Cruzar el puente, evitar al dragón gigante, dirigirse detrás de un árbol para encontrar un torbellino",
+                                "Usar el torbellino para subir a la montaña y llegar a Fort Faroth, un punto clave para el farmeo de runas",
+                                "Dentro de Fort Faroth, seguir la ruta milimétrica para evitar enemigos, subir y obtener la parte derecha del Medallón de Dectus de un cofre",
+                                "Saltar por los agujeros en el suelo, buscar el Medallón de Radagon",
+                                "Volver al campo de gracia, ponerse el medallón y aceptar ir a la Mesa Redonda con Melina",
+                                "En la Mesa Redonda, ir con Hewg para mejorar el Mangual con las Piedras de Herrería Nivel 1",
+                                "Farmear runas atacando al dragón durmiente con el Mangual para provocarle sangrado",
+                                "Obtener aproximadamente 300,000 runas y dar prioridad a Destreza, Vigor y Tolerancia"
+                            ]
+                        },
+                        {
+                            id: "mas-items",
+                            title: "Más ítems y habilidades",
+                            color: "yellow-400",
+                            items: [
+                                "Dirigirse al sur por la muralla quemada, pasar un escarabajo gigante, lanzarse por un precipicio a unas ramas y cruzar a una cueva con Podredumbre Escarlata",
+                                "Navegar la cueva con cuidado para evitar la Podredumbre Escarlata y derrotar a los dos jefes finales con el Mangual",
+                                "Obtener el Escarabajo Dorado, un emblema que facilita el farmeo de runas",
+                                "Dirigirse al Pantano de Aeonia, a Caelia, la Antigua Ciudad, y disparar a un escarabajo para obtener la ceniza de guerra \"Corte Doble\"",
+                                "Subir y al fondo a la izquierda, encontrar otra Semilla Dorada",
+                                "Entrar a los Túneles de Cristal de Caelid, recoger Piedras de Herrería y derrotar al jefe con el Mangual",
+                                "Obtener la Campana de Minero de Piedras Sombreadas Nivel 1"
+                            ]
+                        },
+                        {
+                            id: "armas-mejoras",
+                            title: "Armas y mejoras adicionales",
+                            color: "indigo-400",
+                            items: [
+                                "Dirigirse a la Cueva de la Prisión y usar la Llave de Espada de Piedra inicial para abrir celdas y obtener el Wakizashi",
+                                "Entrar al Túnel Gaélico, ignorar enemigos y derrotar al jefe para obtener la Katana del Velo Lunar",
+                                "Dirigirse a las ruinas donde aúlla Blaidd y encontrar una Piedra de Herrería Nivel 2 en un cofre",
+                                "Dirigirse al Pequeño Árbol Áureo para obtener más Lágrimas para la mezcla de cataplasma",
+                                "Comprar tres Piedras de Herrería Nivel 1 al mercader a la orilla del camino",
+                                "Llegar al fuerte al final de Caelid (Fort Gael), evitar enemigos, derrotar a un caballero para obtener su ceniza de guerra",
+                                "Subir a la torre más alta del fuerte para encontrar la parte izquierda del Medallón de Dectus",
+                                "Debajo del castillo, encontrar otra Piedra de Herrería Nivel 1"
+                            ]
+                        },
+                        {
+                            id: "peninsula-llanto",
+                            title: "Península del Llanto y Castillo Morne",
+                            color: "pink-400",
+                            items: [
+                                "Volver a Limgrave, cruzar el Puente del Sacrificio hacia la Península del Llanto",
+                                "Encontrar una Piedra de Herrería y una Llave de Espada de Piedra",
+                                "Encontrar otra Piedra de Herrería Nivel 2 y comprar otra Piedra de Herrería Nivel 2 y Nivel 3 al mercader",
+                                "Encontrar otra Piedra de Herrería Nivel 1 al otro lado de la muralla y una Semilla Dorada",
+                                "Dirigirse a la izquierda del Castillo Morne para encontrar una Piedra Sombreada de Herrería Nivel 2",
+                                "Entrar al Castillo Morne, ir a la izquierda evitando perros, coger una Piedra de Herrería Nivel 2",
+                                "Correr por el castillo, evitar la Claymore, coger la Piedra de Herrería Nivel 2 al final de la pared",
+                                "En la primera torre, encontrar el Talismán de Hojas Gemelas",
+                                "Bajar por la parte trasera del castillo, con cuidado, para encontrar un cadáver con una Piedra de Herrería Nivel 2",
+                                "Detrás de una estructura antes del jefe, encontrar otra Piedra Sombreada de Herrería Nivel 1",
+                                "Cruzar el puente, llegar a la Iglesia de la Peregrinación, coger la Lágrima Sagrada",
+                                "Cruzar al valle a la otra iglesia para encontrar otra Lágrima Sagrada",
+                                "Bajar a la playa, comprar la Lámpara y tres Piedras de Herrería Nivel 2 al mercader",
+                                "Volver a la Mesa Redonda, mejorar el Mangual a Nivel 7 con Hewg y usar las piedras restantes en las Katanas"
+                            ]
+                        },
+                        {
+                            id: "liurnia-academia",
+                            title: "Liurnia de los Lagos y Academia",
+                            color: "teal-400",
+                            items: [
+                                "Al llegar a la entrada de Stormville, ir a la derecha para encontrar un camino oculto con un puente roto y cruzar a Liurnia",
+                                "En Liurnia, al lado izquierdo, en la Iglesia de Irith, encontrar otra Lágrima Sagrada",
+                                "Comprar las Piedras de Herrería a la venta al primer mercader",
+                                "Llegar a las puertas de la Academia de Raya Lucaria, activar el campo de gracia",
+                                "Ir por detrás del dragón para coger la llave de la Academia",
+                                "Dirigirse al Túnel de Cristal de Raya Lucaria, coger piedras si se desea, y derrotar al jefe con el Mangual",
+                                "Obtener la Campana de Minero de Piedras de Herrería Nivel 1",
+                                "Entrar a la Academia de Raya Lucaria, ir a la plaza principal, tomar el camino de la derecha, activar la señal de invocación para invadir un Tárnished",
+                                "Derrotar al Tárnished, volver a Liurnia, encontrar a Yura para que te regale una Piedra de Herrería Nivel 5 y agotar sus diálogos",
+                                "Al final del puente, encontrar una Semilla Dorada"
+                            ]
+                        },
+                        {
+                            id: "farum-altus",
+                            title: "Farum Azula y Meseta Altus",
+                            color: "orange-400",
+                            items: [
+                                "Dirigirse a los Cuatro Campanarios, ir al más alto, encontrar una Llave de Espada Imbuida",
+                                "Usar la llave en la puerta de más abajo (\"Tierras Desmoronadas\") para activar el portal a Farum Azula",
+                                "Realizar un segundo \"run warp\" para regresar a la entrada principal de Farum Azula",
+                                "Encontrar una Piedra de Herrería Nivel 8 y, al bajar, en una terraza, encontrar la Campana de Minero de Piedras Sombreadas Nivel 4",
+                                "Volver a la plaza de Raya Lucaria, activar el sello que lleva al Camino de Bellum",
+                                "Un poco a la izquierda, en la Iglesia de Bellum, encontrar otra Lágrima Sagrada",
+                                "Continuar el camino, evitar enemigos, y llegar al Elevador de Dectus para subir a la Meseta de Altus",
+                                "Continuar por el camino principal, a la izquierda, encontrar una Semilla Dorada",
+                                "Seguir a la izquierda, llegar a la segunda Iglesia de Marika, encontrar a Yura moribundo",
+                                "Derrotar a Eleonora (que invadirá) para obtener la Hoja de Asta de Eleonora y la Nagakiba de Yura",
+                                "Recordar coger la Lágrima Sagrada de la iglesia",
+                                "En las runas, conseguir una Piedra Sombreada de Herrería Nivel 5",
+                                "Bajar para encontrar unas criaturas que guardan un escarabajo que contiene otra Piedra Sombreada de Herrería Nivel 5",
+                                "Entrar al Túnel de Altus, derrotar a los jefes finales con el mangual",
+                                "Obtener la Campana de Minero de Rodamiento de Piedras (permite comprar piedras Nivel 3 y 4)"
+                            ]
+                        },
+                        {
+                            id: "leyndell-tierras",
+                            title: "Leyndell y Tierras Prohibidas",
+                            color: "cyan-400",
+                            items: [
+                                "Continuar hasta la ciudad (Leyndell), pasar corriendo por la entrada complicada",
+                                "Al final, encontrar un campo de gracia con dos Semillas Doradas",
+                                "A la izquierda, cerca del acantilado, encontrar una bajada a un pequeño lago que lleva a una cueva",
+                                "En la cueva (Túnel Sellado), rodar para abrir el camino secreto entre la estaca de invocación y la farola",
+                                "Justo a la derecha, encontrar la segunda Campana Minera de Rodamiento",
+                                "Seguir subiendo por las afueras de la ciudad para encontrar otras dos Semillas Doradas y, cerca de un comerciante, otra Piedra de Herrería Nivel 5",
+                                "Dirigirse al Pequeño Árbol Áureo, coger las Lágrimas de Cristal",
+                                "Cerca de los arqueros gigantes, coger la Piedra de Herrería Nivel 5 en el centro",
+                                "Bajar por un camino a la derecha de los Gólems a la Tumba Lateral de Auria, tocar el campo de gracia",
+                                "Equipar \"Corte Sangriento\" con afinidad de Sangre en una Uchigatana",
+                                "Realizar un \"zip glitch\" en el acantilado para llegar a las Tierras Nevadas",
+                                "Realizar otro \"run warp\" para aparecer en la parte superior del Gran Elevador de Rold"
+                            ]
+                        },
+                        {
+                            id: "picos-gigantes",
+                            title: "Picos de los Gigantes y Armamento Final",
+                            color: "rose-400",
+                            items: [
+                                "Continuar en territorio de gigantes, en el primer punto de gracia, encontrar y matar a Shabiri para obtener el set de armadura de Yura",
+                                "En las ruinas de Zamor, a la derecha, encontrar otra Campana de Rodamiento (Nivel 3, para comprar piedras Nivel 5 y 6)",
+                                "En el Lago Congelado del Norte, en una iglesia con un cadáver, encontrar la Campana de Piedras Sombreadas Nivel 3",
+                                "Dentro de la Primera Iglesia de Marika, encontrar una Lágrima de Cristal",
+                                "Dirigirse a la parte del mapa donde invadirá un \"ronin\" para obtener la Katana Ríos de Sangre",
+                                "Dirigirse al Túnel de Yelough Anix, bajar el ascensor y tocar el campo de gracia",
+                                "Subir, equipar el medallón de runas, y realizar el \"salto de farmeo\" para obtener aproximadamente 200,000 runas",
+                                "En la Mesa Redonda, ofrecer todas las Campanas de Minero a las Hermanas Gemelas para poder comprar Piedras de Herrería del Nivel 1 al 6 y Piedras Sombreadas del Nivel 1 al 8",
+                                "Calcular y comprar las 12 piedras de cada nivel por cada una de las siete armas",
+                                "Ir con Hewg para aplicar las Cenizas de Guerra recomendadas",
+                                "Priorizar las estadísticas Destreza y Arcano, y también Vigor y Aguante",
+                                "Practicar el intercambio rápido entre katanas para usar sus diferentes Cenizas de Guerra"
+                            ]
+                        }
+                    ],
+                    conclusion: "🎯 A partir de este punto, el personaje estará listo para el \"endgame\" y podrá empezar a jugar la historia, derrotando a todos los jefes y semidioses de las Tierras Intermedias como un Samurái legendario."
+                }
             ];
 
             // Elementos del DOM
@@ -1280,6 +1547,7 @@
             const loadingIndicator = document.getElementById('loading-indicator');
             const backButton = document.getElementById('back-button');
             const backToZonesButton = document.getElementById('back-to-zones-button');
+            const backToLegendariosButton = document.getElementById('back-to-legendarios-button');
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
             
@@ -1288,6 +1556,7 @@
             const navEquipment = document.getElementById('nav-equipment');
             const navItems = document.getElementById('nav-items');
             const navTimeline = document.getElementById('nav-timeline');
+            const navLegendarios = document.getElementById('nav-legendarios');
             const bottomNavButtons = document.querySelectorAll('.bottom-nav-button');
 
             // Elementos de la barra superior
@@ -1307,7 +1576,7 @@
             const itemsTabButtons = document.querySelectorAll('.items-tab-button');
             const itemsContents = document.querySelectorAll('.items-content');
 
-            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions, timeline: [] };
+            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions, timeline: [], legendarios: mockLegendarios };
             let progressState = {};
             const STORAGE_KEY = 'eldenRingProgress';
             let currentZoneId = null;
@@ -2245,6 +2514,7 @@
                     console.log("Unique Regions:", Object.values(gameData.zones).map(zone => zone.name));
                     loadProgress();
                     renderZones();
+                    renderLegendarios();
 
                     // Inicializar la guía para que esté lista
                     renderTimelineList(gameData.timeline);
@@ -2326,6 +2596,9 @@
                 } else if (screenId === 'screen-timeline') {
                     navTimeline.classList.add('active', 'text-amber-400');
                     navTimeline.classList.remove('text-zinc-400');
+                } else if (screenId === 'screen-legendarios') {
+                    navLegendarios.classList.add('active', 'text-amber-400');
+                    navLegendarios.classList.remove('text-zinc-400');
                 }
                 
                 window.scrollTo(0, 0);
@@ -2581,6 +2854,197 @@
                 });
             }
 
+            // --- FUNCIONES DE GUÍAS LEGENDARIAS ---
+            function renderLegendarios() {
+                const container = document.getElementById('legendarios-list');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (gameData.legendarios.length === 0) {
+                    container.innerHTML = '<div class="glass-card col-span-full text-center p-6 glass-fade-in"><p class="text-zinc-400">No hay guías legendarias disponibles.</p></div>';
+                    return;
+                }
+                
+                gameData.legendarios.forEach(legendario => {
+                    const progress = calculateLegendarioProgress(legendario.id);
+                    const card = document.createElement('div');
+                    card.className = 'glass-card p-6 cursor-pointer glass-fade-in';
+                    card.dataset.id = legendario.id;
+                    
+                    card.innerHTML = `
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br ${legendario.color} rounded-lg flex items-center justify-center mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${legendario.icon}" />
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="glass-title text-xl font-bold">${legendario.title}</h3>
+                                <p class="text-zinc-400 text-sm">${legendario.subtitle}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-amber-400 font-semibold text-lg">${progress.toFixed(0)}%</span>
+                            </div>
+                        </div>
+                        <div class="glass-progress w-full h-2 mb-2">
+                            <div class="glass-progress-bar h-2" style="width: ${progress}%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-zinc-500">
+                            <span>${getCompletedSteps(legendario.id)} de ${getTotalSteps(legendario.id)} pasos completados</span>
+                            <span>${legendario.steps.length} secciones</span>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => {
+                        card.classList.add('glass-press');
+                        setTimeout(() => card.classList.remove('glass-press'), 200);
+                        showLegendarioDetail(legendario.id);
+                    });
+                    
+                    container.appendChild(card);
+                });
+            }
+
+            function calculateLegendarioProgress(legendarioId) {
+                const legendario = gameData.legendarios.find(l => l.id === legendarioId);
+                if (!legendario) return 0;
+                
+                let totalSteps = 0;
+                let completedSteps = 0;
+                
+                legendario.steps.forEach(step => {
+                    totalSteps += step.items.length;
+                    step.items.forEach(item => {
+                        const itemId = `${legendarioId}-${step.id}-${step.items.indexOf(item)}`;
+                        if (progressState[itemId]) {
+                            completedSteps++;
+                        }
+                    });
+                });
+                
+                return totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
+            }
+
+            function getCompletedSteps(legendarioId) {
+                const legendario = gameData.legendarios.find(l => l.id === legendarioId);
+                if (!legendario) return 0;
+                
+                let completedSteps = 0;
+                legendario.steps.forEach(step => {
+                    step.items.forEach(item => {
+                        const itemId = `${legendarioId}-${step.id}-${step.items.indexOf(item)}`;
+                        if (progressState[itemId]) {
+                            completedSteps++;
+                        }
+                    });
+                });
+                
+                return completedSteps;
+            }
+
+            function getTotalSteps(legendarioId) {
+                const legendario = gameData.legendarios.find(l => l.id === legendarioId);
+                if (!legendario) return 0;
+                
+                let totalSteps = 0;
+                legendario.steps.forEach(step => {
+                    totalSteps += step.items.length;
+                });
+                
+                return totalSteps;
+            }
+
+            function showLegendarioDetail(legendarioId) {
+                const legendario = gameData.legendarios.find(l => l.id === legendarioId);
+                if (!legendario) return;
+                
+                // Actualizar título y subtítulo
+                document.getElementById('legendario-detail-title').textContent = legendario.title;
+                document.getElementById('legendario-detail-subtitle').textContent = legendario.subtitle;
+                
+                // Actualizar progreso
+                const progress = calculateLegendarioProgress(legendarioId);
+                document.getElementById('legendario-progress-text').textContent = `${progress.toFixed(0)}%`;
+                document.getElementById('legendario-progress-bar').style.width = `${progress}%`;
+                
+                // Renderizar contenido
+                renderLegendarioContent(legendario);
+                
+                // Mostrar pantalla de detalle
+                showScreen('screen-legendario-detail');
+            }
+
+            function renderLegendarioContent(legendario) {
+                const container = document.getElementById('legendario-content');
+                if (!container) return;
+                
+                let html = '';
+                
+                legendario.steps.forEach((step, stepIndex) => {
+                    html += `
+                        <div class="border-l-4 border-${step.color} pl-4 mb-6">
+                            <h3 class="text-lg font-semibold text-${step.color} mb-3">${stepIndex + 1}. ${step.title}</h3>
+                            <ul class="space-y-2">
+                    `;
+                    
+                    step.items.forEach((item, itemIndex) => {
+                        const itemId = `${legendario.id}-${step.id}-${itemIndex}`;
+                        const isCompleted = progressState[itemId] || false;
+                        
+                        html += `
+                            <li class="flex items-start space-x-3 text-zinc-300">
+                                <button 
+                                    class="w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-all duration-200 ${
+                                        isCompleted 
+                                            ? 'bg-amber-400 border-amber-400 text-black' 
+                                            : 'border-zinc-500 hover:border-amber-400'
+                                    }"
+                                    data-item-id="${itemId}"
+                                    onclick="toggleLegendarioItem('${itemId}')"
+                                >
+                                    ${isCompleted ? '✓' : ''}
+                                </button>
+                                <span class="flex-1 ${isCompleted ? 'line-through text-zinc-500' : ''}">${item}</span>
+                            </li>
+                        `;
+                    });
+                    
+                    html += `
+                            </ul>
+                        </div>
+                    `;
+                });
+                
+                // Agregar conclusión
+                if (legendario.conclusion) {
+                    html += `
+                        <div class="mt-6 p-4 bg-gradient-to-r from-amber-900/20 to-yellow-900/20 rounded-lg border border-amber-500/30">
+                            <p class="text-amber-200 font-semibold text-center">${legendario.conclusion}</p>
+                        </div>
+                    `;
+                }
+                
+                container.innerHTML = html;
+            }
+
+            function toggleLegendarioItem(itemId) {
+                progressState[itemId] = !progressState[itemId];
+                saveProgress();
+                
+                // Re-renderizar el contenido actual
+                const legendarioId = itemId.split('-')[0] + '-' + itemId.split('-')[1];
+                const legendario = gameData.legendarios.find(l => l.id === legendarioId);
+                if (legendario) {
+                    renderLegendarioContent(legendario);
+                    
+                    // Actualizar progreso
+                    const progress = calculateLegendarioProgress(legendarioId);
+                    document.getElementById('legendario-progress-text').textContent = `${progress.toFixed(0)}%`;
+                    document.getElementById('legendario-progress-bar').style.width = `${progress}%`;
+                }
+            }
+
             // --- NAVEGACIÓN ---
             backButton.addEventListener('click', () => {
                 // Animación de cristal
@@ -2625,6 +3089,19 @@
                 currentZoneId = null;
                 renderZones(); // Re-render para mostrar progreso actualizado
                 screenZones.classList.remove('hidden');
+            });
+
+            backToLegendariosButton.addEventListener('click', () => {
+                // Animación de cristal
+                backToLegendariosButton.classList.add('glass-press');
+                setTimeout(() => backToLegendariosButton.classList.remove('glass-press'), 200);
+                // Retroalimentación háptica
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-legendarios');
+                updateBottomNavActive('nav-legendarios');
+                renderLegendarios(); // Re-render para mostrar progreso actualizado
             });
 
             // --- BARRA SUPERIOR ---
@@ -2674,6 +3151,9 @@
                             showScreen('screen-items');
                             updateBottomNavActive('nav-items');
                             renderItemsContent();
+                        } else if (navType === 'legendarios') {
+                            showScreen('screen-legendarios');
+                            updateBottomNavActive('nav-legendarios');
                         }
                         hideDropdownMenu();
                     }
@@ -2741,6 +3221,16 @@
                 }
                 showScreen('screen-timeline');
                 updateBottomNavActive('nav-timeline');
+            });
+
+            navLegendarios.addEventListener('click', () => {
+                navLegendarios.classList.add('glass-press');
+                setTimeout(() => navLegendarios.classList.remove('glass-press'), 200);
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                showScreen('screen-legendarios');
+                updateBottomNavActive('nav-legendarios');
             });
 
             // --- LÓGICA DE LA GUÍA ---
@@ -3187,6 +3677,10 @@
             }
             
             // Función para manejar clics en resultados de búsqueda
+            window.toggleLegendarioItem = function(itemId) {
+                toggleLegendarioItem(itemId);
+            };
+
             window.handleSearchResultClick = function(type, id) {
                 hideGeneralSearchResults();
                 
