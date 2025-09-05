@@ -3256,45 +3256,76 @@
 
                 timelineListContent.innerHTML = ''; // Limpiar antes de renderizar
 
+                // Crear la tarjeta principal para la guía de Necrolimbo
+                const guideCard = document.createElement('div');
+                guideCard.className = 'glass-card p-4 mb-6';
+
+                // Crear el encabezado de la tarjeta
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'flex justify-between items-center cursor-pointer';
+                cardHeader.innerHTML = `
+                    <h2 class="font-cinzel text-2xl text-amber-400 font-bold">Guía de Necrolimbo</h2>
+                    <svg class="w-6 h-6 text-amber-400 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                `;
+
+                // Crear el contenedor del contenido de la guía (colapsable)
+                const guideContent = document.createElement('div');
+                guideContent.className = 'mt-4 space-y-4 hidden'; // Oculto por defecto
+
+                // Lógica para renderizar el contenido de la guía (la misma que antes)
                 const groupedBySection = data.reduce((acc, event) => {
                     (acc[event.section] = acc[event.section] || []).push(event);
                     return acc;
                 }, {});
 
                 if (Object.keys(groupedBySection).length === 0) {
-                    timelineListContent.innerHTML = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos que coincidan con tu búsqueda.</div>';
-                    return;
+                    guideContent.innerHTML = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos.</div>';
+                } else {
+                    for (const section in groupedBySection) {
+                        const sectionHeader = document.createElement('h3');
+                        sectionHeader.className = 'font-cinzel text-xl text-amber-500 font-bold pt-2';
+                        sectionHeader.textContent = section;
+                        guideContent.appendChild(sectionHeader);
+
+                        const sectionContainer = document.createElement('div');
+                        sectionContainer.className = 'space-y-4';
+
+                        groupedBySection[section].forEach(event => {
+                            const isChecked = progressState[event.id] || false;
+                            const eventCard = document.createElement('div');
+                            eventCard.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
+                            eventCard.dataset.id = event.id;
+
+                            eventCard.innerHTML = `
+                                <div>
+                                    <h4 class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${event.title}</h4>
+                                    <p class="text-zinc-400 text-sm mt-1">${event.description.substring(0, 100)}...</p>
+                                </div>
+                                <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
+                                <div class="swipe-hint">← Desliza</div>
+                            `;
+
+                            sectionContainer.appendChild(eventCard);
+                            new SwipeHandler(eventCard, event.id, null, () => showTimelineEventDetails(event.id));
+                        });
+                        guideContent.appendChild(sectionContainer);
+                    }
                 }
 
-                for (const section in groupedBySection) {
-                    const sectionHeader = document.createElement('h2');
-                    sectionHeader.className = 'font-cinzel text-2xl text-amber-400 font-bold sticky top-20 bg-black/50 py-2';
-                    sectionHeader.textContent = section;
-                    timelineListContent.appendChild(sectionHeader);
+                // Añadir el manejador de eventos para colapsar/expandir
+                cardHeader.addEventListener('click', () => {
+                    guideContent.classList.toggle('hidden');
+                    cardHeader.querySelector('svg').classList.toggle('rotate-180');
+                });
 
-                    const sectionContainer = document.createElement('div');
-                    sectionContainer.className = 'space-y-4';
+                // Ensamblar la tarjeta
+                guideCard.appendChild(cardHeader);
+                guideCard.appendChild(guideContent);
 
-                    groupedBySection[section].forEach(event => {
-                        const isChecked = progressState[event.id] || false;
-                        const card = document.createElement('div');
-                        card.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
-                        card.dataset.id = event.id;
-
-                        card.innerHTML = `
-                            <div>
-                                <h3 class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${event.title}</h3>
-                                <p class="text-zinc-400 text-sm mt-1">${event.description.substring(0, 100)}...</p>
-                            </div>
-                            <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
-                            <div class="swipe-hint">← Desliza</div>
-                        `;
-
-                        sectionContainer.appendChild(card);
-                        new SwipeHandler(card, event.id, null, () => showTimelineEventDetails(event.id));
-                    });
-                    timelineListContent.appendChild(sectionContainer);
-                }
+                // Añadir la tarjeta al contenedor principal
+                timelineListContent.appendChild(guideCard);
             }
 
 
