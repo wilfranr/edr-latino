@@ -1,0 +1,128 @@
+[
+  {
+    "id": "peninsula-01",
+    "section": "Puente del Sacrificio y Alrededores",
+    "title": "Inicio en Necrolimbo (Este)",
+    "description": "Acción: Completa la sección de Necrolimbo (Este) (orden propuesto, no estricto) [1].\nTransporte: Ve a la parte Sureste de Necrolimbo, puedes transportarte a “Sur de la charca de Agheel” para ahorrar tiempo [1]."
+  },
+  {
+    "id": "peninsula-02",
+    "section": "Puente del Sacrificio y Alrededores",
+    "title": "Cruzar el Puente del sacrificio",
+    "description": "Enemigos: Balista potente al fondo y soldados [1].\nAcción: Ignora a los enemigos y ve directo a la balista. Luego, despeja la zona [2].\nColeccionables:\n- Cadáver por el bordillo izquierdo: Piedra de forja [3] x1 [2].\n- Cadáver más al fondo: Llave de espada pétrea x1 [2].\nLugar de Gracia: Activa “Puente del sacrificio” [2].\nNPC: Habla con Irina para comenzar su historia [2]."
+  },
+  {
+    "id": "peninsula-03",
+    "section": "Puente del Sacrificio y Alrededores",
+    "title": "Exploración al Sur del Puente",
+    "description": "Enemigos: Gigante, soldados, perros, criaturas extrañas [4].\nColeccionables:\n- Cadáver por la derecha: Tira de carne blanca x1 [4].\n- Otro cadáver por la derecha: Runa dorada [5] x1 [4].\n- Cofre en el carro grande: Lucero del alba [4].\n- Cadáver en el camino: Piedra de forja [5] x1 [4]."
+  },
+  {
+    "id": "peninsula-04",
+    "section": "Puente del Sacrificio y Alrededores",
+    "title": "Encuentro con Escarabajo y Ruta a Lugares de Gracia",
+    "description": "Acción: Mata un escarabajo antes de la intersección [4].\nRecompensa: Ceniza de Guerra: Disparo poderoso [4].\nIntersección (Derecha):\n- Lugar de Gracia: “Sur de la torre vigía” [4].\nIntersección (Regreso al camino principal, luego Sur):\n- Acción: Sube por la colina a la izquierda (Este) [4].\n- Lugar de Gracia: “Muralla del castillo de Morne” [4].\n- NPC: Comerciante nómada 4 [4]."
+  },
+  {
+    "id": "peninsula-05",
+    "section": "Eventos y Mapa",
+    "title": "Eventos Nocturnos y Mapa de la Península",
+    "description": "Evento Nocturno (Opcional): Espera a que sea de noche cerca de “Muralla del castillo de Morne” [6].\nJefazo Nocturno: Caballería nocturna [6].\nColeccionable: Mapa: Península del Llanto en un pilar/santuario [6].\nEvento Nocturno (Opcional, al Oeste del mapa):\n- Jefazo Nocturno: Ave de la muerte [6].\n- Coleccionable: Semilla dorada junto a un arbolito en una zona elevada [6]."
+  },
+  {
+    "id": "peninsula-06",
+    "section": "Eventos y Mapa",
+    "title": "Escarabajo y Ascenso a Torre elevada",
+    "description": "Acción: Desde donde recogiste el mapa, ve hacia el Este y busca un escarabajo entre los árboles [7].\nRecompensa: Encantamiento Niebla venenosa [7].\nAcción: Vuelve al lugar de gracia (junto al mercader). Usa el caballo y sube por un chorro a la parte elevada de la montaña, aterrizando en la torre [7].\nColeccionables:\n- Cadáver: Escudo Caparazón de gran tortuga [7].\n- Otro cadáver: Piedra caliente x2 [7]."
+  },
+  {
+    "id": "peninsula-07",
+    "section": "Exploración Noreste",
+    "title": "Visita a la Torre de Oridys",
+    "description": "Ubicación: Noreste de la Península del Llanto, cerca de los “chorros” [8, 9].\nAcción: Lee el libro junto a las escaleras; te pide buscar 3 bestias inteligentes (tortugas) para romper la barrera de entrada [9].\nBúsqueda de Tortugas:\n1. La más obvia, dándote la vuelta [10].\n2. Entre los arbustos a la izquierda de la entrada de la torre [10].\n3. Invisible en una charca al lado derecho de la torre; ataca donde veas marcas en el agua [10].\nAcción: Entra en la torre, sube escaleras y escalerillas [10].\nColeccionable: Cofre con Piedra de la memoria en la parte superior [10]."
+  },
+  {
+    "id": "peninsula-08",
+    "section": "Exploración Noreste",
+    "title": "Camino a Catacumbas del Empalador",
+    "description": "Ubicación: Al Norte de la Torre de Oridys, 'Claro impactado por meteoros' [8].\nAcción: Más al Norte, antes de bajar por el camino a las Catacumbas del Empalador, sigue por la parte de arriba [8].\nColeccionable: En el borde del acantilado, un cadáver sentado en una silla con Llave de espada pétrea x1 [8]."
+  },
+  {
+    "id": "peninsula-09",
+    "section": "Exploración Noreste",
+    "title": "Exploración de las Catacumbas del Empalador",
+    "description": "Ubicación: Entrada por la parte Noreste de la Península del Llanto, bajando por la derecha [11].\nLugar de Gracia: “Catacumbas del Empalador” [11].\nAcción: Desciende escaleras, encárgate de diablillos. Ignora la puerta cerrada por ahora y ve por el camino de la izquierda [11].\nSalas y Puzles:\n- Sala con 3 diablillos. Pasillo: un diablillo, Convalaria sepulcral [5] x1. Ve por la derecha/izquierda y baja escaleras [12].\n- Sala de Trampa de Pinchos: Pisa el suelo para que suba. Corre al hueco en la pared izquierda (donde hay una Violeta sepulcral), tírate al suelo, vuelve a subir al hueco. Cuando el suelo descienda, corre a la salida. Para continuar: pisa el suelo, déjalo subir y lánzate por el hueco de abajo [12].\nColeccionables:\n- En la siguiente sala: Convalaria espectral [5] [13].\n- Ignora esqueletos que reaparecen [13].\n- Cadáver a la izquierda: Busto parlante: 'Ayuda, por favor' [13].\n- Convalaria sepulcral [5] x1 [13].\n- Convalaria sepulcral [3] x1 [13].\n- Cadáver más adelante: Resina de raíz x3 [13].\nAcción: Sube la escalerilla al fondo. Tira de la palanca para abrir la puerta cerrada [13].\nAcción: Elimina diablillo, recoge Convalaria sepulcral [5] x1. Déjate caer por la ventanita para llegar a la puerta [13].\nJefazo: Baja escaleras, pasa por la niebla para enfrentarte al Perro guardián funerario del Árbol Áureo [13].\nAcción: Tras derrotarlo, usa el portal para salir [14]."
+  },
+  {
+    "id": "peninsula-10",
+    "section": "Castillo de Morne",
+    "title": "Viaje al Castillo de Morne",
+    "description": "Ubicación: Extremo Sur de la Península del Llanto [3].\nPrerrequisito: Asegúrate de haber comenzado la historia de Irina [3].\nPeligro: Arquero Gólem que dispara flechas grandes a gran distancia [3].\nEstrategia: Avanza de cobertura en cobertura. Si eres arquero, dispárale desde la última cobertura. Si no, atácale y esquiva sus flechas en el último momento [3].\nRecompensas (Gólem): Arco grande de gólem, Gran flecha x5, Gran flecha de gólem x5, Piedra de forja [3] x1 [5]."
+  },
+  {
+    "id": "peninsula-11",
+    "section": "Castillo de Morne",
+    "title": "Exploración del Castillo de Morne (Parte Superior)",
+    "description": "Acción: Sube escaleras, descansa en el lugar de gracia “Elevador del castillo de Morne”, luego sube en el elevador [5].\nPatio Superior:\n- Enemigos: Arpías, perros zombi, Lunático calabezudo (enemigo normal) [5].\n- Coleccionables: Cadáver en lo alto con Grasa de fuego x2 [5].\nDesde la entrada del patio: Sube por las escaleras de la izquierda [5].\n- Enemigos: Un par de perros [5].\n- Coleccionable: Cadáver con Piedra de forja [5] x1 [5].\nAcción: Sube por la montaña de cadáveres (donde estaban las arpías) [15].\nPrimera Sala (izquierda): Cofre con el espadón Claymore [15].\nAcción: Baja escaleras, sal fuera [15].\nEnemigos: Arpías y soldado (puedes dejar que se maten entre ellos) [15].\nAcción: Trepa por la escalerilla a lo alto de la torre [15].\nEnemigos: Más soldados/arpías [15].\nColeccionables:\n- Cadáver: Remedio de Dedo Doblado x1 [15].\n- Siguiente cadáver al fondo: Antorcha de acero [15].\nAcción: Regresa al patio principal, ve al fondo (donde estaba el calabaza) [16].\nColeccionables:\n- Tras el árbol de la izquierda: Cadáver con Piedra de forja [3] x3 [16].\nAcción: Ve por el lado opuesto, elimina otra arpía y sube por la escalerilla [16].\nParte Superior:\n- Enemigos: Primera arpía. En el puente: arpías aladas (gárgolas), cadáveres colgando [16].\n- Coleccionable: Cadáver en la barandilla derecha con Runa dorada [5] x1 [16].\n- Acción: Baja por la escalerilla al fondo a la izquierda [16].\n- Enemigos: Dos soldados (podría haber más luchando con arpías) [16].\n- Coleccionable: Runa dorada [5] x1 [16].\n- NPC: Sube a la torre del fondo para encontrarte con Edgar (consulta su sección de la guía) [16]."
+  },
+  {
+    "id": "peninsula-12",
+    "section": "Castillo de Morne",
+    "title": "Exploración del Castillo de Morne (Parte Inferior)",
+    "description": "Acción: Date media vuelta hasta el final del puente de las arpías y baja por la escalerilla en el lado opuesto [17].\nEnemigos: Arpía tras barriles, otra al fondo [17].\nColeccionable: Cadáver con Piedra de forja [5] x2 [17].\nAcción: Date media vuelta por donde viniste, sube la escalerilla, gira a la derecha y déjate caer por el bordillo [17].\nLugar de Gracia: “Retaguardia del Castillo” [17].\nAcción: Déjate caer por un par de bordillos más, luego a la izquierda a una plataforma [18].\nColeccionable: Cadáver con Llave de espada pétrea x1 [18].\nTierra Firme:\n- Enemigos: Arpías y “Pringues” [18].\n- Acción: Entra en la celda por la derecha [18].\n- Enemigos: Arpía y pringue en el techo [18].\n- Coleccionable: Cadáver con Cuello de tortuga macerado x1 [18].\n- NPC (Opcional): Habla con el fantasma de la jaula (no tiene mayor importancia) [18].\nAcción: Sal fuera y sigue hasta el fondo. Sube por la escalerilla a lo alto de la torre [19].\nColeccionable: Cofre con un Talismán con hoja doble [19].\nAcción: Date media vuelta y tírate por la derecha a un tejado de abajo. Déjate caer a tierra firme [19].\nColeccionable: Cadáver junto al árbol con Girasol dorado marchito x3 [19].\nAcción: Sigue dejándote caer por las rocas hacia el Este. Salta por la primera roca si es necesario. Déjate caer por un agujero cuadrado en el suelo para aterrizar en una viga [19].\nColeccionable: Cadáver en la viga con Piedra de forja [5] x2 [19].\nAcción: Déjate caer con cuidado a la siguiente viga [19].\nEnemigos (abajo): Arpía y varias ratas [19].\nColeccionable: Cadáver con Látigo [19]."
+  },
+  {
+    "id": "peninsula-13",
+    "section": "Castillo de Morne",
+    "title": "Preparación y Lucha contra el Jefazo del Castillo de Morne",
+    "description": "Acción: Sal fuera y descansa en el lugar de gracia “Patio de los reos” [20].\nAcción: Cruza el puente, elimina a las 'hermosas damiselas' [20].\nColeccionable: Cadáver con Daga arrojadiza x8 [20].\nAcción: Baja por la escalerilla. Elimina o pasa de las medusas (no atacan si no las atacas) [20].\nJefazo: Pasa por la niebla para enfrentarte al Bastardo leonino [20].\nNota (Opcional): Antes del jefazo, puedes conseguir una Umbrapiedra de forja [3] extra (consultar foro) [20]."
+  },
+  {
+    "id": "peninsula-14",
+    "section": "Castillo de Morne",
+    "title": "Post-Jefazo Castillo de Morne y Conclusión de Historias",
+    "description": "Lugar de Gracia: Examina “Fosa de los lamentos de Morne” [21].\nAcción: Ve a finiquitar la historia de Edgar e Irina [21]."
+  },
+  {
+    "id": "peninsula-15",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Exploración de la Aldea Enfermeda y Alrededores",
+    "description": "Transporte: Transportarse al lugar de gracia “Muralla del Castillo de Morne” [22].\nAcción: Ve hacia el Oeste, rodeando la montaña, y adéntrate en el bosque hacia el Noreste [22].\nUbicación: “La aldea enfermada” (con aldeanos locos y ratas) [22].\nColeccionable: En una de las casas por la parte Norte: Cadáver con Escudo de madera con blasón de llama [22].\nAcción: Ve hacia el Sur desde la aldea [23].\nUbicación: “Baptisterio de Callu” (con ratas) [23].\nColeccionables:\n- Cadáver: Encantamiento La llama de la locura [23].\n- Junto a la estatua: Lágrima sagrada [23].\nLugar de Gracia: Por la parte Norte de la aldea, cerca del acantilado: “Afueras de la aldea enfermada” [23].\nAcción: Acércate al acantilado al Oeste de la aldea y desciende por las plataformas [23].\nEnemigos: Muchos murciélagos, rayos constantes [23].\nObjetivo: Ve rápidamente a por el escarabajo del fondo (ignora murciélagos y rayos) [23].\nRecompensa: Encantamiento Ataque fulgurante [23].\nNota: Si el escarabajo desaparece, transpórtate y vuelve a intentar [24]."
+  },
+  {
+    "id": "peninsula-16",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Puente al Norte de la Aldea y Galería de Morne",
+    "description": "Acción: Cruza el puente al Norte de la aldea hacia el Oeste [24].\nEnemigo: Jefe semihumano (ahora enemigo normal) [24].\nAcción: Al otro lado, ve por la izquierda y desciende por los bordillos con cuidado [24].\nColeccionable: Entre las florecillas venenosas: Runa dorada [5] x1 [24].\nUbicación: Entrada a la Galería de Morne [24]."
+  },
+  {
+    "id": "peninsula-17",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Exploración de la Galería de Morne",
+    "description": "Ubicación: Cueva al final del cañón [26].\nAcción: Baja en el elevador [26].\nLugar de Gracia: “Galería de Morne” [26].\nPrimera Sala:\n- Enemigos: Arpía minera [26].\n- Acción: Cruza el tablón estrecho a la derecha, eliminando al minero. Cuidado con otro minero del túnel. Salta a la siguiente plataforma, sube escalerilla, elimina minero [26].\n- Coleccionable: En la pared: Piedra de forja [3] [26].\nTúnel y Plataforma:\n- Acción: Ve por el túnel, baja escaleras [27].\n- Enemigos: Varios mineros en la plataforma [27].\n- Coleccionable: Cadáver con Runa dorada [5] x1 [27].\nTúnel de la Derecha (Este):\n- Acción: Acaba con el minero [27].\n- Coleccionable: Piedra de forja [3] x1 [27].\nTúnel de la Izquierda (Oeste) hacia la Cabaña:\n- Enemigos (fuera): Mineros (uno suelta Cristal agrietado x1) [27].\n- Enemigos (dentro): Otro minero [27].\n- Coleccionables (dentro): Cadáver con Runa dorada [16] x1, cofre con Carne excelsa x1 [27].\n- Coleccionables (tras la cabaña): Umbrapiedra de forja [3] [27].\n- Túnel lateral: Minero [27].\n- Coleccionable: Cadáver con Esquirla de piedra refulgente grande x2 [27].\nAcción: Date media vuelta por donde bajaste por la plataforma. Ve por debajo de esta [28].\nColeccionable: Cadáver con Bolos de contención x1 [28].\nTúnel a Sala Principal:\n- Enemigos: Arpías mineras (algunas con alas) [28].\n- Coleccionable: Cadáver con Hoja arterial x2 [28].\nTúnel del Oeste:\n- Coleccionable: Cadáver con Algodón suave x1 [28].\nTúnel del Norte: Pasa por el portón de madera [28].\nJefazo: Bastardo escamoso [28].\nAcción: Tras derrotarlo, usa el portal para salir [29]."
+  },
+  {
+    "id": "peninsula-18",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Ruinas del Bosque Semihumano",
+    "description": "Acción: Sal de las minas (Galería de Morne) y ve hacia el Norte, pasando por las florecillas venenosas [25].\nUbicación: “Ruinas del bosque semihumano” [25].\nEnemigos: Varios semihumanos normales, otro Jefe semihumano “normal”, una enorme criatura (casi jefazo) [25].\nRecompensas (Criatura grande): Bastón de reina semihumana y hechizo Estallido de cristales [25].\nColeccionables:\n- Donde estaba la reina: Cadáver con Hoja arterial x2 [25].\n- En una casa en ruinas cercana (salta con caballo al sótano): Cofre con Escudo de condenado [25].\n- Más al Norte, por el acantilado (entre florecillas venenosas): Un cuenco con Lágrima de cristal cristal de fe [25]."
+  },
+  {
+    "id": "peninsula-19",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Cueva Soterraña",
+    "description": "Ubicación: Un poco más al Este de las ruinas del bosque semihumano [30, 31].\nAcción: Localiza un pilar con un candelabro espectral. Sigue al espíritu hasta la cueva (opcional, puedes ir solo) [31].\nLugar de Gracia: “Cueva soterraña” [32].\nPrimera Sala:\n- Cofre: Contiene Cuello de tortuga macerado x3 [32].\n- Peligro: Evita pisar una porción de suelo diferenciable (usa antorcha) para no caer a una sala de ratas [32].\nTúnel:\n- Coleccionable: Musgo de cueva [32].\n- Enemigos: Dos ratas pequeñas [32].\n- Coleccionable: Cadáver con Runa dorada [3] x1 [32].\nSala Grande:\n- Enemigos: Rata gigante y otras “pequeñas” (desde una posición ventajosa si no caíste) [32].\nAcción: Despeja la zona, ve por el siguiente pasillo con luz natural [33].\nEnemigos: Ratas [33].\nColeccionables:\n- Cadáveres: Piedra luminosa x5 y Kukri x8 [33].\nAcción: Déjate caer por los bordillos [33].\nJefazo: Oso rúnico [33].\nColeccionables (post-jefazo): Mariposa en llamas y Lirio de Trina [33].\nAcción: Sal de allí por el transportador [33]."
+  },
+  {
+    "id": "peninsula-20",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Torre Vigía del Bosque",
+    "description": "Ubicación: Todavía más al Este de la Cueva soterraña, rodeando un poco la montaña [30].\nEnemigos: Flores venenosas, balista disparando desde lo alto, soldados y perros [30].\nAcción: Sube por los muros derruidos de la torre, asciende por escalerillas [30].\nEnemigo: Soldado que dispara [30].\nColeccionable: Abre el cofre para conseguir Balista de mano y Saeta de balista x5 [30]."
+  },
+  {
+    "id": "peninsula-21",
+    "section": "Aldea Enfermeda y Alrededores",
+    "title": "Árbol Áureo Pequeño y Alrededores",
+    "description": "Transporte: Transportarse al lugar de gracia “Sur de la torre vigía” [34].\nAcción: Cruza el puente y sigue hasta el “Árbol Áureo pequeño” [34].\nEnemigos: Varios guardianes árbol de camino [34].\nJefazo: Avatar del Árbol Áureo junto al árbol [34].\nColeccionable: Ve a por el Escudo apuntado con blasón de eclipse (explicado en su sección) [34].\nLugar de Gracia: Desciende hasta “La necrohondonada” [34].\nNota: Mausoleos Errantes con campana (puedes ir, pero no se puede hacer nada dentro por ahora) [34]."
+  }
+]
