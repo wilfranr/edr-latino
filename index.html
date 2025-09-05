@@ -1576,11 +1576,10 @@
             const itemsTabButtons = document.querySelectorAll('.items-tab-button');
             const itemsContents = document.querySelectorAll('.items-content');
 
-            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions, timeline: [], legendarios: mockLegendarios };
+            let gameData = { zones: {}, bosses: [], weapons: [], items: [], misiones: mockMissions, guides: [], legendarios: mockLegendarios };
             let progressState = {};
             const STORAGE_KEY = 'eldenRingProgress';
             let currentZoneId = null;
-            let currentTimelineData = [];
 
             // --- MANEJO DE ESTADO Y PROGRESO ---
             function loadProgress() {
@@ -2460,7 +2459,7 @@
                 try {
                     loadingIndicator.textContent = 'Cargando archivos de datos...';
 
-                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes, timelineRes] = await Promise.all([
+                    const [bossesRes, weaponsRes, itemsRes, locationsRes, regionsDifficultyRes, missionsRes, armorsRes, shieldsRes, talismansRes, necroTimelineRes, peninsulaTimelineRes] = await Promise.all([
                         fetch('./data/bosses_es.json'),
                         fetch('./data/weapons_es.json'),
                         fetch('./data/items_es.json'),
@@ -2470,14 +2469,18 @@
                         fetch('./data/armors.json').catch(() => null),
                         fetch('./data/shields.json').catch(() => null),
                         fetch('./data/talismans.json').catch(() => null),
-                        fetch('./data/timeline_necro_es.json')
+                        fetch('./data/timeline_necro_es.json'),
+                        fetch('./data/timeline_peninsula_es.json')
                     ]);
 
                     // Los archivos JSON son arrays directamente, no necesitan .data
                     gameData.bosses = await bossesRes.json();
                     gameData.weapons = await weaponsRes.json();
                     gameData.items = await itemsRes.json();
-                    gameData.timeline = await timelineRes.json();
+                    gameData.guides = [
+                        { name: "Necrolimbo", data: await necroTimelineRes.json() },
+                        { name: "Península del Llanto", data: await peninsulaTimelineRes.json() }
+                    ];
                     gameData.locations = await locationsRes.json();
                     gameData.regionsDifficulty = await regionsDifficultyRes.json();
                     gameData.misiones = await missionsRes.json();
@@ -2517,7 +2520,7 @@
                     renderLegendarios();
 
                     // Inicializar la guía para que esté lista
-                    renderTimelineList(gameData.timeline);
+                    renderTimelineList(gameData.guides);
                 } catch (error) {
                     loadingIndicator.innerHTML = `<p class="text-red-400 font-semibold">Error al cargar los archivos de datos. Asegúrate de que la carpeta /data y los archivos JSON existen.</p><p class="text-zinc-400 text-sm mt-2">${error.message}</p>`;
                 }
@@ -3251,81 +3254,87 @@
             }
 
 
-            function renderTimelineList(data) {
-                if (!data) return;
+            function renderTimelineList(guides) {
+                if (!guides || guides.length === 0) return;
 
                 timelineListContent.innerHTML = ''; // Limpiar antes de renderizar
 
-                // Crear la tarjeta principal para la guía de Necrolimbo
-                const guideCard = document.createElement('div');
-                guideCard.className = 'glass-card p-4 mb-6';
+                guides.forEach((guide, index) => {
+                    const guideData = guide.data;
+                    const guideName = guide.name;
+                    const isFirst = index === 0;
 
-                // Crear el encabezado de la tarjeta
-                const cardHeader = document.createElement('div');
-                cardHeader.className = 'flex justify-between items-center cursor-pointer';
-                cardHeader.innerHTML = `
-                    <h2 class="font-cinzel text-2xl text-amber-400 font-bold">Guía de Necrolimbo</h2>
-                    <svg class="w-6 h-6 text-amber-400 transition-transform transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                `;
+                    // Crear la tarjeta principal para la guía
+                    const guideCard = document.createElement('div');
+                    guideCard.className = 'glass-card p-4 mb-6';
 
-                // Crear el contenedor del contenido de la guía (colapsable)
-                const guideContent = document.createElement('div');
-                guideContent.className = 'mt-4 space-y-4 hidden'; // Oculto por defecto
+                    // Crear el encabezado de la tarjeta
+                    const cardHeader = document.createElement('div');
+                    cardHeader.className = 'flex justify-between items-center cursor-pointer';
+                    cardHeader.innerHTML = `
+                        <h2 class="font-cinzel text-2xl text-amber-400 font-bold">Guía de ${guideName}</h2>
+                        <svg class="w-6 h-6 text-amber-400 transition-transform transform ${isFirst ? 'rotate-180' : ''}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    `;
 
-                // Lógica para renderizar el contenido de la guía (la misma que antes)
-                const groupedBySection = data.reduce((acc, event) => {
-                    (acc[event.section] = acc[event.section] || []).push(event);
-                    return acc;
-                }, {});
+                    // Crear el contenedor del contenido de la guía (colapsable)
+                    const guideContent = document.createElement('div');
+                    guideContent.className = `mt-4 space-y-4 ${isFirst ? '' : 'hidden'}`;
 
-                if (Object.keys(groupedBySection).length === 0) {
-                    guideContent.innerHTML = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos.</div>';
-                } else {
-                    for (const section in groupedBySection) {
-                        const sectionHeader = document.createElement('h3');
-                        sectionHeader.className = 'font-cinzel text-xl text-amber-500 font-bold pt-2';
-                        sectionHeader.textContent = section;
-                        guideContent.appendChild(sectionHeader);
+                    // Lógica para renderizar el contenido de la guía
+                    const groupedBySection = guideData.reduce((acc, event) => {
+                        (acc[event.section] = acc[event.section] || []).push(event);
+                        return acc;
+                    }, {});
 
-                        const sectionContainer = document.createElement('div');
-                        sectionContainer.className = 'space-y-4';
+                    if (Object.keys(groupedBySection).length === 0) {
+                        guideContent.innerHTML = '<div class="text-center text-zinc-400 p-8">No se encontraron eventos.</div>';
+                    } else {
+                        for (const section in groupedBySection) {
+                            const sectionHeader = document.createElement('h3');
+                            sectionHeader.className = 'font-cinzel text-xl text-amber-500 font-bold pt-2';
+                            sectionHeader.textContent = section;
+                            guideContent.appendChild(sectionHeader);
 
-                        groupedBySection[section].forEach(event => {
-                            const isChecked = progressState[event.id] || false;
-                            const eventCard = document.createElement('div');
-                            eventCard.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
-                            eventCard.dataset.id = event.id;
+                            const sectionContainer = document.createElement('div');
+                            sectionContainer.className = 'space-y-4';
 
-                            eventCard.innerHTML = `
-                                <div>
-                                    <h4 class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${event.title}</h4>
-                                    <p class="text-zinc-400 text-sm mt-1">${event.description.substring(0, 100)}...</p>
-                                </div>
-                                <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
-                                <div class="swipe-hint">← Desliza</div>
-                            `;
+                            groupedBySection[section].forEach(event => {
+                                const isChecked = progressState[event.id] || false;
+                                const eventCard = document.createElement('div');
+                                eventCard.className = `glass-card swipe-container p-4 glass-slide-in ${isChecked ? 'completed' : ''}`;
+                                eventCard.dataset.id = event.id;
 
-                            sectionContainer.appendChild(eventCard);
-                            new SwipeHandler(eventCard, event.id, null, () => showTimelineEventDetails(event.id));
-                        });
-                        guideContent.appendChild(sectionContainer);
+                                eventCard.innerHTML = `
+                                    <div>
+                                        <h4 class="item-name font-bold text-white ${isChecked ? 'line-through text-zinc-400' : ''}">${event.title}</h4>
+                                        <p class="text-zinc-400 text-sm mt-1">${event.description.substring(0, 100)}...</p>
+                                    </div>
+                                    <div class="swipe-overlay"><span>${isChecked ? 'Desmarcar' : 'Completar'}</span></div>
+                                    <div class="swipe-hint">← Desliza</div>
+                                `;
+
+                                sectionContainer.appendChild(eventCard);
+                                new SwipeHandler(eventCard, event.id, null, () => showTimelineEventDetails(event.id));
+                            });
+                            guideContent.appendChild(sectionContainer);
+                        }
                     }
-                }
 
-                // Añadir el manejador de eventos para colapsar/expandir
-                cardHeader.addEventListener('click', () => {
-                    guideContent.classList.toggle('hidden');
-                    cardHeader.querySelector('svg').classList.toggle('rotate-180');
+                    // Añadir el manejador de eventos para colapsar/expandir
+                    cardHeader.addEventListener('click', () => {
+                        guideContent.classList.toggle('hidden');
+                        cardHeader.querySelector('svg').classList.toggle('rotate-180');
+                    });
+
+                    // Ensamblar la tarjeta
+                    guideCard.appendChild(cardHeader);
+                    guideCard.appendChild(guideContent);
+
+                    // Añadir la tarjeta al contenedor principal
+                    timelineListContent.appendChild(guideCard);
                 });
-
-                // Ensamblar la tarjeta
-                guideCard.appendChild(cardHeader);
-                guideCard.appendChild(guideContent);
-
-                // Añadir la tarjeta al contenedor principal
-                timelineListContent.appendChild(guideCard);
             }
 
 
