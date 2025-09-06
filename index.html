@@ -3238,8 +3238,19 @@
 
             // --- LÓGICA DE LA GUÍA ---
             function showTimelineEventDetails(eventId) {
-                const event = gameData.timeline.find(e => e.id === eventId);
-                if (!event) return;
+                let event = null;
+                for (const guide of gameData.guides) {
+                    const foundEvent = guide.data.find(e => e.id === eventId);
+                    if (foundEvent) {
+                        event = foundEvent;
+                        break;
+                    }
+                }
+
+                if (!event) {
+                    console.error(`Evento con ID ${eventId} no encontrado.`);
+                    return;
+                }
 
                 timelineSheetTitle.textContent = event.title;
                 timelineSheetDescription.textContent = event.description;
